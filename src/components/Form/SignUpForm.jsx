@@ -2,8 +2,11 @@ import { Form, Formik } from "formik"
 import * as Yup from "yup"
 import AccountQuestion from "./AccountQuestion"
 import FormGroupInput from "./FormGroupInput"
+import { useSignUpForm } from "./useSignUpForm"
 
 export default function SignUnForm() {
+  const { handleSubmit } = useSignUpForm()
+
   return (
     <section className="w-full max-w-[500px] px-[20px] box-border">
       <div>
@@ -36,6 +39,7 @@ export default function SignUnForm() {
               )
               .required("Required")
           })}
+          onSubmit={values => handleSubmit(values)}
         >
           <Form className="flex flex-col justify-start items-center gap-4">
             <FormGroupInput
