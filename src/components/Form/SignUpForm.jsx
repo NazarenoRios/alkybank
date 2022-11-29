@@ -5,10 +5,10 @@ import FormGroupInput from "./FormGroupInput"
 
 export default function SignUnForm() {
   return (
-    <section>
+    <section className="w-full max-w-[500px] px-[20px] box-border">
       <div>
-        <header>
-          <h1>Register your account</h1>
+        <header className="mb-[50px]">
+          <h1 className="text-[24px]">Register your account</h1>
         </header>
         <Formik
           initialValues={{
@@ -32,7 +32,7 @@ export default function SignUnForm() {
               .required("Required")
           })}
         >
-          <Form className="form">
+          <Form className="flex flex-col justify-start items-center gap-4">
             <FormGroupInput
               type="username"
               label="Username"
@@ -53,7 +53,7 @@ export default function SignUnForm() {
               maxLength={15}
               required={true}
             />
-            <input type="submit" value="Sign in" />
+            <input className="cursor-pointer" type="submit" value="Sign in" />
             <AccountQuestion question="¿Are you already registered?" href="" hrefText="Log in" />
           </Form>
         </Formik>
