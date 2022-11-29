@@ -1,5 +1,6 @@
 import { Form, Formik } from "formik"
-import FormGroupInput from "../FormGroupInput"
+import AccountQuestion from "./AccountQuestion"
+import FormGroupInput from "./FormGroupInput"
 
 export default function SignInForm() {
   return (
@@ -37,6 +38,7 @@ export default function SignInForm() {
               required={true}
             />
             <input type="submit" value="Sign in" />
+            <AccountQuestion question="¿Are you already registered?" href="" hrefText="Log in" />
           </Form>
         </Formik>
       </div>
