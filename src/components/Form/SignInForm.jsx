@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik"
-import FormGroupInput from "./FormGroupInput"
+import FormGroupInput from "../FormGroupInput"
 
 export default function SignInForm() {
   return (
