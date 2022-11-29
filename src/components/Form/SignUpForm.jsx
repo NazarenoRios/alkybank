@@ -12,12 +12,17 @@ export default function SignUnForm() {
         </header>
         <Formik
           initialValues={{
-            username: "",
+            firstName: "",
+            lastName: "",
             email: "",
             password: ""
           }}
           validationSchema={Yup.object({
-            username: Yup.string()
+            firstName: Yup.string()
+              .max(15, "Must contain 15 characters or less")
+              .matches(/^[a-zA-Z]+$/, "Must contain only letters")
+              .required("Required"),
+            lastName: Yup.string()
               .max(15, "Must contain 15 characters or less")
               .matches(/^[a-zA-Z]+$/, "Must contain only letters")
               .required("Required"),
@@ -34,11 +39,12 @@ export default function SignUnForm() {
         >
           <Form className="flex flex-col justify-start items-center gap-4">
             <FormGroupInput
-              type="username"
-              label="Username"
-              placeholder="example"
+              type="firstName"
+              label="First Name"
+              placeholder="Juan"
               required={true}
             />
+            <FormGroupInput type="lastName" label="Last Name" placeholder="Perez" required={true} />
             <FormGroupInput
               type="email"
               label="Email"
