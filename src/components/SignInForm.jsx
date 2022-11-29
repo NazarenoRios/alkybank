@@ -5,6 +5,9 @@ export default function SignInForm() {
   return (
     <section>
       <div>
+        <header>
+          <h1>Create Account</h1>
+        </header>
         <Formik
           initialValues={{
             username: "",
