@@ -12,10 +12,10 @@ export default function SignUnForm() {
     <section className="w-full max-w-[404px] bg-red px-[20px] box-border">
       <div>
         <header className="mb-[50px]">
-          <h1 className="text-text1 text-[30px] font-semibold leading-[37px]">
+          <h1 className="text-text1 text-[30px] font-semibold leading-[37px] sm:text-left text-center">
             Create new account
           </h1>
-          <h2 className="text-text2 text-[16px] font-normal leading-[20px]">
+          <h2 className="text-text2 text-[16px] font-normal leading-[30px] sm:text-left text-center">
             Welcome back! Please enter your details
           </h2>
         </header>
