@@ -4,6 +4,7 @@ import { useSignUpForm } from "./useSignUpForm"
 import AccountQuestion from "./AccountQuestion"
 import FormGroupInput from "./FormGroupInput"
 import Button from "../Button"
+import googleIcon from "../../assets/google-icon.svg"
 
 export default function SignUnForm() {
   const { handleSubmit } = useSignUpForm()
@@ -69,6 +70,18 @@ export default function SignUnForm() {
               text="Create Account"
               type="submit"
             />
+            <button
+              className="flex gap-3 justify-center items-center w-full h-[50px] rounded-[10px] border-solid border-[1px] border-[#F5F5F5]"
+              // disabled={disabled}
+              onClick={() => {
+                // signInWithGoogle()
+                // setDisabled(!disabled)
+              }}
+              type="button"
+            >
+              <img className="w-[24px] h-[24px]" src={googleIcon} alt="Ícono de Google" />
+              <span className="font-semibold text-text2">Sign up with Google</span>
+            </button>
             <AccountQuestion
               question="¿Already have an account?"
               href="/login"
