@@ -2,10 +2,11 @@ import { Link } from "react-router-dom"
 
 export default function AccountQuestion({ question, href, hrefText }) {
   return (
-    <div>
-      <p>{question}</p>
-      {/* <Link to={href}>{hrefText}</Link> */}
-      {/* Uncomment when routing has been added */}
+    <div className="flex gap-2">
+      <p className="text-text2">{question}</p>
+      <Link className="font-medium" to={href}>
+        {hrefText}
+      </Link>
     </div>
   )
 }
