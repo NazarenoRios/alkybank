@@ -6,7 +6,7 @@ import "./App.css";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
-import SendMoney from "./pages/SendMoney";
+import TopupMoney from "./pages/TopupMoney";
 
 function App() {
   
@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="/*" element={<Navigate to={"404"} />} />
-        <Route path="/sendMoney" element={<SendMoney />} />
+        <Route path="/topup" element={<TopupMoney />} />
       </Routes>
     </>
   );

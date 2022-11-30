@@ -18,7 +18,6 @@ export default function topupAction({ amount, concept }) {
         data,
         { headers: { Authorization: "Bearer " + token } }
       );
-      console.log(res.data);
       if (res.data.status === 200) {
         Swal.fire("OK", res.data.error, "success");
       }

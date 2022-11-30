@@ -5,7 +5,7 @@ import AlkemyLogo from "../../assets/alkemy-logo.png";
 import { useDispatch } from "react-redux";
 import topupAction from "../../redux/actions/topupAction";
 
-export default function SendMoneyForm() {
+export default function TopupMoneyForm() {
     const dispatch = useDispatch();
   const {
     register,
