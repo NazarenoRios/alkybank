@@ -10,6 +10,7 @@ export default function FormGroupInput({ type, label, placeholder, minLength, ma
         className="w-full rounded-[10px] border-solid border-[1px] border-[#F2F2F2
 ]  p-2 px-3 text-[#8e9297] focus:outline outline-1 outline-primary"
         name={type}
+        type={type}
         id={type}
         placeholder={placeholder}
         minLength={minLength}
