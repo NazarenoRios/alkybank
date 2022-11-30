@@ -9,7 +9,6 @@ import NotFound from "./pages/NotFound";
 import TopupMoney from "./pages/TopupMoney";
 
 function App() {
-  
   return (
     <>
       <Routes>
@@ -22,5 +21,4 @@ function App() {
     </>
   );
 }
-
 export default App;
