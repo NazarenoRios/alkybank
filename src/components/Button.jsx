@@ -1,12 +1,12 @@
 const variants = {
-  primary: "bg-[#0092BE] hover:bg-[#145C95]",
-  secundary: "bg-[#FF7085] hover:bg-[#832232]"
+  primary: "bg-primary hover:bg-[#3E6A00] hover:text-white text-text1",
+  secondary: "bg-secondary hover:bg-[#007E7E] text-white"
 }
 
 export default function Button({ variant, action, text, children }) {
   return (
     <button
-      className={`w-full max-w-[200px] h-[56px] flex justify-center items-center font-bold transition-all duration-300 border-none ${variants[variant]}`}
+      className={`w-full max-w-[200px] h-[56px] flex justify-center items-center font-bold transition-all duration-300 border-none rounded-[10px]  ${variants[variant]}`}
       onClick={() => action()}
     >
       {children ? children : text}
