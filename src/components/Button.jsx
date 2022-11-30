@@ -6,7 +6,7 @@ const variants = {
 export default function Button({ variant, action, text, children }) {
   return (
     <button
-      className={`w-full max-w-[200px] h-[56px] flex justify-center items-center font-bold transition-all duration-300 border-none rounded-[10px]  ${variants[variant]}`}
+      className={`w-full max-w-[200px] h-[48px] flex justify-center items-center font-bold transition-all duration-300 border-none rounded-[10px]  ${variants[variant]}`}
       onClick={() => action()}
     >
       {children ? children : text}
