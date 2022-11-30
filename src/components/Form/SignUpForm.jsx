@@ -1,5 +1,6 @@
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
+import Button from "../Button"
 import AccountQuestion from "./AccountQuestion"
 import FormGroupInput from "./FormGroupInput"
 import { useSignUpForm } from "./useSignUpForm"
@@ -8,26 +9,26 @@ export default function SignUnForm() {
   const { handleSubmit } = useSignUpForm()
 
   return (
-    <section className="w-full max-w-[500px] px-[20px] box-border">
+    <section className="w-full max-w-[404px] bg-red px-[20px] box-border">
       <div>
         <header className="mb-[50px]">
-          <h1 className="text-[24px]">Register your account</h1>
+          <h1 className="text-text1 text-[30px] font-semibold leading-[37px]">
+            Create new account
+          </h1>
+          <h2 className="text-text2 text-[16px] font-normal leading-[20px]">
+            Welcome back! Please enter your details
+          </h2>
         </header>
         <Formik
           initialValues={{
-            firstName: "",
-            lastName: "",
+            fullName: "",
             email: "",
             password: ""
           }}
           validationSchema={Yup.object({
-            firstName: Yup.string()
-              .max(15, "Must contain 15 characters or less")
-              .matches(/^[a-zA-Z]+$/, "Must contain only letters")
-              .required("Required"),
-            lastName: Yup.string()
-              .max(15, "Must contain 15 characters or less")
-              .matches(/^[a-zA-Z]+$/, "Must contain only letters")
+            fullName: Yup.string()
+              .max(20, "Must contain 20 characters or less")
+              .matches(/^(?![\s.]+$)[a-zA-Z\s.]*$/, "Must contain only letters")
               .required("Required"),
             email: Yup.string().email("Invalid email").required("Required"),
             password: Yup.string()
@@ -43,12 +44,11 @@ export default function SignUnForm() {
         >
           <Form className="flex flex-col justify-start items-center gap-4">
             <FormGroupInput
-              type="firstName"
-              label="First Name"
-              placeholder="Juan"
+              type="fullName"
+              label="Full Name"
+              placeholder="Juan Perez"
               required={true}
             />
-            <FormGroupInput type="lastName" label="Last Name" placeholder="Perez" required={true} />
             <FormGroupInput
               type="email"
               label="Email"
@@ -58,13 +58,22 @@ export default function SignUnForm() {
             <FormGroupInput
               type="password"
               label="Password"
-              placeholder="example196"
+              placeholder="***********"
               minLength={4}
               maxLength={15}
               required={true}
             />
-            <input className="cursor-pointer" type="submit" value="Sign in" />
-            <AccountQuestion question="¿Are you already registered?" href="" hrefText="Log in" />
+            <Button
+              className="max-w-[500px]"
+              variant="primary"
+              text="Create Account"
+              type="submit"
+            />
+            <AccountQuestion
+              question="¿Already have an account?"
+              href="/login"
+              hrefText="Sign in"
+            />
           </Form>
         </Formik>
       </div>
