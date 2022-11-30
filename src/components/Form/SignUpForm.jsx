@@ -5,9 +5,11 @@ import AccountQuestion from "./AccountQuestion"
 import FormGroupInput from "./FormGroupInput"
 import Button from "../Button"
 import googleIcon from "../../assets/google-icon.svg"
+import { useGoogleSignIn } from "./useGoogleSignIn"
 
 export default function SignUnForm() {
   const { handleSubmit } = useSignUpForm()
+  const { signInWithGoogle } = useGoogleSignIn("signup")
 
   return (
     <section className="w-full max-w-[404px] bg-red px-[20px] box-border">
@@ -72,10 +74,8 @@ export default function SignUnForm() {
             />
             <button
               className="flex gap-3 justify-center items-center w-full h-[50px] rounded-[10px] border-solid border-[1px] border-[#F5F5F5]"
-              // disabled={disabled}
               onClick={() => {
-                // signInWithGoogle()
-                // setDisabled(!disabled)
+                signInWithGoogle()
               }}
               type="button"
             >
