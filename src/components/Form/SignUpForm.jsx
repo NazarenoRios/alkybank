@@ -1,9 +1,9 @@
 import { Form, Formik } from "formik"
 import * as Yup from "yup"
-import Button from "../Button"
+import { useSignUpForm } from "./useSignUpForm"
 import AccountQuestion from "./AccountQuestion"
 import FormGroupInput from "./FormGroupInput"
-import { useSignUpForm } from "./useSignUpForm"
+import Button from "../Button"
 
 export default function SignUnForm() {
   const { handleSubmit } = useSignUpForm()
