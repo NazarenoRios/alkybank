@@ -12,7 +12,7 @@ const LoginForm = () => {
   const onSubmit = async ({email,password}) => {
     const res = await axios.post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login', {email, password})
     const token = await res.data.accessToken;
-    console.log(token)
+    localStorage.setItem("token", JSON.stringify(token))
   };
 
   return (
