@@ -2,7 +2,7 @@ import { Fragment, useRef } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import warningIcon from "../../assets/warning-icon.svg"
 
-export default function CreateWalletModal({ showModal, setShowModal }) {
+export default function CreateWalletModal({ showModal, setShowModal, createNewWallet }) {
   const cancelButtonRef = useRef(null)
 
   return (
@@ -60,7 +60,7 @@ export default function CreateWalletModal({ showModal, setShowModal }) {
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-base font-medium text-black shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => createNewWallet()}
                   >
                     Create Wallet
                   </button>

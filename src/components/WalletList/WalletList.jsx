@@ -2,9 +2,11 @@ import { useState } from "react"
 import Button from "../Button"
 import Wallet from "../Wallet/Wallet"
 import CreateWalletModal from "./CreateWalletModal"
+import { useCreateWallet } from "./useCreateWallet"
 
 export default function WalletList() {
   const [showModal, setShowModal] = useState(false)
+  const { createNewWallet } = useCreateWallet(setShowModal)
 
   return (
     <section className="w-full max-w-[354px] flex flex-col justify-center gap-5 px-2 box-border">
@@ -17,7 +19,13 @@ export default function WalletList() {
           <Wallet />
         </li>
       </ul>
-      {showModal ? <CreateWalletModal showModal={showModal} setShowModal={setShowModal} /> : null}
+      {showModal ? (
+        <CreateWalletModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          createNewWallet={createNewWallet}
+        />
+      ) : null}
     </section>
   )
 }
