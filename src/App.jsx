@@ -6,6 +6,7 @@ import "./App.css";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import Loading from "./pages/Loading";
 
 function App() {
   
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="/*" element={<Navigate to={"404"} />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </>
   );
