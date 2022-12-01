@@ -6,9 +6,9 @@ export const useSignUpForm = () => {
 
   const handleSubmit = values => {
     createUser(values)
-      .then(response => {
+      .then(async response => {
         console.log(response)
-        // navigate("/login") uncomment when routing has been added
+        navigate("/login")
       })
       .catch(error => console.log(error))
   }
