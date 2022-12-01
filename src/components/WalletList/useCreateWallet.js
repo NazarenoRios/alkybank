@@ -1,16 +1,17 @@
 import { useSelector } from "react-redux"
 
 export const useCreateWallet = setShowModal => {
-  const loggedUser = useSelector(state => state.user)
+  // const loggedUser = useSelector(state => state.loggedUser) uncomment when redux provider has been implemented
 
   const createNewWallet = async () => {
+    const userId = loggedUser.id
     const date = getDate()
     const token = localStorage.getItem("token")
-    const userId = loggedUser.id
     const createdWallet = await createWalletAccount(userId, date, token)
     if (createdWallet.error) {
       //informar que no se pudo crear la wallet
     }
+    // hacer un dispatch para actualizar el estado de las wallets
     setShowModal(false)
   }
 
