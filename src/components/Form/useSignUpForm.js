@@ -9,9 +9,29 @@ export const useSignUpForm = () => {
       .then(response => {
         console.log(response)
         const userId = response.id
+        const date = getDate()
+        const token = localStorage.getItem("token")
+        createWalletAccount(date)
         navigate("/login")
       })
       .catch(error => console.log(error))
+  }
+
+  const createWalletAccount = (date, token) => {
+    fetch("http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        creationDate: date,
+        money: 0,
+        isBlocked: false,
+        userId: 2310
+      })
+    })
   }
 
   const getDate = () => {
