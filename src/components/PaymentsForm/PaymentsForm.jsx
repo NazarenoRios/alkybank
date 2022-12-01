@@ -3,18 +3,17 @@ import { useForm } from "react-hook-form";
 import { LogButton } from "../LoginForm/StyledComponents";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
 import { useDispatch } from "react-redux";
-import {topupAction} from "../../redux/actions/topupAction";
+import {paymentAction} from "../../redux/actions/paymentAction";
 
-export default function TopupMoneyForm() {
+export default function PaymentsForm() {
     const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = ({ amount, concept }) => {
-    console.log(amount, concept)   
-    dispatch(topupAction(amount, concept));
+  const onSubmit = async ({ amount, concept }) => {
+      dispatch(paymentAction(amount, concept));
     }
   return (
     <section className="h-full gradient-formmd:h-screen">

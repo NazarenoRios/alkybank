@@ -10,6 +10,8 @@
     "lint": "eslint --max-warnings=0 src"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.10.16",
     "@mui/styled-engine-sc": "^5.10.16",
     "axios": "^1.2.0",

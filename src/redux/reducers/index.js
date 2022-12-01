@@ -1,3 +1,3 @@
 import { combineReducers } from "redux";
-
-export default combineReducers({});
+import allTransactionsReducer from "./allTransactionsReducer";
+export default combineReducers({allTransactionsReducer});

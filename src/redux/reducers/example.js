@@ -1,17 +1,16 @@
-// import { ADD_FAVORITE } from from "../actions/example.js
+// import { TOPUP_MONEY } from "../actions/topupAction";
 
 // const initialState = {
-//     favorite: [],
-//     message: {},
-//     products: [],
+//     plata: 0
 // };
 
 // export default function reviewsDashReducer (state = initialState, action) {
 //     switch (action.type) {
-//         case ADD_FAVORITE:
+//         case TOPUP_MONEY:
+//             console.log(action.payload, "hola")
 //             return {
 //                 ...state,
-//                 message: action.payload
+//                 plata : state.plata + action.payload
 //             };
 //             default:
 //                 return state;
