@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { LogButton } from "../LoginForm/StyledComponents";
-import AlkemyLogo from "../../assets/alkemy-logo.png";
+import Button from "../Button";
+import AlkemyLogo from "../../assets/alkemy-logo-white.png";
 import { useDispatch } from "react-redux";
 import {topupAction} from "../../redux/actions/topupAction";
 
@@ -17,13 +17,13 @@ export default function TopupMoneyForm() {
     dispatch(topupAction(amount, concept));
     }
   return (
-    <section className="h-full gradient-formmd:h-screen">
+    <section className="h-full gradient-formmd:h-screen ">
       <div className="container py-12 px-6 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-          <div className="xl:w-6/12">
-            <div className="block bg-white shadow-lg rounded-lg">
-              <div className="lg:flex lg:flex-wrap g-0">
-                <div className="lg:w-6/12 px-4 md:px-0">
+          <div className="">
+            <div className="block bg-dark_bg rounded-lg shadow-md shadow-white">
+              <div className="">
+                <div className="">
                   <div className="md:p-12 md:mx-6">
                     <div className="text-center">
                       <img
@@ -31,12 +31,12 @@ export default function TopupMoneyForm() {
                         src={AlkemyLogo}
                         alt="logo"
                       />
-                      <h4 className="text-xl mt-1 mb-12 pb-1">
+                      <h4 className="text-xl mt-1 mb-12 pb-1 text-white">
                         Send money to whoever you want
                       </h4>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="mb-4">
+                      <div className="mb-4 text-white">
                         <label>Amount</label>
                         <input
                           type="number"
@@ -60,7 +60,7 @@ export default function TopupMoneyForm() {
                           </span>
                         )}
                       </div>
-                      <div className="mb-4">
+                      <div className="mb-4 text-white">
                         <label>Concept</label>
                         <input
                           type="text"
@@ -84,14 +84,15 @@ export default function TopupMoneyForm() {
                           </span>
                         )}
                       </div>
-                      <div className="text-center pt-1 mb-12 pb-1">
-                        <LogButton
-                          className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
+                      <div className="text-center pt-1 mb-12 pb-1 w-full ">
+                        <Button
+                          className="max-w-[400px] "
+                          variant="primary"
                           type="submit"
                           onSubmit={onSubmit}
                         >
-                          Toput Money
-                        </LogButton>
+                          Topup Money
+                        </Button>
                       </div>
                     </form>
                   </div>

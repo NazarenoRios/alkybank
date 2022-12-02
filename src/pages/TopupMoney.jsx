@@ -1,9 +1,12 @@
 import TopupMoneyForm from "../components/TopupMoneyForm/TopupMoneyForm";
 
-export default function TopupMoney () {
+export default function TopupMoney() {
     return (
         <>
-            <TopupMoneyForm />
+            <div className="flex h-screen justify-center items-center bg-dark_bg">
+                <TopupMoneyForm />
+            </div>
+
         </>
     )
 };
