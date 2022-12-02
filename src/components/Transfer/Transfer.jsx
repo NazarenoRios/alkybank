@@ -25,8 +25,8 @@ export default function Transfer() {
               .matches(/^\d+$/, "Must contain only numbers")
               .required("Required"),
             amount: Yup.string()
-              .max(20, "Must contain 20 characters or less")
-              .matches(/^[1-99999999]+$/, "The mimimum amount is $1")
+              .max(6, "You have exceeded the maximum amount")
+              .matches(/^\d+$/, "Must contain only numbers")
               .required("Required")
           })}
           onSubmit={values => handleSubmit(values)}
@@ -55,7 +55,7 @@ export default function Transfer() {
             </div>
             <div className="flex flex-col justify-center gap-3">
               <h2 className="font-semibold text-[18px]">¿How much do you want to transfer?</h2>
-              <div className="w-full text-error flex justify-center items-center h-[48px] rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] relative">
+              <div className="w-full  flex justify-center items-center h-[48px] rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] relative">
                 <span className="absolute left-[10px] top-[10px] text-black">$</span>
                 <Field
                   className="h-full w-full text-black rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] pl-7"
@@ -63,6 +63,8 @@ export default function Transfer() {
                   type="text"
                   name="amount"
                 ></Field>
+              </div>
+              <div className="text-error">
                 <ErrorMessage name="amount" />
               </div>
             </div>
