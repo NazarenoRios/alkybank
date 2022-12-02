@@ -1,19 +1,66 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { LogButton, LoginIntro } from "./StyledComponents";
 import { useForm } from "react-hook-form";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const LoginForm = () => {
+  const [token, setToken] = useState(false);
+  const [loginTry, SetLoginTry] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const onSubmit = async ({email,password}) => {
-    const res = await axios.post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login', {email, password})
-    const token = await res.data.accessToken;
-    console.log(token)
+  const navigate = useNavigate();
+
+  const headers = {
+    "Content-type": "application/json; charset=UTF-8",
+    Authorization: "Bearer " + localStorage.getItem("token"),
   };
+
+  const onSubmit = async ({ email, password }) => {
+    try {
+      const res = await axios.post(
+        "http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login",
+        { email, password }
+      );
+      const token = await res.data.accessToken;
+      localStorage.setItem("token", token);
+      setToken(true);
+    } catch (e) {
+      SetLoginTry(true);
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      Swal.fire({
+        icon: "success",
+        title: "You have successfully logged in",
+        showConfirmButton: false,
+        timer: 3500,
+      });
+
+      setTimeout(() => {
+        navigate("/");
+      }, 3500);
+    }
+  }, [token]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me",
+        { headers: headers }
+      )
+      .then((res) => console.log(res.data));
+  }, []);
 
   return (
     <section className="h-full gradient-formmd:h-screen">
@@ -79,12 +126,17 @@ const LoginForm = () => {
                                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                               message: "Invalid password",
                             },
-                            
                           })}
                         />
                         {errors.password && (
                           <span className="text-red-600 text-sm">
                             {errors.password.message}
+                          </span>
+                        )}
+
+                        {loginTry && (
+                          <span className="text-red-600 text-sm">
+                            * It seems your email or password are incorrect
                           </span>
                         )}
                       </div>
