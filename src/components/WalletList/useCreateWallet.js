@@ -1,3 +1,5 @@
+import Swal from "sweetalert2"
+
 export const useCreateWallet = setShowModal => {
   const createNewWallet = async () => {
     const loggedUser = localStorage.getItem("loggedUser")
@@ -6,8 +8,17 @@ export const useCreateWallet = setShowModal => {
     const token = localStorage.getItem("token")
     const createdWallet = await createWalletAccount(userId, date, token)
     if (createdWallet.error) {
-      //informar que no se pudo crear la wallet
+      Swal.fire({
+        icon: "error",
+        title: "An error has occurred. Try again later",
+        showConfirmButton: true
+      })
     }
+    Swal.fire({
+      icon: "success",
+      title: "You have successfully created a wallet",
+      showConfirmButton: false
+    })
     // hacer un dispatch para actualizar el estado de las wallets
     setShowModal(false)
   }
@@ -34,6 +45,7 @@ export const useCreateWallet = setShowModal => {
       return await response.json()
     } catch (error) {
       console.log(error)
+      Swal.fire("Error", createdWallet.error, "error")
     }
   }
 
