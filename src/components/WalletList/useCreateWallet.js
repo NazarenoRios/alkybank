@@ -1,9 +1,6 @@
-import { useSelector } from "react-redux"
-
 export const useCreateWallet = setShowModal => {
-  // const loggedUser = useSelector(state => state.loggedUser) uncomment when redux provider has been implemented
-
   const createNewWallet = async () => {
+    const loggedUser = localStorage.getItem("loggedUser")
     const userId = loggedUser.id
     const date = getDate()
     const token = localStorage.getItem("token")
