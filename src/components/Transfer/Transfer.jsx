@@ -1,25 +1,32 @@
 import { ErrorMessage, Field } from "formik"
 import { Form, Formik } from "formik"
+import { useSelector } from "react-redux"
 import * as Yup from "yup"
+import { useTransfer } from "./useTransfer"
+import WalletList from "../WalletList/WalletList"
 import Button from "../Button"
 
 export default function Transfer() {
+  const walletState = useSelector(state => state.walletReducer)
+  const { handleSubmit } = useTransfer()
+
   return (
     <section className="flex flex-col justify-center gap-5 w-full max-w-[375px] h-full ml-[40px] mt-[30px] mr-[30px]">
+      <WalletList />
       <h1 className="font-semibold text-[25px]">Transfer</h1>
       <div className="w-full p-5 bg-[#fafafa] rounded-[10px]">
         <h2 className="text-[#929eae]">Your Balance</h2>
-        <span className="font-bold">$5240.00</span>
+        <span className="font-bold">${walletState?.money}</span>
       </div>
       <div>
         <Formik
           initialValues={{
-            cvu: "",
+            accountId: "",
             type: "",
             amount: ""
           }}
           validationSchema={Yup.object({
-            cvu: Yup.string()
+            accountId: Yup.string()
               .min(4, "Must contain 4 characters")
               .max(4, "Must contain 4 characters")
               .matches(/^\d+$/, "Must contain only numbers")
@@ -29,28 +36,28 @@ export default function Transfer() {
               .matches(/^\d+$/, "Must contain only numbers")
               .required("Required")
           })}
-          onSubmit={values => handleSubmit(values)}
+          onSubmit={values => handleSubmit(values, walletState)}
         >
           <Form className="flex flex-col justify-center gap-10 max-w-[400px]">
             <div className="text-error">
-              <h2 className="font-semibold text-[18px] text-black">Enter CVU</h2>
+              <h2 className="font-semibold text-[18px] text-black">Enter Account Id</h2>
               <Field
                 className="h-[48px] w-full text-black rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] pl-3"
                 placeholder="Example: 4281"
                 type="text"
-                name="cvu"
+                name="accountId"
               ></Field>
-              <ErrorMessage name="cvu" />
+              <ErrorMessage name="accountId" />
             </div>
             <div className="flex flex-col justify-center gap-3">
               <h2 className="font-semibold text-[18px]">Choose the transfer type</h2>
               <div className="flex items-center gap-2">
-                <Field type="radio" id="topup" name="type" value="topup"></Field>
-                <label for="topup">Topup</label>
+                <Field type="radio" id="payment" name="type" value="payment" checked={true}></Field>
+                <label htmlFor="payment">Payment</label>
               </div>
               <div className="flex items-center gap-2">
-                <Field type="radio" id="payment" name="type" value="payment"></Field>
-                <label for="payment">Payment</label>
+                <Field type="radio" id="topup" name="type" value="topup" disabled={true}></Field>
+                <label htmlFor="topup">Topup</label>
               </div>
             </div>
             <div className="flex flex-col justify-center gap-3">
