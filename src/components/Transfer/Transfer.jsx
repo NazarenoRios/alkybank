@@ -11,7 +11,7 @@ export default function Transfer() {
   const { handleSubmit } = useTransfer()
 
   return (
-    <section className="flex flex-col justify-center gap-5 w-full max-w-[375px] h-full ml-[40px] mt-[30px] mr-[30px]">
+    <section className="flex flex-col justify-center gap-5 px-5 box-border w-full max-w-[375px] h-full mt-[30px] mr-[30px]">
       <WalletList />
       <h1 className="font-semibold text-[25px]">Transfer</h1>
       <div className="w-full p-5 bg-[#fafafa] rounded-[10px]">
