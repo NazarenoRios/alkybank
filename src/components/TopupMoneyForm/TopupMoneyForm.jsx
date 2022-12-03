@@ -21,10 +21,10 @@ export default function TopupMoneyForm() {
       <div className="container py-12 px-6 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
 
-          <div className="block bg-dark_bg rounded-lg shadow-md shadow-white">
+          <div className="block bg-dark_bg rounded-lg shadow-2xl shadow-primary">
 
 
-            <div className="md:p-12 md:mx-6">
+            <div className="p-12 md:mx-6 ">
               <div className="text-center">
                 <img
                   className="mx-auto w-48 mb-4"
