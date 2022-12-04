@@ -34,17 +34,17 @@ export default function Transfer() {
         >
           <Form className="flex flex-col justify-center gap-5 max-w-[400px]">
             <div className="flex justify-between">
-              <div className="flex flex-col gap-4 text-error max-w-[150px]">
+              <div className="flex flex-col gap-4 text-error max-w-[200px]">
                 <h2 className="text-[16px] text-black">Account Id</h2>
                 <Field
-                  className="max-w-[160px] h-[48px] w-full text-black rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] pl-3"
+                  className="max-w-[200px] h-[48px] w-full text-black rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] pl-3"
                   placeholder="Example: 4281"
                   type="text"
                   name="accountId"
                 ></Field>
                 <ErrorMessage name="accountId" />
               </div>
-              <div className="w-[150px] flex flex-col justify-center gap-3">
+              <div className=" flex flex-col justify-center gap-3">
                 <h2 className="text-[16px]">Transfer type</h2>
                 <div className="flex items-center gap-2">
                   <Field

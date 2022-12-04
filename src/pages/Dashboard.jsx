@@ -6,6 +6,7 @@ import WalletList from "../components/WalletList/WalletList"
 import { useWalletList } from "../components/WalletList/useWalletList"
 import { useSelector } from "react-redux"
 import { useDashboard } from "../hooks/useDashboard"
+import Header from "../components/Header/Header"
 
 export default function Dashboard() {
   const walletState = useSelector(state => state.walletReducer)
@@ -15,9 +16,9 @@ export default function Dashboard() {
 
   return (
     <section className="ml-[290px] pt-[30px] px-4 box-border">
+      <Header title="Dashboard" />
       <div className="w-full max-w-[1450px] flex gap-x-[50px] flex-wrap">
         <div className="w-full max-w-[1000px] flex flex-col gap-12">
-          <h1 className="text-[25px] font-semibold">Dashboard</h1>
           <div>
             <div className="w-full flex items-center justify-center flex-wrap gap-10">
               <div className="w-full max-w-[250px] flex gap-4 rounded-[10px] bg-key_black pl-[20px] pr-[20px] pt-[24px] pb-[24px]">
