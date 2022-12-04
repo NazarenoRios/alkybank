@@ -35,6 +35,30 @@ export default function Dashboard() {
           </div>
           <h3 className="absolute left-[15%] top-[50%] text-[40px]">Coming soon...</h3>
         </div>
+        <div className="flex flex-col gap-4">
+          <h2 className="text-[18px] font-semibold">Recent Transaction</h2>
+          <div className="flex flex-col gap-2 w-full max-w-[716px]">
+            <div className="flex justify-between">
+              <span className="w-full max-w-[179px]">Wallet id</span>
+              <span className="w-full max-w-[179px]">Type</span>
+              <span className="w-full max-w-[179px]">Amount</span>
+              <span className="w-full max-w-[179px]">Date</span>
+            </div>
+            <ul className="flex flex-col gap-4">
+              <li className="flex justify-between items-center">
+                <div className="w-full max-w-[179px] flex items-center gap-3">
+                  <div className="w-fit h-fit p-2 rounded-[10px] bg-[#4E5257]">
+                    <img src={walletIconGreen} alt="Wallet total balance" />
+                  </div>
+                  <span>1234</span>
+                </div>
+                <span className="w-full max-w-[179px]">Payment</span>
+                <span className="w-full max-w-[179px]">$420.82</span>
+                <span className="w-full max-w-[179px]">14/02/2022</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   )
