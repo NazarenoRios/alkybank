@@ -4,7 +4,7 @@ import graph from "../assets/graph.png"
 
 export default function Dashboard() {
   return (
-    <section className="ml-[290px] pt-[30px]">
+    <section className="ml-[290px] pt-[30px] px-4 box-border">
       <div className="flex flex-col gap-12 ">
         <h1 className="text-[25px] font-semibold">Dashboard</h1>
         <div>
