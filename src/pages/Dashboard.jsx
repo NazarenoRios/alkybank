@@ -3,8 +3,16 @@ import walletIconDark from "../assets/wallet-icon-dark.png"
 import graph from "../assets/graph.png"
 import arrowIcon from "../assets/arrow-icon.png"
 import WalletList from "../components/WalletList/WalletList"
+import { useWalletList } from "../components/WalletList/useWalletList"
+import { useSelector } from "react-redux"
+import { useDashboard } from "../hooks/useDashboard"
 
 export default function Dashboard() {
+  const walletState = useSelector(state => state.walletReducer)
+  const transactions = useSelector(state => state.allTransactionsReducer.transactions)
+  useWalletList()
+  useDashboard()
+
   return (
     <section className="ml-[290px] pt-[30px] px-4 box-border">
       <div className="w-full max-w-[1450px] flex gap-x-[50px] flex-wrap">
@@ -18,7 +26,7 @@ export default function Dashboard() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[14px] font-semibold text-[#929EAE]">Total balance</span>
-                  <span className="text-[20px] font-semibold text-white">$0.00</span>
+                  <span className="text-[20px] font-semibold text-white">${walletState.money}</span>
                 </div>
               </div>
               <div className="w-full max-w-[250px] flex gap-4 rounded-[10px] bg-[#F8F8F8] pl-[20px] pr-[20px] pt-[24px] pb-[24px]">
@@ -70,17 +78,25 @@ export default function Dashboard() {
                 <span className="w-full max-w-[200px]">Date</span>
               </div>
               <ul className="flex flex-col gap-4">
-                <li className="flex justify-between items-center">
-                  <div className="w-full max-w-[200px] flex items-center gap-3">
-                    <div className="w-fit h-fit p-2 rounded-[10px] bg-[#4E5257]">
-                      <img src={walletIconGreen} alt="Wallet total balance" />
+                {transactions.map(transaction => (
+                  <li className="flex justify-between items-center" key={transaction.id}>
+                    <div className="w-full max-w-[200px] flex items-center gap-3">
+                      <div className="w-fit h-fit p-2 rounded-[10px] bg-[#4E5257]">
+                        <img src={walletIconGreen} alt="Wallet total balance" />
+                      </div>
+                      <span>{transaction.accountId}</span>
                     </div>
-                    <span>1234</span>
-                  </div>
-                  <span className="w-full max-w-[200px]">Payment</span>
-                  <span className="w-full max-w-[200px]">$420.82</span>
-                  <span className="w-full max-w-[200px]">14/02/2022</span>
-                </li>
+                    <span className="w-full max-w-[200px]">Payment</span>
+                    <span className="w-full max-w-[200px]">${transaction.amount}</span>
+                    <span className="w-full max-w-[200px]">
+                      {new Date(transaction.createdAt).toLocaleDateString("es-AR", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit"
+                      })}
+                    </span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
