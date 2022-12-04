@@ -78,7 +78,7 @@ export default function Dashboard() {
                 <span className="w-full max-w-[200px]">Date</span>
               </div>
               <ul className="flex flex-col gap-4">
-                {transactions.map(transaction => (
+                {transactions.slice(0, 4).map(transaction => (
                   <li className="flex justify-between items-center" key={transaction.id}>
                     <div className="w-full max-w-[200px] flex items-center gap-3">
                       <div className="w-fit h-fit p-2 rounded-[10px] bg-[#4E5257]">
