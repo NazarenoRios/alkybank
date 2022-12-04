@@ -1,5 +1,5 @@
 import axios from "axios";
-import Swal from "sweetalert2"
+import { toast } from "react-toastify";
 export function paymentAction( amount, concept ) {
   return async function () {
     try {
@@ -20,12 +20,12 @@ export function paymentAction( amount, concept ) {
       );
       console.log(res.data)
       if (res.data.message === "OK") {
-        Swal.fire("OK", "Payment Successfully", "success");
+        toast.success("Payment Successfully");
       }
     } catch (error) {
       console.log(error);
       if (error.response.status) {
-        Swal.fire("Oops!", error.message, "error");
+        toast.error(error.message);
       }
     }
   };
