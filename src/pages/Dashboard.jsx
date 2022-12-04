@@ -11,7 +11,7 @@ export default function Dashboard() {
   const walletState = useSelector(state => state.walletReducer)
   const transactions = useSelector(state => state.allTransactionsReducer.transactions)
   useWalletList()
-  useDashboard()
+  const { totalSpending } = useDashboard()
 
   return (
     <section className="ml-[290px] pt-[30px] px-4 box-border">
@@ -35,7 +35,7 @@ export default function Dashboard() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[14px] font-semibold text-[#929EAE]">Total spending</span>
-                  <span className="text-[20px] font-semibold text-black">$0.00</span>
+                  <span className="text-[20px] font-semibold text-black">${totalSpending}</span>
                 </div>
               </div>
               <div className="w-full max-w-[300px] flex flex-col gap-2">
