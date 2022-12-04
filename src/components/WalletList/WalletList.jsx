@@ -37,11 +37,13 @@ export default function WalletList() {
         <div className="flex justify-between">
           <div>
             <h4>Card holder</h4>
-            <span className="font-bold text-[18px]">John Smith</span>
+            <span className="font-bold text-[18px]">
+              {localStorage.first_name} {localStorage.last_name}
+            </span>
           </div>
           <div>
             <h4>Wallet Id</h4>
-            <span className="font-bold text-[18px]">5123</span>
+            <span className="font-bold text-[18px]">{walletState.id}</span>
           </div>
         </div>
         <div className="flex justify-between">
@@ -51,7 +53,13 @@ export default function WalletList() {
           </div>
           <div>
             <h4>Creation date</h4>
-            <span className="font-bold text-[18px]">24/11/2022</span>
+            <span className="font-bold text-[18px]">
+              {new Date(walletState.createdAt).toLocaleDateString("es-AR", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+              })}
+            </span>
           </div>
           <div>
             <h4>Category</h4>
