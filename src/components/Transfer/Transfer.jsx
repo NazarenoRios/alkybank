@@ -3,7 +3,6 @@ import { Form, Formik } from "formik"
 import { useSelector } from "react-redux"
 import * as Yup from "yup"
 import { useTransfer } from "./useTransfer"
-import WalletList from "../WalletList/WalletList"
 import Button from "../Button"
 
 export default function Transfer() {
@@ -11,13 +10,8 @@ export default function Transfer() {
   const { handleSubmit } = useTransfer()
 
   return (
-    <section className="flex flex-col justify-center gap-5 px-5 box-border w-full max-w-[375px] h-full mt-[30px] mr-[30px]">
-      <WalletList />
-      <h1 className="font-semibold text-[25px]">Transfer</h1>
-      <div className="w-full p-5 bg-[#fafafa] rounded-[10px]">
-        <h2 className="text-[#929eae]">Your Balance</h2>
-        <span className="font-bold">${walletState?.money}</span>
-      </div>
+    <section className="flex flex-col justify-center gap-5 box-border w-full max-w-[375px] h-full border-solid border-t-[1px] border-[#F2F2F2] pt-5">
+      <h1 className="font-semibold text-[18px]">Quick transfer</h1>
       <div>
         <Formik
           initialValues={{
@@ -38,30 +32,38 @@ export default function Transfer() {
           })}
           onSubmit={values => handleSubmit(values, walletState)}
         >
-          <Form className="flex flex-col justify-center gap-10 max-w-[400px]">
-            <div className="text-error">
-              <h2 className="font-semibold text-[18px] text-black">Enter Account Id</h2>
-              <Field
-                className="h-[48px] w-full text-black rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] pl-3"
-                placeholder="Example: 4281"
-                type="text"
-                name="accountId"
-              ></Field>
-              <ErrorMessage name="accountId" />
+          <Form className="flex flex-col justify-center gap-5 max-w-[400px]">
+            <div className="flex justify-between">
+              <div className="flex flex-col gap-4 text-error max-w-[150px]">
+                <h2 className="text-[16px] text-black">Account Id</h2>
+                <Field
+                  className="max-w-[160px] h-[48px] w-full text-black rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] pl-3"
+                  placeholder="Example: 4281"
+                  type="text"
+                  name="accountId"
+                ></Field>
+                <ErrorMessage name="accountId" />
+              </div>
+              <div className="w-[150px] flex flex-col justify-center gap-3">
+                <h2 className="text-[16px]">Transfer type</h2>
+                <div className="flex items-center gap-2">
+                  <Field
+                    type="radio"
+                    id="payment"
+                    name="type"
+                    value="payment"
+                    checked={true}
+                  ></Field>
+                  <label htmlFor="payment">Payment</label>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Field type="radio" id="topup" name="type" value="topup" disabled={true}></Field>
+                  <label htmlFor="topup">Topup</label>
+                </div>
+              </div>
             </div>
             <div className="flex flex-col justify-center gap-3">
-              <h2 className="font-semibold text-[18px]">Choose the transfer type</h2>
-              <div className="flex items-center gap-2">
-                <Field type="radio" id="payment" name="type" value="payment" checked={true}></Field>
-                <label htmlFor="payment">Payment</label>
-              </div>
-              <div className="flex items-center gap-2">
-                <Field type="radio" id="topup" name="type" value="topup" disabled={true}></Field>
-                <label htmlFor="topup">Topup</label>
-              </div>
-            </div>
-            <div className="flex flex-col justify-center gap-3">
-              <h2 className="font-semibold text-[18px]">¿How much do you want to transfer?</h2>
+              <h2 className="font-semibold text-[16px]">¿How much do you want to transfer?</h2>
               <div className="w-full  flex justify-center items-center h-[48px] rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] relative">
                 <span className="absolute left-[10px] top-[10px] text-black">$</span>
                 <Field
