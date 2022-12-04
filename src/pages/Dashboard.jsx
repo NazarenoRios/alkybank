@@ -7,11 +7,11 @@ import WalletList from "../components/WalletList/WalletList"
 export default function Dashboard() {
   return (
     <section className="ml-[290px] pt-[30px] px-4 box-border">
-      <div className="w-full max-w-[1450px] flex gap-[50px]">
+      <div className="w-full max-w-[1450px] flex gap-x-[50px] flex-wrap">
         <div className="w-full max-w-[1000px] flex flex-col gap-12">
           <h1 className="text-[25px] font-semibold">Dashboard</h1>
           <div>
-            <div className="w-full flex items-center justify-between">
+            <div className="w-full flex items-center justify-center flex-wrap gap-10">
               <div className="w-full max-w-[250px] flex gap-4 rounded-[10px] bg-key_black pl-[20px] pr-[20px] pt-[24px] pb-[24px]">
                 <div className="w-fit h-fit p-3 rounded-[100px] bg-[#4E5257]">
                   <img src={walletIconGreen} alt="Wallet total balance" />
