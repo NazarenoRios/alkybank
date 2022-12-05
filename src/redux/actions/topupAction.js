@@ -1,7 +1,9 @@
 import axios from "axios";
-import Swal from "sweetalert2"
+import { toast } from "react-toastify";
+
+export const TOPUP_SUCCESS = "TOPUP_SUCCESS";
 export function topupAction( amount, concept ) {
-  return async function () {
+  return async function (dispatch) {
     try {
       amount = Number(amount);
       let type = "topup";
@@ -14,18 +16,19 @@ export function topupAction( amount, concept ) {
         amount,
       };
       console.log(data)
+      
       const res = await axios.post(
         `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${id}`,
         data,
          { headers: { Authorization: "Bearer " + token } }
       );
-      if (res.data.status === 200) {
-        Swal.fire("OK", res.data.error, "success");
-      }
+      return dispatch({type: TOPUP_SUCCESS, payload: true})
+
+
     } catch (error) {
       console.log(error);
       if (error.response.status) {
-        Swal.fire("Oops!", error.message, "error");
+        toast.error(error.message);
       }
     }
   };

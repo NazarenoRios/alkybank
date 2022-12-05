@@ -2327,7 +2327,7 @@
     "strip-ansi" "^6.0.0"
     "wrap-ansi" "^7.0.0"
 
-"clsx@^1.2.1":
+"clsx@^1.1.1", "clsx@^1.2.1":
   "integrity" "sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg=="
   "resolved" "https://registry.npmjs.org/clsx/-/clsx-1.2.1.tgz"
   "version" "1.2.1"
@@ -3721,6 +3721,7 @@
   "version" "6.2.0"
 
 "react-dom@^16 || ^17 || ^18", "react-dom@^16.8 || ^17.0 || ^18.0", "react-dom@^17.0.0 || ^18.0.0", "react-dom@^18.2.0", "react-dom@>= 16.8.0", "react-dom@>=16.6.0", "react-dom@>=16.8":
+
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -3785,6 +3786,13 @@
   dependencies:
     "@remix-run/router" "1.0.3"
 
+"react-toastify@^9.1.1":
+  "integrity" "sha512-pkFCla1z3ve045qvjEmn2xOJOy4ZciwRXm1oMPULVkELi5aJdHCN/FHnuqXq8IwGDLB7PPk2/J6uP9D8ejuiRw=="
+  "resolved" "https://registry.npmjs.org/react-toastify/-/react-toastify-9.1.1.tgz"
+  "version" "9.1.1"
+  dependencies:
+    "clsx" "^1.1.1"
+
 "react-transition-group@^4.4.5":
   "integrity" "sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g=="
   "resolved" "https://registry.npmjs.org/react-transition-group/-/react-transition-group-4.4.5.tgz"
@@ -3796,6 +3804,7 @@
     "prop-types" "^15.6.2"
 
 "react@^16 || ^17 || ^18", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17.0.0 || ^18.0.0", "react@^18.2.0", "react@>= 16.8.0", "react@>=16.0.0", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0":
+
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"
@@ -4142,11 +4151,6 @@
   "integrity" "sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w=="
   "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
-
-"sweetalert2@^11.4.8":
-  "integrity" "sha512-BDS/+E8RwaekGSxCPUbPnsRAyQ439gtXkTF/s98vY2l9DaVEOMjGj1FaQSorfGREKsbbxGSP7UXboibL5vgTMA=="
-  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.4.8.tgz"
-  "version" "11.4.8"
 
 "tailwindcss@^3.2.4":
   "integrity" "sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ=="

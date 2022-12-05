@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LogButton, LoginIntro } from "./StyledComponents";
 import { useForm } from "react-hook-form";
+import { useAuth } from "../../hooks/useAuth";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
 import axios from "axios";
-import Swal from "sweetalert2";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginForm = () => {
-  const [token, setToken] = useState(false);
   const [loginTry, SetLoginTry] = useState(false);
+  const { signin, token } = useAuth();
 
   const {
     register,
@@ -16,52 +18,21 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
-
-  const headers = {
-    "Content-type": "application/json; charset=UTF-8",
-    Authorization: "Bearer " + localStorage.getItem("token"),
-  };
-
   const onSubmit = async ({ email, password }) => {
     try {
-      const res = await axios.post(
-        "http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login",
-        { email, password }
-      );
-      const token = await res.data.accessToken;
-      localStorage.setItem("token", token);
-      setToken(true);
+      signin(email, password).then((res) => {
+       if(res.status === 200) {
+        toast.success("Login successfull")
+       }
+      });
+    
     } catch (e) {
       SetLoginTry(true);
       console.log(e);
     }
   };
 
-  useEffect(() => {
-    if (token) {
-      Swal.fire({
-        icon: "success",
-        title: "You have successfully logged in",
-        showConfirmButton: false,
-        timer: 3500,
-      });
-
-      setTimeout(() => {
-        navigate("/");
-      }, 3500);
-    }
-  }, [token]);
-
-  useEffect(() => {
-    axios
-      .get(
-        "http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me",
-        { headers: headers }
-      )
-      .then((res) => console.log(res.data));
-  }, []);
-
+  
   return (
     <section className="h-full gradient-formmd:h-screen">
       <div className="container py-12 px-6 h-full">
