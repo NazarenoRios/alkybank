@@ -5,10 +5,18 @@ export const useSignUpForm = () => {
   const navigate = useNavigate()
 
   const handleSubmit = values => {
-    createUser(values)
-      .then(response => {
+    const first_name = values.fullName.split(" ")[0]
+    const last_name = values.fullName.split(" ")[1]
+    const user = {
+      first_name,
+      last_name,
+      email: values.email,
+      password: values.password
+    }
+    createUser(user)
+      .then(async response => {
         console.log(response)
-        // navigate("/login") uncomment when routing has been added
+        navigate("/login")
       })
       .catch(error => console.log(error))
   }
