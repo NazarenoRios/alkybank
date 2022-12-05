@@ -14,7 +14,6 @@ import TopupMoney from "./pages/TopupMoney"
 import Payments from "./pages/Payments"
 import Balance from "./pages/Balance"
 import Dashboard from "./pages/Dashboard"
-import Balance from "./pages/Balance";
 import Logout from "./pages/Logout";
 
 function App() {

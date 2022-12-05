@@ -4,6 +4,7 @@ import { LogButton } from "../LoginForm/StyledComponents";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
 import { useDispatch } from "react-redux";
 import {topupAction} from "../../redux/actions/topupAction";
+import {Layout} from "../layout"
 
 export default function TopupMoneyForm() {
     const dispatch = useDispatch();
@@ -17,8 +18,10 @@ export default function TopupMoneyForm() {
     dispatch(topupAction(amount, concept));
     }
   return (
+    <Layout>
     <section className="h-full gradient-formmd:h-screen">
-      <div className="container py-12 px-6 h-full">
+      {/* <div className="container py-12 px-6 h-full"> */}
+      <div className="">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div className="xl:w-6/12">
             <div className="block bg-white shadow-lg rounded-lg">
@@ -48,12 +51,12 @@ export default function TopupMoneyForm() {
                           {...register("amount", {
                             required: "Amount is required",
                             pattern: {
-                                 value:
+                              value:
                                  /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/gm,
-                              message: "Please enter a valid amount",
-                            },
-                          })}
-                        />
+                                 message: "Please enter a valid amount",
+                                },
+                              })}
+                              />
                         {errors.amount && (
                           <span className="text-red-600 text-sm">
                             {errors.amount.message}
@@ -89,7 +92,7 @@ export default function TopupMoneyForm() {
                           className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
                           type="submit"
                           onSubmit={onSubmit}
-                        >
+                          >
                           Toput Money
                         </LogButton>
                       </div>
@@ -102,5 +105,6 @@ export default function TopupMoneyForm() {
         </div>
       </div>
     </section>
+    </Layout>
   );
 }

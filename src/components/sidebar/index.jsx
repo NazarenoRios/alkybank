@@ -3,15 +3,15 @@ import alkybankLogo from "../../assets/alkemy-logo.png";
 
 export const Sidebar = () => {
   return (
-    <aside class="w-64" aria-label="Sidebar">
+    <aside class="w-64 absolute" aria-label="Sidebar">
       <div class="overflow-y-auto py-4 px-3 h-screen bg-dark2 rounded ">
-        <a href="/" class="flex items-center pl-2.5 mb-5">
+        {/* <a href="/" class="flex items-center pl-2.5 mb-5">
           <img
             src={alkybankLogo}
             class="mr-3 w-40 h-auto"
             alt="Alkemy bank Logo"
           />
-        </a>
+        </a> */}
         <ul class="space-y-2">
           <li>
             <a
