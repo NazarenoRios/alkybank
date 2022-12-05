@@ -13,7 +13,7 @@ import Loading from "./pages/Loading";
 import TopupMoney from "./pages/TopupMoney";
 import Payments from "./pages/Payments"
 import Balance from "./pages/Balance";
-
+import Logout from "./pages/Logout";
 
 function App() {
   const [isLogged,setIsLogged] = useState(false)
@@ -44,7 +44,7 @@ function App() {
   return (
     <>
       <Routes>
-        {isLogged ? <Route path="/" element={<h1>Aca va si esta logeado</h1>} /> : <Route path="/" element={<Homepage />} />}
+        {isLogged ? <Route path="/" element={<h1>Aca va si esta logeado</h1>} /> : <Route path="/" element={<Hogit smepage />} />}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/404" element={<NotFound />} />
@@ -53,6 +53,7 @@ function App() {
         <Route path="/topup" element={<TopupMoney />} />
         <Route path="/payments" element={<Payments />}/>
         <Route path="/balance" element={<Balance/>} />
+        <Route path="/logout" element={<Logout/>} />
       </Routes>
     </>
   )
