@@ -7,7 +7,6 @@ const initialState = {
 export default function allTransactionsReducer(state = initialState, action) {
   switch (action.type) {
     case ALL_TRANSACTIONS:
-      console.log(action.payload, "hola");
       return {
         ...state,
         transactions: action.payload,
