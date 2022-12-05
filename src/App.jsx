@@ -44,7 +44,7 @@ function App() {
   return (
     <>
       <Routes>
-        {isLogged ? <Route path="/" element={<h1>Aca va si esta logeado</h1>} /> : <Route path="/" element={<Hogit smepage />} />}
+        {isLogged ? <Route path="/" element={<h1>Aca va si esta logeado</h1>} /> : <Route path="/" element={<Homepage />} />}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/404" element={<NotFound />} />
