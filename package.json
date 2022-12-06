@@ -10,9 +10,9 @@
     "lint": "eslint --max-warnings=0 src"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@headlessui/react": "^1.7.4",
     "@mui/material": "^5.10.16",
     "@mui/styled-engine-sc": "^5.10.16",
     "axios": "^1.2.0",
@@ -28,7 +28,6 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.2",
     "styled-components": "^5.3.6",
-    "sweetalert2": "^11.4.8",
     "yup": "^0.32.11"
   },
   "devDependencies": {

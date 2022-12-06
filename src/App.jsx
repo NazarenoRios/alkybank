@@ -55,7 +55,6 @@ function App() {
         <Route path="/*" element={<Navigate to={"404"} />} />
         <Route path="/loading" element={<Loading />} />
         <Route path="/topup" element={<TopupMoney />} />
-        <Route path="/payments" element={<Payments />} />
         <Route path="/balance" element={<Balance />} />
         <Route path="/payments" element={<Payments />}/>
         <Route path="/balance" element={<Balance/>} />

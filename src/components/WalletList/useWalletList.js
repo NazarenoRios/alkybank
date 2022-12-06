@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import Swal from "sweetalert2"
+// import Swal from "sweetalert2"
 
 export const useWalletList = setShowModal => {
   const dispatch = useDispatch()

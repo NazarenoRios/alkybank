@@ -1,5 +1,5 @@
 import axios from "axios";
-import Swal from "sweetalert2"
+// import Swal from "sweetalert2"
 export function paymentAction( amount, concept ) {
   return async function () {
     try {

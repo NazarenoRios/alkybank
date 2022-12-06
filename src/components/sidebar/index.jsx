@@ -1,25 +1,20 @@
 import React from "react";
-import alkybankLogo from "../../assets/alkemy-logo.png";
 
 export const Sidebar = () => {
   return (
-    <aside class="w-64 absolute w-full min-w-[170px] max-w-[200px]" aria-label="Sidebar">
-      <div class="overflow-y-auto py-4 px-3 h-screen bg-dark2 rounded">
-        {/* <a href="/" class="flex items-center pl-2.5 mb-5">
-          <img
-            src={alkybankLogo}
-            class="mr-3 w-40 h-auto"
-            alt="Alkemy bank Logo"
-          />
-        </a> */}
+    <aside
+      class="absolute w-full min-w-[60px] max-w-[200px]"
+      aria-label="Sidebar"
+    >
+      <div class="overflow-y-auto py-4 px-3 max-w-fit h-screen bg-dark2 rounded -xs:px-0">
         <ul class="space-y-2">
           <li>
             <a
               href="/topup"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700"
+              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
             >
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 hidden sm:block"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -32,16 +27,18 @@ export const Sidebar = () => {
                   d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
                 />
               </svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Add funds</span>
+              <span class="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
+                Add funds
+              </span>
             </a>
           </li>
           <li>
             <a
               href="/balance"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700"
+              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
             >
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 hidden sm:block"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -54,16 +51,16 @@ export const Sidebar = () => {
                   d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
                 />
               </svg>
-              <span class="ml-3">Balance</span>
+              <span class="ml-3 -xs:text-xs -xs:ml-0">Balance</span>
             </a>
           </li>
           <li>
             <a
               href="#"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700"
+              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
             >
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 hidden sm:block"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -76,16 +73,18 @@ export const Sidebar = () => {
                   d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
                 />
               </svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Expenses</span>
+              <span class="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
+                Expenses
+              </span>
             </a>
           </li>
           <li>
             <a
               href="#"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700"
+              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
             >
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 hidden sm:block"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -98,16 +97,18 @@ export const Sidebar = () => {
                   d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                 />
               </svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Last movements</span>
+              <span class="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
+                Last movements
+              </span>
             </a>
           </li>
           <li>
             <a
               href="/payments"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700"
+              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
             >
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 hidden sm:block"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +119,9 @@ export const Sidebar = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Send funds</span>
+              <span class="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
+                Send funds
+              </span>
             </a>
           </li>
         </ul>
@@ -126,10 +129,10 @@ export const Sidebar = () => {
           <li>
             <a
               href="/logout"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg transition duration-75 hover:bg-primary hover:text-blacknpm dark:hover:bg-gray-700 dark:text-white group"
+              class="flex items-center p-2 text-base font-normal text-white rounded-lg transition duration-75 hover:bg-primary hover:text-blacknpm dark:hover:bg-gray-700 dark:text-white group w-full min-w-[60px] max-w-[200px]"
             >
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 hidden sm:block"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +143,7 @@ export const Sidebar = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              <span class="ml-3">Log out</span>
+              <span class="ml-3 -xs:text-xs -xs:ml-0">Log out</span>
             </a>
           </li>
         </ul>

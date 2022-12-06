@@ -4,7 +4,7 @@ import { LogButton, LoginIntro } from "./StyledComponents";
 import { useForm } from "react-hook-form";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
 import axios from "axios";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const LoginForm = () => {
   const [token, setToken] = useState(false);
@@ -40,12 +40,12 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (token) {
-      Swal.fire({
-        icon: "success",
-        title: "You have successfully logged in",
-        showConfirmButton: false,
-        timer: 3500,
-      });
+      // Swal.fire({
+      //   icon: "success",
+      //   title: "You have successfully logged in",
+      //   showConfirmButton: false,
+      //   timer: 3500,
+      // });
 
       setTimeout(() => {
         navigate("/");

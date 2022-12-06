@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   darkMode: 'media',
   content: [
@@ -27,6 +29,11 @@ module.exports = {
       fontFamily: {
         KumbhSans:['Kumbh Sans', 'sans-serif']
       },
+    },
+    screens: {
+      'xs': '375px',
+      '-xs': {max: '375px'},
+      ...defaultTheme.screens,
     },
   },
   plugins: [],
