@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import Swal from "sweetalert2"
+// import Swal from "sweetalert2"
 
 export const useWalletList = setShowModal => {
   const dispatch = useDispatch()
@@ -13,11 +13,11 @@ export const useWalletList = setShowModal => {
       })
       .catch(error => {
         console.log(error)
-        Swal.fire({
-          icon: "error",
-          title: "An error has occurred while getting your wallet. Try again later",
-          showConfirmButton: true
-        })
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "An error has occurred while getting your wallet. Try again later",
+        //   showConfirmButton: true
+        // })
       })
   }, [])
 
