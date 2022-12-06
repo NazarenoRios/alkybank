@@ -3,8 +3,8 @@ import alkybankLogo from "../../assets/alkemy-logo.png";
 
 export const Sidebar = () => {
   return (
-    <aside class="w-64 absolute" aria-label="Sidebar">
-      <div class="overflow-y-auto py-4 px-3 h-screen bg-dark2 rounded ">
+    <aside class="w-64 absolute w-full min-w-[170px] max-w-[200px]" aria-label="Sidebar">
+      <div class="overflow-y-auto py-4 px-3 h-screen bg-dark2 rounded">
         {/* <a href="/" class="flex items-center pl-2.5 mb-5">
           <img
             src={alkybankLogo}
