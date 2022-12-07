@@ -1,8 +1,11 @@
 import avatar from "../../assets/avatar.png"
 import arrowIcon from "../../assets/arrow-icon.png"
 import alkybankLogo from "../../assets/alkemy-logo.png"
+import { useDarkModeContext } from "../../contexts/DarkModeContext"
 
 export default function Header({ title }) {
+  const { darkMode, setDarkMode } = useDarkModeContext()
+
   return (
     <header className="w-full max-w-[1450px] h-[100px] flex items-center justify-between">
       {/* <h1 className="text-[25px] font-semibold">{title}</h1>
@@ -20,6 +23,12 @@ export default function Header({ title }) {
           <img className="transform rotate-90" src={arrowIcon} alt="" />
         </div>
       </div>
+      <button
+        className="bg-white dark:bg-dark1 dark:text-white"
+        onClick={() => setDarkMode(!darkMode)}
+      >
+        Toggle mode
+      </button>
     </header>
   )
 }
