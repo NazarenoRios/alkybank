@@ -14,7 +14,7 @@ import TopupMoney from "./pages/TopupMoney"
 import Payments from "./pages/Payments"
 import Balance from "./pages/Balance"
 import Dashboard from "./pages/Dashboard"
-import Logout from "./pages/Logout";
+import Logout from "./pages/Logout"
 
 function App() {
   const [isLogged, setIsLogged] = useState(false)
@@ -32,6 +32,7 @@ function App() {
         headers: headers
       })
       .then(res => {
+        localStorage.setItem("id", res.data.id)
         localStorage.setItem("first_name", res.data.first_name)
         localStorage.setItem("last_name", res.data.last_name)
         localStorage.setItem("email", res.data.email)
@@ -56,9 +57,9 @@ function App() {
         <Route path="/loading" element={<Loading />} />
         <Route path="/topup" element={<TopupMoney />} />
         <Route path="/balance" element={<Balance />} />
-        <Route path="/payments" element={<Payments />}/>
-        <Route path="/balance" element={<Balance/>} />
-        <Route path="/logout" element={<Logout/>} />
+        <Route path="/payments" element={<Payments />} />
+        <Route path="/balance" element={<Balance />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </>
   )
