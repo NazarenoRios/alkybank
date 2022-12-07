@@ -12,7 +12,7 @@ export default function WalletList() {
   const walletState = useSelector(state => state.walletReducer)
 
   return (
-    <section className="w-full lg:max-w-[400px] flex flex-col gap-5 px-2 box-border">
+    <section className="w-full lg:max-w-[400px] flex flex-col gap-5 px-2 box-border dark:text-white">
       <header className="flex justify-between items-center">
         <h2 className="font-semibold text-[18px]">Wallet</h2>
         <button className="flex gap-5 items-center" onClick={() => setShowModal(true)}>
