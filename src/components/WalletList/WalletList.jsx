@@ -12,7 +12,7 @@ export default function WalletList() {
   const walletState = useSelector(state => state.walletReducer)
 
   return (
-    <section className="w-full max-w-[400px] flex flex-col justify-center gap-5 px-2 box-border">
+    <section className="w-full lg:max-w-[400px] flex flex-col justify-center gap-5 px-2 box-border">
       <header className="flex justify-between items-center">
         <h2 className="font-semibold text-[18px]">Wallet</h2>
         <button className="flex gap-5 items-center" onClick={() => setShowModal(true)}>
@@ -28,42 +28,46 @@ export default function WalletList() {
           <span>Add new wallet</span>
         </button>
       </header>
-      {Object.keys(walletState).length !== 0 ? (
-        <Wallet />
-      ) : (
-        <p className="text-center">You don't have any wallet</p>
-      )}
-      <div className="flex flex-col gap-8">
-        <div className="flex justify-between">
-          <div>
-            <h4>Card holder</h4>
-            <span className="font-bold text-[18px]">
-              {localStorage.first_name} {localStorage.last_name}
-            </span>
+      <div className="flex gap-5 lg:flex-col">
+        {Object.keys(walletState).length !== 0 ? (
+          <Wallet />
+        ) : (
+          <p className="text-center">You don't have any wallet</p>
+        )}
+        <div className="w-full flex flex-col gap-8">
+          <div className="flex justify-between">
+            <div>
+              <h4>Card holder</h4>
+              <span className="font-bold text-[18px] max-w-[150px] lg:max-w-[200px] inline-block">
+                {localStorage.first_name} {localStorage.last_name}
+              </span>
+            </div>
+            <div>
+              <h4>Wallet Id</h4>
+              <span className="font-bold text-[18px] max-w-[150px] lg:max-w-[200px] inline-block">
+                {walletState.id}
+              </span>
+            </div>
           </div>
-          <div>
-            <h4>Wallet Id</h4>
-            <span className="font-bold text-[18px]">{walletState.id}</span>
-          </div>
-        </div>
-        <div className="flex justify-between">
-          <div>
-            <h4>Status</h4>
-            <span className="font-bold text-[18px]">Active</span>
-          </div>
-          <div>
-            <h4>Creation date</h4>
-            <span className="font-bold text-[18px]">
-              {new Date(walletState.createdAt).toLocaleDateString("es-AR", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit"
-              })}
-            </span>
-          </div>
-          <div>
-            <h4>Category</h4>
-            <span className="font-bold text-[18px]">Standard</span>
+          <div className="flex justify-between flex-wrap gap-x-5">
+            <div>
+              <h4>Status</h4>
+              <span className="font-bold text-[18px]">Active</span>
+            </div>
+            <div>
+              <h4>Creation date</h4>
+              <span className="font-bold text-[18px]">
+                {new Date(walletState.createdAt).toLocaleDateString("es-AR", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit"
+                })}
+              </span>
+            </div>
+            <div>
+              <h4>Category</h4>
+              <span className="font-bold text-[18px]">Standard</span>
+            </div>
           </div>
         </div>
       </div>

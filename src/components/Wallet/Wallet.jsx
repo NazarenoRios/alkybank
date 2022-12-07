@@ -8,7 +8,7 @@ export default function Wallet() {
 
   return (
     <div
-      className="w-full max-w-[400px] h-[210px] rounded-[15px] relative p-[20px]"
+      className="w-full max-w-[350px] lg:max-w-[400px] h-[210px] rounded-[15px] relative p-[20px]"
       style={{ background: "linear-gradient(104.3deg, #4A4A49 2.66%, #20201F 90.57%)" }}
     >
       <div className="flex flex-col gap-4">
