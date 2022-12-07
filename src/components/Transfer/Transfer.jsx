@@ -28,7 +28,8 @@ export default function Transfer() {
             amount: Yup.string()
               .max(6, "You have exceeded the maximum amount")
               .matches(/^\d+$/, "Must contain only numbers")
-              .required("Required")
+              .required("Required"),
+            type: Yup.string().required("Required")
           })}
           onSubmit={values => handleSubmit(values, walletState)}
         >
@@ -47,18 +48,15 @@ export default function Transfer() {
               <div className=" flex flex-col justify-center gap-3">
                 <h2 className="text-[16px]">Transfer type</h2>
                 <div className="flex items-center gap-2">
-                  <Field
-                    type="radio"
-                    id="payment"
-                    name="type"
-                    value="payment"
-                    checked={true}
-                  ></Field>
+                  <Field type="radio" id="payment" name="type" value="payment"></Field>
                   <label htmlFor="payment">Payment</label>
                 </div>
                 <div className="flex items-center gap-2">
                   <Field type="radio" id="topup" name="type" value="topup" disabled={true}></Field>
                   <label htmlFor="topup">Topup</label>
+                </div>
+                <div className="text-error">
+                  <ErrorMessage name="type" />
                 </div>
               </div>
             </div>
