@@ -6,12 +6,12 @@ export const Sidebar = () => {
       class="absolute w-full min-w-[60px] max-w-[200px]"
       aria-label="Sidebar"
     >
-      <div class="overflow-y-auto py-4 px-3 max-w-fit h-screen bg-dark2 rounded -xs:px-0">
+      <div class="overflow-y-auto py-4 px-3 max-w-fit h-fit bg-gray-200 dark:bg-dark2 rounded -xs:px-0">
         <ul class="space-y-2">
           <li>
             <a
               href="/topup"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
+              class="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
             >
               <svg
                 className="w-6 h-6 hidden sm:block"
@@ -35,7 +35,7 @@ export const Sidebar = () => {
           <li>
             <a
               href="/balance"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
+              class="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
             >
               <svg
                 className="w-6 h-6 hidden sm:block"
@@ -57,7 +57,7 @@ export const Sidebar = () => {
           <li>
             <a
               href="#"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
+              class="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
             >
               <svg
                 className="w-6 h-6 hidden sm:block"
@@ -81,7 +81,7 @@ export const Sidebar = () => {
           <li>
             <a
               href="#"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
+              class="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
             >
               <svg
                 className="w-6 h-6 hidden sm:block"
@@ -105,7 +105,7 @@ export const Sidebar = () => {
           <li>
             <a
               href="/payments"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg dark:text-white hover:bg-primary hover:text-black dark:hover:bg-gray-700 w-full min-w-[60px] max-w-[200px]"
+              class="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
             >
               <svg
                 className="w-6 h-6 hidden sm:block"
@@ -129,7 +129,7 @@ export const Sidebar = () => {
           <li>
             <a
               href="/logout"
-              class="flex items-center p-2 text-base font-normal text-white rounded-lg transition duration-75 hover:bg-primary hover:text-blacknpm dark:hover:bg-gray-700 dark:text-white group w-full min-w-[60px] max-w-[200px]"
+              class="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg transition duration-75 hover:bg-primary dark:hover:text-black dark:text-white group w-full min-w-[60px] max-w-[200px]"
             >
               <svg
                 className="w-6 h-6 hidden sm:block"
