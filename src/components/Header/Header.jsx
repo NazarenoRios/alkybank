@@ -1,6 +1,9 @@
 import avatar from "../../assets/avatar.png"
 import arrowIcon from "../../assets/arrow-icon.png"
 import alkybankLogo from "../../assets/alkemy-logo.png"
+import moonIcon from "../../assets/moon-icon.svg"
+import sunIcon from "../../assets/sun-icon.svg"
+
 import { useDarkModeContext } from "../../contexts/DarkModeContext"
 
 export default function Header({ title }) {
@@ -24,10 +27,10 @@ export default function Header({ title }) {
         </div>
       </div>
       <button
-        className="bg-white dark:bg-dark1 dark:text-white"
+        className="bg-dark2 dark:bg-[#f8f8f8] dark:text-white rounded-[10px] p-3 box-border"
         onClick={() => setDarkMode(!darkMode)}
       >
-        Toggle mode
+        <img className="w-[20px]" src={darkMode ? sunIcon : moonIcon} alt="Toggle dark mode" />
       </button>
     </header>
   )
