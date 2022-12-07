@@ -28,7 +28,9 @@ export default function Dashboard() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[14px] font-semibold text-[#929EAE]">Total balance</span>
-                  <span className="text-[20px] font-semibold text-white">${walletState.money}</span>
+                  <span className="text-[20px] font-semibold text-white">
+                    ${walletState.money ? walletState.money : 0}
+                  </span>
                 </div>
               </div>
               <div className="w-full max-w-[250px] flex gap-4 rounded-[10px] bg-[#F8F8F8] pl-[20px] pr-[20px] pt-[24px] pb-[24px]">
@@ -37,7 +39,9 @@ export default function Dashboard() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-[14px] font-semibold text-[#929EAE]">Total spending</span>
-                  <span className="text-[20px] font-semibold text-black">${totalSpending}</span>
+                  <span className="text-[20px] font-semibold text-black">
+                    ${totalSpending ? totalSpending : 0}
+                  </span>
                 </div>
               </div>
             </div>
