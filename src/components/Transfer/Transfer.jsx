@@ -28,14 +28,15 @@ export default function Transfer() {
             amount: Yup.string()
               .max(6, "You have exceeded the maximum amount")
               .matches(/^\d+$/, "Must contain only numbers")
-              .required("Required")
+              .required("Required"),
+            type: Yup.string().required("Required")
           })}
           onSubmit={values => handleSubmit(values, walletState)}
         >
           <Form className="flex flex-col justify-center gap-5 max-w-[400px]">
             <div className="flex justify-between">
               <div className="flex flex-col gap-4 text-error max-w-[200px]">
-                <h2 className="text-[16px] text-black">Account Id</h2>
+                <h2 className="text-[16px] text-black dark:text-white">Account Id</h2>
                 <Field
                   className="max-w-[200px] h-[48px] w-full text-black rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] pl-3"
                   placeholder="Example: 4281"
@@ -47,18 +48,15 @@ export default function Transfer() {
               <div className=" flex flex-col justify-center gap-3">
                 <h2 className="text-[16px]">Transfer type</h2>
                 <div className="flex items-center gap-2">
-                  <Field
-                    type="radio"
-                    id="payment"
-                    name="type"
-                    value="payment"
-                    checked={true}
-                  ></Field>
+                  <Field type="radio" id="payment" name="type" value="payment"></Field>
                   <label htmlFor="payment">Payment</label>
                 </div>
                 <div className="flex items-center gap-2">
                   <Field type="radio" id="topup" name="type" value="topup"></Field>
                   <label htmlFor="topup">Topup</label>
+                </div>
+                <div className="text-error">
+                  <ErrorMessage name="type" />
                 </div>
               </div>
             </div>

@@ -16,11 +16,13 @@ import Payments from "./pages/Payments"
 import Dashboard from "./pages/Dashboard"
 import Balances from "./pages/Balances";
 import Movements from "./pages/Movements";
-
+import Logout from "./pages/Logout"
+import { DarkModeProvider } from "./contexts/DarkModeContext"
 function App() {
   const { isAuthenticated, isLoading } = useAuth();
   return (
     <>
+    <DarkModeProvider>
     <ToastContainer/>
       <Routes>
         {isAuthenticated ? <Route path="/" element={<Dashboard />} /> : <Route path="/" element={<Homepage />} />}
@@ -34,6 +36,7 @@ function App() {
         <Route path="/movements" element={<Movements />} />
         <Route path="/balance" element={<Balances />} />
       </Routes>
+    </DarkModeProvider>
     </>
   )
 }
