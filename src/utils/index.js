@@ -19,7 +19,7 @@ const getAll = async(path) => {
   try {
     const res = await axios.get(`${API_BASE_URL}${path}`, configHeader)
     if (res.statusText === "OK") {
-      // toast.success("Successfully");
+      toast.success("Successfully");
       return res.data
     }
   } catch (error) {
@@ -47,7 +47,6 @@ const create = async(data, path) => {
     if (error.response.status) {
       return toast.error(error.message);
     }
-
   }
 }
 
@@ -58,7 +57,18 @@ const update = async(id, data, path) => {
       Authorization: token
     }
   }
-  return await axios.patch(`${API_BASE_URL}${path}${id}`, data, configHeader)
+  try {
+    const res = await axios.patch(`${API_BASE_URL}${path}${id}`, data, configHeader)
+    console.log(res.data)
+    if (res.statusText === "OK") {
+      return toast.success("Payment Successfully");
+    }
+  } catch (error) {
+    console.log(error);
+    if (error.response.status) {
+      return toast.error(error.message);
+    }
+  }
 }
 
 export {create, update,getAll, setToken}
