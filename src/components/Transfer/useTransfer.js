@@ -40,7 +40,7 @@ export const useTransfer = () => {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${localStorage.token}`
+          Authorization: `Bearer ${sessionStorage.token}`
         }
       }
     )
@@ -59,7 +59,7 @@ export const useTransfer = () => {
         method: "POST",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${localStorage.token}`,
+          Authorization: `Bearer ${sessionStorage.token}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify(body)

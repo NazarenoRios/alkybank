@@ -38,7 +38,7 @@ export default function WalletList() {
                   <div>
                     <h4>Card holder</h4>
                     <span className="font-bold text-[18px] max-w-[150px] lg:max-w-[200px] inline-block">
-                      {localStorage.first_name} {localStorage.last_name}
+                      {sessionStorage.first_name} {sessionStorage.last_name}
                     </span>
                   </div>
                   <div>

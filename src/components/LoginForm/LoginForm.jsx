@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { LogButton, LoginIntro } from "./StyledComponents";
 import { useForm } from "react-hook-form";
+import { useAuth } from "../../hooks/useAuth";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
 import axios from "axios";
-// import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useGoogleLogIn } from "./useGoogleLogIn";
+import googleIcon from "../../assets/google-icon.svg"
 
 const LoginForm = () => {
-  const [token, setToken] = useState(false);
+  const { logInWithGoogle } = useGoogleLogIn();
+
   const [loginTry, SetLoginTry] = useState(false);
+  const { signin, token } = useAuth();
 
   const {
     register,
@@ -16,51 +22,18 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
-
-  const headers = {
-    "Content-type": "application/json; charset=UTF-8",
-    Authorization: "Bearer " + localStorage.getItem("token"),
-  };
-
   const onSubmit = async ({ email, password }) => {
     try {
-      const res = await axios.post(
-        "http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login",
-        { email, password }
-      );
-      const token = await res.data.accessToken;
-      localStorage.setItem("token", token);
-      setToken(true);
+      signin(email, password).then((res) => {
+        if (res.status === 200) {
+          toast.success("Login successfull");
+        }
+      });
     } catch (e) {
       SetLoginTry(true);
       console.log(e);
     }
   };
-
-  useEffect(() => {
-    if (token) {
-      // Swal.fire({
-      //   icon: "success",
-      //   title: "You have successfully logged in",
-      //   showConfirmButton: false,
-      //   timer: 3500,
-      // });
-
-      setTimeout(() => {
-        navigate("/");
-      }, 3500);
-    }
-  }, [token]);
-
-  useEffect(() => {
-    axios
-      .get(
-        "http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me",
-        { headers: headers }
-      )
-      .then((res) => console.log(res.data));
-  }, []);
 
   return (
     <section className="h-full gradient-formmd:h-screen">
@@ -152,9 +125,29 @@ const LoginForm = () => {
                           Forgot password?
                         </a>
                       </div>
+
+                      <div className="-mt-8 mb-5">
+                        <button
+                          className="flex gap-3 justify-center items-center w-full h-[50px] rounded-[10px] border-solid border-[1px] border-[#F5F5F5]"
+                          onClick={() => {
+                            logInWithGoogle();
+                          }}
+                          type="button"
+                        >
+                          <img
+                            className="w-[24px] h-[24px]"
+                            src={googleIcon}
+                            alt="Ícono de Google"
+                          />
+                          <span className="font-semibold text-text2">
+                            Log in with Google
+                          </span>
+                        </button>
+                      </div>
+
                       <div className="flex items-center justify-center pb-6">
                         <p className="mb-0 mr-2">Don't have an account?</p>
-                        <Link to="/register">
+                        <Link to="/signup">
                           <button
                             type="button"
                             className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"

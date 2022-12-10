@@ -52,7 +52,7 @@ export default function Transfer() {
                   <label htmlFor="payment">Payment</label>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Field type="radio" id="topup" name="type" value="topup" disabled={true}></Field>
+                  <Field type="radio" id="topup" name="type" value="topup"></Field>
                   <label htmlFor="topup">Topup</label>
                 </div>
                 <div className="text-error">

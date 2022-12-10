@@ -12,8 +12,6 @@ export default function Header({ title }) {
 
   return (
     <header className="w-full h-[100px] flex items-center justify-between px-5 box-border">
-      {/* <h1 className="text-[25px] font-semibold">{title}</h1>
-       */}
       <a href="/" class="flex items-center pl-2.5 mb-5">
         <img src={alkybankLogo} class="mr-3 w-40 h-auto" alt="Alkemy bank Logo" />
       </a>
@@ -28,8 +26,8 @@ export default function Header({ title }) {
           <img className="w-[20px]" src={darkMode ? avatar : avatarDark} alt="avatar" />
           <div className="w-full flex justify-between gap-5">
             <span>
-              {localStorage.first_name}{" "}
-              {localStorage.last_name === "null" ? "" : localStorage.last_name}
+              {sessionStorage.first_name}{" "}
+              {sessionStorage.last_name === "null" ? "" : localStorage.last_name}
             </span>
             <img className="transform rotate-90" src={arrowIcon} alt="" />
           </div>
