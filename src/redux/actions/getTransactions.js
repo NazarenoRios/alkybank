@@ -2,7 +2,7 @@ import axios from "axios"
 export const ALL_TRANSACTIONS = "ALL_TRANSACTIONS";
 export function getTransactions () {
     return async function (dispatch) {
-        let token = localStorage.getItem("token")
+        let token = sessionStorage.getItem("token")
         let res = await axios.get(`http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/transactions`,
           { headers: { Authorization: "Bearer " + token } })
         let nextPage = res.data.nextPage

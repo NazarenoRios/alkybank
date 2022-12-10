@@ -1,15 +1,15 @@
-import { Form, Formik } from "formik"
-import * as Yup from "yup"
-import { useSignUpForm } from "./useSignUpForm"
-import AccountQuestion from "./AccountQuestion"
-import FormGroupInput from "./FormGroupInput"
-import Button from "../Button"
-import googleIcon from "../../assets/google-icon.svg"
-import { useGoogleSignIn } from "./useGoogleSignIn"
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
+import { useSignUpForm } from "./useSignUpForm";
+import AccountQuestion from "./AccountQuestion";
+import FormGroupInput from "./FormGroupInput";
+import Button from "../Button";
+import googleIcon from "../../assets/google-icon.svg";
+import { useGoogleSignIn } from "./useGoogleSignIn";
 
 export default function SignUnForm() {
-  const { handleSubmit } = useSignUpForm()
-  const { signInWithGoogle } = useGoogleSignIn("signup")
+  const { handleSubmit } = useSignUpForm();
+  const { signInWithGoogle } = useGoogleSignIn();
 
   return (
     <section className="w-full max-w-[404px] bg-red px-[20px] box-border">
@@ -26,7 +26,7 @@ export default function SignUnForm() {
           initialValues={{
             fullName: "",
             email: "",
-            password: ""
+            password: "",
           }}
           validationSchema={Yup.object({
             fullName: Yup.string()
@@ -41,9 +41,9 @@ export default function SignUnForm() {
                 /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,20}$/,
                 "Must contain at least one uppercase letter, one lowercase letter and one number"
               )
-              .required("Required")
+              .required("Required"),
           })}
-          onSubmit={values => handleSubmit(values)}
+          onSubmit={(values) => handleSubmit(values)}
         >
           <Form className="flex flex-col justify-start items-center gap-4">
             <FormGroupInput
@@ -75,12 +75,18 @@ export default function SignUnForm() {
             <button
               className="flex gap-3 justify-center items-center w-full h-[50px] rounded-[10px] border-solid border-[1px] border-[#F5F5F5]"
               onClick={() => {
-                signInWithGoogle()
+                signInWithGoogle();
               }}
               type="button"
             >
-              <img className="w-[24px] h-[24px]" src={googleIcon} alt="Ícono de Google" />
-              <span className="font-semibold text-text2">Sign up with Google</span>
+              <img
+                className="w-[24px] h-[24px]"
+                src={googleIcon}
+                alt="Ícono de Google"
+              />
+              <span className="font-semibold text-text2">
+                Sign up with Google
+              </span>
             </button>
             <AccountQuestion
               question="¿Already have an account?"
@@ -91,5 +97,5 @@ export default function SignUnForm() {
         </Formik>
       </div>
     </section>
-  )
+  );
 }

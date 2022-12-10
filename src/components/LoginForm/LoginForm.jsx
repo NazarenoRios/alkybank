@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { LogButton, LoginIntro } from "./StyledComponents";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks/useAuth";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
-import axios from "axios";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useGoogleLogIn } from "./useGoogleLogIn";
+import googleIcon from "../../assets/google-icon.svg"
 
 const LoginForm = () => {
+  const { logInWithGoogle } = useGoogleLogIn();
+
   const [loginTry, SetLoginTry] = useState(false);
   const { signin, token } = useAuth();
 
@@ -21,18 +24,16 @@ const LoginForm = () => {
   const onSubmit = async ({ email, password }) => {
     try {
       signin(email, password).then((res) => {
-       if(res.status === 200) {
-        toast.success("Login successfull")
-       }
+        if (res.status === 200) {
+          toast.success("Login successfull");
+        }
       });
-    
     } catch (e) {
       SetLoginTry(true);
       console.log(e);
     }
   };
 
-  
   return (
     <section className="h-full gradient-formmd:h-screen">
       <div className="container py-12 px-6 h-full">
@@ -123,9 +124,29 @@ const LoginForm = () => {
                           Forgot password?
                         </a>
                       </div>
+
+                      <div className="-mt-8 mb-5">
+                        <button
+                          className="flex gap-3 justify-center items-center w-full h-[50px] rounded-[10px] border-solid border-[1px] border-[#F5F5F5]"
+                          onClick={() => {
+                            logInWithGoogle();
+                          }}
+                          type="button"
+                        >
+                          <img
+                            className="w-[24px] h-[24px]"
+                            src={googleIcon}
+                            alt="Ícono de Google"
+                          />
+                          <span className="font-semibold text-text2">
+                            Log in with Google
+                          </span>
+                        </button>
+                      </div>
+
                       <div className="flex items-center justify-center pb-6">
                         <p className="mb-0 mr-2">Don't have an account?</p>
-                        <Link to="/register">
+                        <Link to="/signup">
                           <button
                             type="button"
                             className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
