@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTransactions } from "../../redux/actions/getTransactions";
 import walletIconGreen from "../../assets/wallet-icon-green.png";
-import { Link } from "react-router-dom";
 
-export default function BalanceComponent() {
+export default function MovementsComponent() {
   const [state, setState] = useState([]);
   const [name, setName] = useState("");
   const [initialPage, setInitialPage] = useState(1)

@@ -5,7 +5,7 @@ export function paymentAction( amount, concept ) {
     try {
       amount = - Number(amount);
       let type = "payment";
-      //let token = JSON.parse(localStorage.getItem("token"));
+      //let token = JSON.parse(sessionStorage.getItem("token"));
       let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6MjMwNywicm9sZUlkIjoxfSwiaWF0IjoxNjcwMDEwOTMzLCJleHAiOjE2NzAwOTczMzN9.LIFf-tm8PhKQd5-nyFiliadFsAadv7cFc3cYWbFPjP0";
       let id = 1838;
       const data = {

@@ -40,7 +40,7 @@ export const useTransfer = () => {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${localStorage.token}`
+          Authorization: `Bearer ${sessionStorage.token}`
         }
       }
     )
@@ -54,12 +54,13 @@ export const useTransfer = () => {
       amount: values.amount
     }
     const response = await fetch(
+      console.log(values.walletId)
       `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${values.walletId}`,
       {
         method: "POST",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${localStorage.token}`,
+          Authorization: `Bearer ${sessionStorage.token}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify(body)

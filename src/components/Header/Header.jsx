@@ -9,7 +9,7 @@ export default function Header({ title }) {
         <img className="w-[36px]" src={avatar} alt="avatar" />
         <div className="w-full flex justify-between">
           <span>
-            {localStorage.first_name} {localStorage.last_name}
+            {sessionStorage.first_name} {sessionStorage.last_name}
           </span>
           <img className="transform rotate-90" src={arrowIcon} alt="" />
         </div>
