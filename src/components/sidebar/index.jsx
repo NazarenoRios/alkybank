@@ -6,7 +6,7 @@ export const Sidebar = () => {
       class="absolute w-full min-w-[60px] max-w-[200px]"
       aria-label="Sidebar"
     >
-      <div class="overflow-y-auto py-4 px-3 max-w-fit h-fit bg-gray-200 dark:bg-dark2 rounded -xs:px-0">
+      <div class="overflow-y-auto py-4 px-3 max-w-fit h-fit bg-gray-200 dark:bg-dark1 -xs:px-0">
         <ul class="space-y-2">
           <li>
             <a
