@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -14,8 +13,9 @@ import Loading from "./pages/Loading"
 
 import TopupMoney from "./pages/TopupMoney"
 import Payments from "./pages/Payments"
-import Balance from "./pages/Balance"
 import Dashboard from "./pages/Dashboard"
+import Balances from "./pages/Balances";
+import Movements from "./pages/Movements";
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -31,7 +31,8 @@ function App() {
         <Route path="/loading" element={<Loading />} />
         <Route path="/topup" element={<TopupMoney />} />
         <Route path="/payments" element={<Payments />} />
-        <Route path="/balance" element={<Balance />} />
+        <Route path="/movements" element={<Movements />} />
+        <Route path="/balance" element={<Balances />} />
       </Routes>
     </>
   )

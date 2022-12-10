@@ -6,9 +6,10 @@ export const useWalletList = setShowModal => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    const token = sessionStorage.getItem("token")
     getWallet(token)
       .then(wallets => {
+        console.log(wallets)
         dispatch({ type: "UPDATE_WALLET", payload: wallets[0] })
       })
       .catch(error => {
@@ -36,27 +37,27 @@ export const useWalletList = setShowModal => {
   }
 
   const createNewWallet = async () => {
-    const loggedUser = localStorage.getItem("loggedUser")
+    const loggedUser = sessionStorage.getItem("loggedUser")
     const userId = loggedUser.id
     const date = getDate()
-    const token = localStorage.getItem("token")
+    const token = sessionStorage.getItem("token")
     createWalletAccount(userId, date, token)
       .then(createdWallet => {
         console.log(createdWallet)
-        Swal.fire({
-          icon: "success",
-          title: "You have successfully created a wallet",
-          showConfirmButton: false
-        })
+        // Swal.fire({
+        //   icon: "success",
+        //   title: "You have successfully created a wallet",
+        //   showConfirmButton: false
+        // })
         dispatch({ type: "UPDATE_WALLET", payload: createdWallet })
       })
       .catch(error => {
         console.log(error)
-        Swal.fire({
-          icon: "error",
-          title: "An error has occurred. Try again later",
-          showConfirmButton: true
-        })
+        // Swal.fire({
+        //   icon: "error",
+        //   title: "An error has occurred. Try again later",
+        //   showConfirmButton: true
+        // })
       })
     setShowModal(false)
   }

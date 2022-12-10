@@ -36,7 +36,7 @@ const Welcome = () => {
 
       <div className="text-[gray] text-center">
         <span className="mr-2">New on Alkybank?</span>
-        <Link to="/register">
+        <Link to="/signup">
           <button
             className="cursor-pointer text-blue-400 hover:underline"
             type="submit"
