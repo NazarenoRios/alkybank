@@ -2,14 +2,20 @@ import mastercardIcon from "../../assets/mastercard-icon.png"
 import chipIcon from "../../assets/chip-icon.png"
 import wifiIcon from "../../assets/wifi-icon.png"
 import { useSelector } from "react-redux"
+import { useDarkModeContext } from "../../contexts/DarkModeContext"
 
 export default function Wallet() {
   const walletState = useSelector(state => state.walletReducer)
+  const { darkMode } = useDarkModeContext()
 
   return (
     <div
-      className="w-full max-w-[400px] h-[210px] rounded-[15px] relative p-[20px]"
-      style={{ background: "linear-gradient(104.3deg, #4A4A49 2.66%, #20201F 90.57%)" }}
+      className="w-full max-w-[350px] lg:max-w-[400px] h-[210px] rounded-[15px] relative p-[20px]"
+      style={{
+        background: darkMode
+          ? "linear-gradient(110.77deg, #2E2B4A 2.85%, #29263F 128.48%)"
+          : "linear-gradient(104.3deg, #4A4A49 2.66%, #20201F 90.57%)"
+      }}
     >
       <div className="flex flex-col gap-4">
         <h4 className="text-white font-bold">

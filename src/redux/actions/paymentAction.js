@@ -1,5 +1,4 @@
 import {create, setToken} from "../../utils";
-// import { toast } from "react-toastify";
 export function paymentAction( amount, concept ) {
   return async function () {
     // try {
