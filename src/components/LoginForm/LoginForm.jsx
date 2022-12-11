@@ -4,6 +4,7 @@ import { LogButton, LoginIntro } from "./StyledComponents";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks/useAuth";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
+import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useGoogleLogIn } from "./useGoogleLogIn";

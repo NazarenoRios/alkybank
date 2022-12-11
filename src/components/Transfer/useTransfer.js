@@ -1,41 +1,41 @@
 export const useTransfer = () => {
   const handleSubmit = (values, walletState) => {
-    getWalletByWalletId(values.walletId).then(() => {
+    getWalletByAccountId(values.accountId).then(() => {
       if (walletState < values.amount) {
-        return Swal.fire({
-          icon: "error",
-          title: "You don't have enough money",
-          showConfirmButton: true
-        })
+        // return Swal.fire({
+        //   icon: "error",
+        //   title: "You don't have enough money",
+        //   showConfirmButton: true
+        // })
       } else {
-        transferToWalletId(values).catch(() => {
-          return Swal.fire({
-            icon: "error",
-            title: "An error has occurred. Try again later",
-            showConfirmButton: true
-          })
+        transferToAccountId(values).catch(() => {
+          // return Swal.fire({
+          //   icon: "error",
+          //   title: "An error has occurred. Try again later",
+          //   showConfirmButton: true
+          // })
         })
       }
     }).catch = error => {
       if (error.status === 500) {
-        return Swal.fire({
-          icon: "error",
-          title: "The wallet id is not valid",
-          showConfirmButton: true
-        })
+        // return Swal.fire({
+        //   icon: "error",
+        //   title: "The wallet id is not valid",
+        //   showConfirmButton: true
+        // })
       } else {
-        return Swal.fire({
-          icon: "error",
-          title: "An error has occurred. Try again later",
-          showConfirmButton: true
-        })
+        // return Swal.fire({
+        //   icon: "error",
+        //   title: "An error has occurred. Try again later",
+        //   showConfirmButton: true
+        // })
       }
     }
   }
 
-  const getWalletByWalletId = async walletId => {
+  const getWalletByAccountId = async accountId => {
     const response = await fetch(
-      `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${walletId}`,
+      `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${accountId}`,
       {
         method: "GET",
         headers: {
@@ -47,15 +47,14 @@ export const useTransfer = () => {
     return await response.json()
   }
 
-  const transferToWalletId = async values => {
+  const transferToAccountId = async values => {
     const body = {
       type: values.type,
       concept: "string",
       amount: values.amount
     }
     const response = await fetch(
-      console.log(values.walletId)
-      `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${values.walletId}`,
+      `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${values.accountId}`,
       {
         method: "POST",
         headers: {

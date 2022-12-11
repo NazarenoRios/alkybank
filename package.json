@@ -10,9 +10,9 @@
     "lint": "eslint --max-warnings=0 src"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@headlessui/react": "^1.7.4",
     "@mui/material": "^5.10.16",
     "@mui/styled-engine-sc": "^5.10.16",
     "axios": "^1.2.0",
