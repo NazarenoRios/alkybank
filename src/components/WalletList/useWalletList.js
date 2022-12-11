@@ -1,9 +1,11 @@
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { toast } from "react-toastify"
 import { getWallet } from "../../api/account"
 
 export const useWalletList = setShowModal => {
   const dispatch = useDispatch()
+  const walletState = useSelector(state => state.walletReducer)
 
   useEffect(() => {
     const token = sessionStorage.getItem("token")
@@ -18,10 +20,10 @@ export const useWalletList = setShowModal => {
   }, [])
 
   const createNewWallet = async () => {
-    const loggedUser = sessionStorage.getItem("loggedUser")
-    const userId = loggedUser.id
+    const userId = sessionStorage.getItem("id")
     const date = getDate()
     const token = sessionStorage.getItem("token")
+    if (walletState) return toast.error("You can't create more than one wallet")
     createWalletAccount(userId, date, token)
       .then(createdWallet => {
         console.log(createdWallet)
