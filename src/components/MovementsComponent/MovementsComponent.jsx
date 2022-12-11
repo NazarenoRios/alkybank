@@ -1,97 +1,88 @@
-import * as React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getTransactions } from "../../redux/actions/getTransactions";
-import walletIconGreen from "../../assets/wallet-icon-green.svg";
-import Loading from "../../pages/Loading";
+import * as React from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getTransactions } from "../../redux/actions/getTransactions"
+import walletIconGreen from "../../assets/wallet-icon-green.svg"
+import Loading from "../../pages/Loading"
 
 export default function MovementsComponent() {
-  const [state, setState] = useState([]);
-  const [name, setName] = useState("");
+  const [state, setState] = useState([])
+  const [name, setName] = useState("")
   const [initialPage, setInitialPage] = useState(1)
   const [finalPage, setFinalPage] = useState(10)
-  const [squip, setSquip] = useState(false);
-  const dispatch = useDispatch();
+  const [squip, setSquip] = useState(false)
+  const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getTransactions());
-  }, []);
+    dispatch(getTransactions())
+  }, [])
 
-  let allTransactions = useSelector(
-    (state) => state.allTransactionsReducer.transactions
-  );
-  let isLoading = useSelector(
-    (state) => state.allTransactionsReducer.isLoading
-  );
+  let allTransactions = useSelector(state => state.allTransactionsReducer.transactions)
+  let isLoading = useSelector(state => state.allTransactionsReducer.isLoading)
   useEffect(() => {
-    if(!isLoading){
-      setState(allTransactions);
-    }  
-  }, [isLoading]);
-  const transactionsTypes = (value) => {
-    if (value === "all") {
-      setState(allTransactions);
-    } else {
-      const filterTransactions = allTransactions.filter(
-        (transactions) => transactions.type === value
-      );
-      setState(filterTransactions);
+    if (!isLoading) {
+      setState(allTransactions)
     }
-  };
-
-  const searchTransactions = (e) => {
-    e.preventDefault();
-    if (name === "") {
-      dispatch(getTransactions());
+  }, [isLoading])
+  const transactionsTypes = value => {
+    if (value === "all") {
       setState(allTransactions)
     } else {
-      const filterTransactions = state.filter((transactions) => 
-         transactions.concept.includes(name)
-      );
-      setState(filterTransactions);
+      const filterTransactions = allTransactions.filter(transactions => transactions.type === value)
+      setState(filterTransactions)
+    }
+  }
+
+  const searchTransactions = e => {
+    e.preventDefault()
+    if (name === "") {
+      dispatch(getTransactions())
+      setState(allTransactions)
+    } else {
+      const filterTransactions = state.filter(transactions => transactions.concept.includes(name))
+      setState(filterTransactions)
       console.log(filterTransactions)
     }
-  };
+  }
 
-  function prevFunction () {
-    if(initialPage < 11){
+  function prevFunction() {
+    if (initialPage < 11) {
       return
-    }else{
+    } else {
       setInitialPage(initialPage - 10)
       setFinalPage(finalPage - 10)
-      setSquip(false);
+      setSquip(false)
     }
-  };
-  
-  function nextFunction () {
+  }
+
+  function nextFunction() {
     let finalP = finalPage + 10
-    if(squip === true){
-      return;
-    } else{
-      if(finalP > state.length){
+    if (squip === true) {
+      return
+    } else {
+      if (finalP > state.length) {
         setInitialPage(initialPage + 10)
         setFinalPage(finalPage + 10)
-        setSquip(true);
-      }else{
+        setSquip(true)
+      } else {
         setInitialPage(initialPage + 10)
         setFinalPage(finalPage + 10)
       }
     }
-  };
+  }
 
   return (
-    <>
-      <h1 className="text-3xl font-mono font-bold text-white">
-        <u>Transactions</u>
-      </h1>
-      <div className="flex flex-row gap-5 p-7 m-1">
+    <div className="w-screen h-screen">
+      <div className="flex justify-center">
+        <h1 className="text-3xl font-mono font-bold text-white">
+          <u>Transactions</u>
+        </h1>
+      </div>
+      <div className="flex justify-center flex-row gap-5 p-7 m-1">
         <form>
           <label htmlFor="types" className="text-primary mr-2">
             Select Type
           </label>
-          <select
-            name="types"
-            onChange={(e) => transactionsTypes(e.target.value)}
-          >
+          <select name="types" onChange={e => transactionsTypes(e.target.value)}>
             <option value="all">All</option>
             <option value="topup">Topup</option>
             <option value="payment">Payment</option>
@@ -101,7 +92,7 @@ export default function MovementsComponent() {
           <input
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
             style={{ border: "1px solid black" }}
           />
           <button type="submit" className="text-primary">
@@ -119,60 +110,45 @@ export default function MovementsComponent() {
             <span className="w-full max-w-[200px] text-primary">Date</span>
           </div>
           <ul className="flex flex-col gap-4">
-            {isLoading && <Loading/>}
+            {isLoading && <Loading />}
             {state &&
-              state.slice(initialPage - 1, finalPage).map((transaction) => (
-                <li
-                  className="flex justify-between items-center"
-                  key={transaction.id}
-                >
+              state.slice(initialPage - 1, finalPage).map(transaction => (
+                <li className="flex justify-between items-center" key={transaction.id}>
                   <div className="w-full max-w-[200px] flex items-center gap-3">
                     <div className="w-fit h-fit p-2 rounded-[10px] bg-[#4E5257]">
                       <img src={walletIconGreen} alt="Wallet total balance" />
                     </div>
                     <span className="text-white">{transaction.accountId}</span>
                   </div>
+                  <span className="w-full max-w-[200px] text-white">{transaction.type}</span>
+                  <span className="w-full max-w-[200px] text-white">${transaction.amount}</span>
+                  <span className="w-full max-w-[200px] text-white">"{transaction.concept}"</span>
                   <span className="w-full max-w-[200px] text-white">
-                    {transaction.type}
-                  </span>
-                  <span className="w-full max-w-[200px] text-white">
-                    ${transaction.amount}
-                  </span>
-                  <span className="w-full max-w-[200px] text-white">
-                    "{transaction.concept}"
-                  </span>
-                  <span className="w-full max-w-[200px] text-white">
-                    {new Date(transaction.createdAt).toLocaleDateString(
-                      "es-AR",
-                      {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                      }
-                    )}
+                    {new Date(transaction.createdAt).toLocaleDateString("es-AR", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit"
+                    })}
                   </span>
                 </li>
               ))}
           </ul>
-          <div class="flex flex-col items-center pt-8">
-            <span class="text-sm text-gray-700 dark:text-gray-400">
+          <div className="flex flex-col items-center pt-8">
+            <span className="text-sm text-gray-700 dark:text-gray-400">
               Showing{" "}
-              <span class="font-semibold text-gray-900 dark:text-white">{initialPage}</span>{" "}
-              to{" "}
-              <span class="font-semibold text-gray-900 dark:text-white">
-                {finalPage}
-              </span>{" "}
-              of{" "}
-              <span class="font-semibold text-gray-900 dark:text-white">
-                {state.length}
-              </span>{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">{initialPage}</span> to{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">{finalPage}</span> of{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">{state.length}</span>{" "}
               Entries
             </span>
-            <div class="inline-flex mt-2 xs:mt-0">
-              <button onClick={prevFunction} class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-dark2 dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-dark1">
+            <div className="inline-flex mt-2 xs:mt-0">
+              <button
+                onClick={prevFunction}
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-dark2 dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-dark1"
+              >
                 <svg
                   aria-hidden="true"
-                  class="w-5 h-5 mr-2"
+                  className="w-5 h-5 mr-2"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -185,11 +161,14 @@ export default function MovementsComponent() {
                 </svg>
                 Prev
               </button>
-              <button onClick={nextFunction} class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-dark2 dark:border-gray-700 dark:text-primary dark:hover:bg-primary dark:hover:text-dark1">
+              <button
+                onClick={nextFunction}
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-dark2 dark:border-gray-700 dark:text-primary dark:hover:bg-primary dark:hover:text-dark1"
+              >
                 Next
                 <svg
                   aria-hidden="true"
-                  class="w-5 h-5 ml-2"
+                  className="w-5 h-5 ml-2"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -205,6 +184,6 @@ export default function MovementsComponent() {
           </div>
         </div>
       </div>
-    </>
-  );
+    </div>
+  )
 }
