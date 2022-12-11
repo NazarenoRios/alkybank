@@ -34,7 +34,7 @@ export default function Dashboard() {
               title="Wallet total spending"
               icon={darkMode ? walletIcon : walletIconDark}
               data={totalSpending ? totalSpending : 0}
-              className=" bg-[#F8F8F8] dark:bg-[#201E34] dark:border-[#343152] text-black dark:text-white border-solid border-[1px] border-[#F2F2F2] box-border rounded-[10px]"
+              className=" bg-[#F8F8F8] dark:bg-[#201E34] dark:border-[#343152] text-white dark:text-white border-solid border-[1px] border-[#F2F2F2] box-border rounded-[10px]"
               imageClassName=" bg-[#EBE8E8] dark:bg-[#292642]"
             />
           </div>

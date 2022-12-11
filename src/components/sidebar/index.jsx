@@ -1,7 +1,7 @@
-import React from "react"
-import { useAuth } from "../../hooks/useAuth"
+import React from "react";
+import { useAuth } from "../../hooks/useAuth";
 export const Sidebar = ({ children }) => {
-  const { signout } = useAuth()
+  const { signout } = useAuth();
 
   return (
     <div className="flex w-full h-max">
@@ -153,7 +153,7 @@ export const Sidebar = ({ children }) => {
         </aside>
       </div>
 
-      <>{children}</>
+      <div class="z-20">{children}</div>
     </div>
-  )
-}
+  );
+};
