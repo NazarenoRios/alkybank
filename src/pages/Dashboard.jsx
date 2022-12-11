@@ -8,6 +8,7 @@ import walletIconGreen from "../assets/wallet-icon-green.svg"
 import walletIconDark from "../assets/wallet-icon-dark.svg"
 import walletIcon from "../assets/wallet-icon.svg"
 import graph from "../assets/graph.png"
+import TransactionsList from "../components/TransactionsList/TransactionsList"
 
 export default function Dashboard() {
   const walletState = useSelector(state => state.walletReducer)
@@ -18,7 +19,7 @@ export default function Dashboard() {
   const { darkMode } = useDarkModeContext()
 
   return (
-    <section className="px-[60px] pt-[30px] box-border w-full h-max">
+    <section className="px-[10px] md:px-[60px] pt-[30px] box-border w-full h-max">
       <div className="w-full justify-between flex flex-col gap-y-10 gap-x-[50px] lg:flex-row">
         <div className="w-full max-w-[1000px] flex flex-col gap-12">
           <div className="w-full flex items-center flex-wrap gap-10">
@@ -55,42 +56,13 @@ export default function Dashboard() {
             </div>
             <h3 className="absolute left-[15%] top-[50%] text-[40px]">Coming soon...</h3>
           </div>
-          <div className="w-full max-w-[1000px] flex flex-col gap-4 border-solid border-[1px] border-[#F2F2F2] dark:border-[#343152] p-5 rounded-[10px]">
+          <div className="w-full max-w-[1000px] flex flex-col gap-4 border-solid border-[1px] border-[#F2F2F2] dark:border-[#343152] p-5 box-border rounded-[10px]">
             <h2 className="text-[18px] font-semibold dark:text-white">Recent Transaction</h2>
             <div className="flex flex-col gap-2 w-full max-w-[1000px]">
-              <div className="flex justify-between gap-5 uppercase text-[#929EAE]">
-                <span className="w-full max-w-[200px]">Wallet id</span>
-                <span className="w-full max-w-[200px]">Type</span>
-                <span className="w-full max-w-[200px]">Amount</span>
-                <span className="w-full max-w-[200px]">Date</span>
-              </div>
-              <ul className="flex flex-col gap-4">
+              <ul className="flex flex-col gap-5">
                 {isLoading && <Loading />}
                 {transactions.slice(0, 5).map(transaction => (
-                  <li
-                    className="flex justify-between items-center gap-5 dark:text-white"
-                    key={transaction.id}
-                  >
-                    <div className="w-full max-w-[200px] flex items-center gap-3">
-                      <div className="w-fit h-fit p-2 rounded-[10px] bg-[#4E5257]">
-                        <img
-                          className="min-w-[21px]"
-                          src={walletIconGreen}
-                          alt="Wallet total balance"
-                        />
-                      </div>
-                      <span>{transaction.accountId}</span>
-                    </div>
-                    <span className="w-full max-w-[200px]">Payment</span>
-                    <span className="w-full max-w-[200px]">${transaction.amount}</span>
-                    <span className="w-full max-w-[200px]">
-                      {new Date(transaction.createdAt).toLocaleDateString("es-AR", {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit"
-                      })}
-                    </span>
-                  </li>
+                  <TransactionsList transaction={transaction} />
                 ))}
               </ul>
             </div>
