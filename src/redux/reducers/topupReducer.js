@@ -9,8 +9,14 @@ export default function topupReducer(state = initialState, action) {
     case TOPUP_SUCCESS:
       return {
         ...state,
-        isLoading: action.payload,
+        isLoading: false,
+        data:action.payload
       };
+    case "TOPUP_LOADING":
+      return {
+        ...state,
+        isLoading: action.payload,
+    };
     default:
       return state;
   }

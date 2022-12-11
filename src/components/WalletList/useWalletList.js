@@ -9,7 +9,7 @@ export const useWalletList = setShowModal => {
     const token = sessionStorage.getItem("token")
     getWallet(token)
       .then(wallets => {
-        console.log(wallets)
+        sessionStorage.setItem("walletId", JSON.stringify(wallets[0].id))
         dispatch({ type: "UPDATE_WALLET", payload: wallets[0] })
       })
       .catch(error => {

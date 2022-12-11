@@ -10,6 +10,7 @@ import { useDashboard } from "../hooks/useDashboard"
 import { Layout } from "../components/layout"
 import { useDarkModeContext } from "../contexts/DarkModeContext"
 import Loading from "../pages/Loading";
+import { typeLabel } from "../components/MovementsComponent/MovementsComponent"
 
 export default function Dashboard() {
   const walletState = useSelector(state => state.walletReducer)
@@ -21,10 +22,8 @@ export default function Dashboard() {
 
   const darkMode = localStorage.getItem("darkMode");
 
-  console.log(darkMode)
-
   return (
-      <section className="ml-[290px] pt-[30px] px-4 box-border w-screen">
+      <section className="  px-4 box-border ">
         <div className="w-full max-w-[1450px] flex flex-col gap-y-10 gap-x-[50px] lg:flex-row">
           <div className="w-full max-w-[1000px] flex flex-col gap-12">
             <div className="w-full flex items-center flex-wrap gap-10">
@@ -59,7 +58,7 @@ export default function Dashboard() {
               <div className="blur-[2px]">
                 <img src={graph} alt="" />
               </div>
-              <h3 className="absolute left-[15%] top-[50%] text-[40px]">Coming soon...</h3>
+              <h3 className="absolute left-[30%] top-[35%] text-[40px]">Coming soon...</h3>
             </div>
             <div className="w-full max-w-[1000px] flex flex-col gap-4 border-solid border-[1px] border-[#F2F2F2] dark:border-[#282541] p-5 rounded-[10px]">
               <h2 className="text-[18px] font-semibold dark:text-white">Recent Transaction</h2>
@@ -87,7 +86,7 @@ export default function Dashboard() {
                         </div>
                         <span>{transaction.accountId}</span>
                       </div>
-                      <span className="w-full max-w-[200px]">Payment</span>
+                      <span className="w-full max-w-[200px]">{typeLabel(transaction.type)}</span>
                       <span className="w-full max-w-[200px]">${transaction.amount}</span>
                       <span className="w-full max-w-[200px]">
                         {new Date(transaction.createdAt).toLocaleDateString("es-AR", {
