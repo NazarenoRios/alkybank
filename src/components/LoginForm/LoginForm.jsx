@@ -93,11 +93,11 @@ const LoginForm = () => {
                             //   value: 5,
                             //   message: ""
                             // },
-                            pattern: {
-                              value:
-                                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                              message: "Invalid password",
-                            },
+                            // pattern: {
+                            //   value:
+                            //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                            //   message: "Invalid password",
+                            // },
                           })}
                         />
                         {errors.password && (
