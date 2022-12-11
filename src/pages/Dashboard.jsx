@@ -9,18 +9,18 @@ import { useSelector } from "react-redux"
 import { useDashboard } from "../hooks/useDashboard"
 import { Layout } from "../components/layout"
 import { useDarkModeContext } from "../contexts/DarkModeContext"
+import Loading from "../pages/Loading";
 
 export default function Dashboard() {
   const walletState = useSelector(state => state.walletReducer)
   const transactions = useSelector(state => state.allTransactionsReducer.transactions)
+  const isLoading = useSelector(state => state.allTransactionsReducer.isLoading)
   useWalletList()
   const { totalSpending } = useDashboard()
   const { darkMode } = useDarkModeContext()
 
   return (
-    <Layout>
       <section className="ml-[290px] pt-[30px] px-4 box-border">
-        {/* <Header title="Dashboard" /> */}
         <div className="w-full max-w-[1450px] flex flex-col gap-y-10 gap-x-[50px] lg:flex-row">
           <div className="w-full max-w-[1000px] flex flex-col gap-12">
             <div className="w-full flex items-center flex-wrap gap-10">
@@ -67,6 +67,7 @@ export default function Dashboard() {
                   <span className="w-full max-w-[200px]">Date</span>
                 </div>
                 <ul className="flex flex-col gap-4">
+                {isLoading && (<Loading />)}
                   {transactions.slice(0, 5).map(transaction => (
                     <li
                       className="flex justify-between items-center gap-5 dark:text-white"
@@ -100,6 +101,5 @@ export default function Dashboard() {
           <WalletList />
         </div>
       </section>
-    </Layout>
   )
 }

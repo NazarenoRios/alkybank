@@ -56,7 +56,7 @@ function useProvideAuth() {
 
     const signout = () => {
         setToken(null);
-        sessionStorage.removeItem('token');
+        sessionStorage.clear();
     }
 
     useEffect(() => {

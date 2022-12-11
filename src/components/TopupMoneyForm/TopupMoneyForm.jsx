@@ -45,7 +45,6 @@ export default function TopupMoneyForm() {
 
       }, [])
   return (
-    <Layout>
     <section className="h-full gradient-formmd:h-screen">
       {/* <div className="container py-12 px-6 h-full"> */}
       <div className="">
@@ -133,6 +132,5 @@ export default function TopupMoneyForm() {
         </div>
       </div>
     </section>
-    </Layout>
   );
 }
