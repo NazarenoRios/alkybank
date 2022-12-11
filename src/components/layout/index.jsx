@@ -8,10 +8,10 @@ export const Layout = ({ children }) => {
 
   return (
     <div className={` relative ${darkMode === true ? "dark" : "light"}`}>
-      <div className="dark:bg-dark1">
+      <div className="dark:bg-dark1 h-screen">
         <Header />
-        <Sidebar />
-        <div >{children}</div>
+        <Sidebar children={children} />
+        {/* <div >{children}</div> */}
       </div>
     </div>
   );

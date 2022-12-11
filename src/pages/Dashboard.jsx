@@ -17,10 +17,14 @@ export default function Dashboard() {
   const isLoading = useSelector(state => state.allTransactionsReducer.isLoading)
   useWalletList()
   const { totalSpending } = useDashboard()
-  const { darkMode } = useDarkModeContext()
+  // const { darkMode } = useDarkModeContext()
+
+  const darkMode = localStorage.getItem("darkMode");
+
+  console.log(darkMode)
 
   return (
-      <section className="ml-[290px] pt-[30px] px-4 box-border">
+      <section className="ml-[290px] pt-[30px] px-4 box-border w-screen">
         <div className="w-full max-w-[1450px] flex flex-col gap-y-10 gap-x-[50px] lg:flex-row">
           <div className="w-full max-w-[1000px] flex flex-col gap-12">
             <div className="w-full flex items-center flex-wrap gap-10">

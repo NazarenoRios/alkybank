@@ -79,11 +79,13 @@ export default function MovementsComponent() {
   };
 
   return (
-    <>
+    <div className="w-screen h-screen">
+      <div className="flex justify-center">
       <h1 className="text-3xl font-mono font-bold text-white">
         <u>Transactions</u>
       </h1>
-      <div className="flex flex-row gap-5 p-7 m-1">
+      </div>
+      <div className="flex justify-center flex-row gap-5 p-7 m-1">
         <form>
           <label htmlFor="types" className="text-primary mr-2">
             Select Type
@@ -205,6 +207,6 @@ export default function MovementsComponent() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
