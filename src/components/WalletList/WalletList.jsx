@@ -30,7 +30,7 @@ export default function WalletList() {
       </header>
       <div className="flex flex-col">
         {!walletState.wallet ? (
-          <div>
+          <>
             <div className="flex gap-5 lg:flex-col">
               <Wallet />
               <div className="w-full flex flex-col gap-8">
@@ -73,7 +73,7 @@ export default function WalletList() {
             <div>
               <Transfer />
             </div>
-          </div>
+          </>
         ) : (
           <p className="text-center">You don't have any wallet yet. </p>
         )}

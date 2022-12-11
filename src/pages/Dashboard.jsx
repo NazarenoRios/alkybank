@@ -1,13 +1,13 @@
+import { useSelector } from "react-redux"
+import { useDashboard } from "../hooks/useDashboard"
+import { useDarkModeContext } from "../contexts/DarkModeContext"
+import { useWalletList } from "../components/WalletList/useWalletList"
+import WalletList from "../components/WalletList/WalletList"
+import Loading from "../pages/Loading"
 import walletIconGreen from "../assets/wallet-icon-green.svg"
 import walletIconDark from "../assets/wallet-icon-dark.svg"
 import walletIcon from "../assets/wallet-icon.svg"
 import graph from "../assets/graph.png"
-import WalletList from "../components/WalletList/WalletList"
-import { useWalletList } from "../components/WalletList/useWalletList"
-import { useSelector } from "react-redux"
-import { useDashboard } from "../hooks/useDashboard"
-import { useDarkModeContext } from "../contexts/DarkModeContext"
-import Loading from "../pages/Loading"
 
 export default function Dashboard() {
   const walletState = useSelector(state => state.walletReducer)

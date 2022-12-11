@@ -10,7 +10,7 @@ export default function Transfer() {
   const { handleSubmit } = useTransfer()
 
   return (
-    <section className="flex flex-col justify-center gap-5 box-border w-full max-w-[375px] h-full border-solid border-t-[1px] border-[#F2F2F2] pt-5">
+    <section className="flex flex-col justify-center gap-5 box-border w-full max-w-[375px] h-full border-solid border-t-[1px] border-[#F2F2F2] dark:border-[#282541] pt-5 mt-5">
       <h1 className="font-semibold text-[18px]">Quick transfer</h1>
       <div>
         <Formik
