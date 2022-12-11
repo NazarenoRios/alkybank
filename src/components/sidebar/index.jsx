@@ -1,12 +1,13 @@
 import React from "react";
-
+import { useAuth } from "../../hooks/useAuth";
 export const Sidebar = () => {
+  const {signout} = useAuth();
   return (
     <aside
       class="absolute w-full min-w-[60px] max-w-[200px]"
       aria-label="Sidebar"
     >
-      <div class="overflow-y-auto py-4 px-3 max-w-fit h-fit bg-gray-200 dark:bg-dark1 -xs:px-0">
+      <div class="overflow-y-auto py-4 px-3 max-w-fit h-fit bg-gray-200 dark:bg-dark2 -xs:px-0">
         <ul class="space-y-2">
           <li>
             <a
@@ -80,7 +81,7 @@ export const Sidebar = () => {
           </li>
           <li>
             <a
-              href="#"
+              href="/movements"
               class="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
             >
               <svg
@@ -128,7 +129,8 @@ export const Sidebar = () => {
         <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
           <li>
             <a
-              href="/logout"
+              onClick={signout}
+              href="/"
               class="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg transition duration-75 hover:bg-primary dark:hover:text-black dark:text-white group w-full min-w-[60px] max-w-[200px]"
             >
               <svg

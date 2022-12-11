@@ -15,23 +15,21 @@ const LoginForm = () => {
 
   const [loginTry, SetLoginTry] = useState(false);
   const { signin, token } = useAuth();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  
   const onSubmit = async ({ email, password }) => {
     try {
       signin(email, password).then((res) => {
         if (res.status === 200) {
-          toast.success("Login successfull");
+          toast.success(`Welcome ${sessionStorage.first_name}`);
         }
       });
     } catch (e) {
       SetLoginTry(true);
-      console.log(e);
     }
   };
 
@@ -94,11 +92,11 @@ const LoginForm = () => {
                             //   value: 5,
                             //   message: ""
                             // },
-                            pattern: {
-                              value:
-                                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                              message: "Invalid password",
-                            },
+                            // pattern: {
+                            //   value:
+                            //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                            //   message: "Invalid password",
+                            // },
                           })}
                         />
                         {errors.password && (

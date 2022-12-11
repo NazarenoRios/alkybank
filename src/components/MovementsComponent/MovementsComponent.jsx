@@ -2,7 +2,8 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTransactions } from "../../redux/actions/getTransactions";
-import walletIconGreen from "../../assets/wallet-icon-green.png";
+import walletIconGreen from "../../assets/wallet-icon-green.svg";
+import Loading from "../../pages/Loading";
 
 export default function MovementsComponent() {
   const [state, setState] = useState([]);
@@ -18,7 +19,14 @@ export default function MovementsComponent() {
   let allTransactions = useSelector(
     (state) => state.allTransactionsReducer.transactions
   );
-
+  let isLoading = useSelector(
+    (state) => state.allTransactionsReducer.isLoading
+  );
+  useEffect(() => {
+    if(!isLoading){
+      setState(allTransactions);
+    }  
+  }, [isLoading]);
   const transactionsTypes = (value) => {
     if (value === "all") {
       setState(allTransactions);
@@ -84,9 +92,6 @@ export default function MovementsComponent() {
             name="types"
             onChange={(e) => transactionsTypes(e.target.value)}
           >
-            <option selected="true" disabled="disabled">
-              Select
-            </option>
             <option value="all">All</option>
             <option value="topup">Topup</option>
             <option value="payment">Payment</option>
@@ -114,6 +119,7 @@ export default function MovementsComponent() {
             <span className="w-full max-w-[200px] text-primary">Date</span>
           </div>
           <ul className="flex flex-col gap-4">
+            {isLoading && <Loading/>}
             {state &&
               state.slice(initialPage - 1, finalPage).map((transaction) => (
                 <li
