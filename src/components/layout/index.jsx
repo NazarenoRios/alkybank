@@ -1,18 +1,17 @@
-import React from "react";
-import { useDarkModeContext } from "../../contexts/DarkModeContext";
-import Header from "../Header/Header";
-import { Sidebar } from "../sidebar";
+import React from "react"
+import { useDarkModeContext } from "../../contexts/DarkModeContext"
+import Header from "../Header/Header"
+import { Sidebar } from "../sidebar"
 
 export const Layout = ({ children }) => {
-  const { darkMode } = useDarkModeContext();
+  const { darkMode } = useDarkModeContext()
 
   return (
     <div className={` relative ${darkMode === true ? "dark" : "light"}`}>
-      <div className="dark:bg-dark1 h-screen">
+      <div className="dark:bg-dark1 h-screen overflow-y-auto pb-5">
         <Header />
         <Sidebar children={children} />
-        {/* <div >{children}</div> */}
       </div>
     </div>
-  );
-};
+  )
+}
