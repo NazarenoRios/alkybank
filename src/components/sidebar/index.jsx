@@ -2,10 +2,11 @@ import React from "react"
 import { useAuth } from "../../hooks/useAuth"
 export const Sidebar = ({ children }) => {
   const { signout } = useAuth()
+
   return (
     <div className="flex w-full h-max">
-      <div className="flex flex-col h-full p-3 shadow w-60">
-        <aside className="" aria-label="Sidebar">
+      <div className="md:flex flex-col h-full p-3 shadow w-60 hidden">
+        <aside aria-label="Sidebar">
           <div className="overflow-y-auto py-4 px-3 max-w-fit h-fit bg-gray-200 dark:bg-dark2 -xs:px-0">
             <ul className="space-y-2">
               <li>

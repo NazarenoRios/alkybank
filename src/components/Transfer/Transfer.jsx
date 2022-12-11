@@ -10,9 +10,9 @@ export default function Transfer() {
   const { handleSubmit } = useTransfer()
 
   return (
-    <section className="flex flex-col justify-center gap-5 box-border w-full max-w-[375px] h-full border-solid border-t-[1px] border-[#F2F2F2] dark:border-[#343152] pt-5 mt-5">
+    <section className="flex flex-col justify-center items-center md:items-stretch gap-5 box-border w-full md:max-w-[375px] h-full border-solid border-t-[1px] border-[#F2F2F2] dark:border-[#343152] pt-5 mt-5">
       <h1 className="font-semibold text-[18px]">Quick transfer</h1>
-      <div>
+      <>
         <Formik
           initialValues={{
             accountId: "",
@@ -33,9 +33,9 @@ export default function Transfer() {
           })}
           onSubmit={values => handleSubmit(values, walletState)}
         >
-          <Form className="flex flex-col justify-center gap-5 max-w-[400px]">
-            <div className="flex justify-between">
-              <div className="flex flex-col gap-4 text-error max-w-[200px]">
+          <Form className="flex flex-col justify-center gap-5 w-full md:max-w-[400px]">
+            <div className="flex justify-between w-full">
+              <div className="flex flex-col gap-4 text-error max-w-[150px] sm:max-w-[200px]">
                 <h2 className="text-[16px] text-black dark:text-white">Account Id</h2>
                 <Field
                   className="max-w-[200px] h-[48px] w-full text-black rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] pl-3"
@@ -75,10 +75,12 @@ export default function Transfer() {
                 <ErrorMessage name="amount" />
               </div>
             </div>
-            <Button variant="primary" text="Send transfer" type="submit" />
+            <div className="w-full flex justify-center items-center">
+              <Button variant="primary" text="Send transfer" type="submit" />
+            </div>
           </Form>
         </Formik>
-      </div>
+      </>
     </section>
   )
 }

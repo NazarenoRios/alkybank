@@ -31,18 +31,18 @@ export default function WalletList() {
       <div className="flex flex-col">
         {!walletState.wallet ? (
           <>
-            <div className="flex gap-5 lg:flex-col">
+            <div className="flex flex-wrap justify-center gap-5 lg:flex-col">
               <Wallet />
               <div className="w-full flex flex-col gap-8">
                 <div className="flex justify-between">
                   <div>
-                    <h4>Card holder</h4>
+                    <h4 className="text-[#929EAE]">Card holder</h4>
                     <span className="font-bold max-w-[150px] lg:max-w-[200px] inline-block">
                       {sessionStorage.first_name} {sessionStorage.last_name}
                     </span>
                   </div>
                   <div>
-                    <h4>Wallet Id</h4>
+                    <h4 className="text-[#929EAE]">Wallet Id</h4>
                     <span className="font-bold max-w-[150px] lg:max-w-[200px] inline-block">
                       {walletState.id}
                     </span>
@@ -50,11 +50,11 @@ export default function WalletList() {
                 </div>
                 <div className="flex justify-between flex-wrap gap-x-5">
                   <div>
-                    <h4>Status</h4>
+                    <h4 className="text-[#929EAE]">Status</h4>
                     <span className="font-bold">Active</span>
                   </div>
                   <div>
-                    <h4>Creation date</h4>
+                    <h4 className="text-[#929EAE]">Creation date</h4>
                     <span className="font-bold">
                       {new Date(walletState.createdAt).toLocaleDateString("es-AR", {
                         year: "numeric",
@@ -64,7 +64,7 @@ export default function WalletList() {
                     </span>
                   </div>
                   <div>
-                    <h4>Category</h4>
+                    <h4 className="text-[#929EAE]">Category</h4>
                     <span className="font-bold">Standard</span>
                   </div>
                 </div>
