@@ -12,9 +12,13 @@ export default function Header({ title }) {
   const { darkMode, setDarkMode } = useDarkModeContext()
 
   return (
-    <header className="w-full h-[100px] flex items-center justify-between px-5 box-border">
+    <header className="w-full h-[100px] flex items-center justify-between px-5 box-border pr-[60px]">
       <a href="/" class="flex items-center pl-2.5 mb-5">
-      { !darkMode ? <img src={alkybankLogo} class="mr-3 w-40 h-auto" alt="Alkemy bank Logo" /> : <img src={alkybankLogoWhite} class="mr-3 w-40 h-auto" alt="Alkemy bank Logo Black Mode" /> }
+        {!darkMode ? (
+          <img src={alkybankLogo} class="mr-3 w-40 h-auto" alt="Alkemy bank Logo" />
+        ) : (
+          <img src={alkybankLogoWhite} class="mr-3 w-40 h-auto" alt="Alkemy bank Logo Black Mode" />
+        )}
       </a>
       <div className="flex gap-5 h-[40px] bg-[#FAFAFA] dark:bg-dark2 dark:text-white">
         <button
