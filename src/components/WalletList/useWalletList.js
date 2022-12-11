@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-// import Swal from "sweetalert2"
+import { getWallet } from "../../api/account"
 
 export const useWalletList = setShowModal => {
   const dispatch = useDispatch()
@@ -14,27 +14,9 @@ export const useWalletList = setShowModal => {
       })
       .catch(error => {
         console.log(error)
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "An error has occurred while getting your wallet. Try again later",
-        //   showConfirmButton: true
-        // })
+        return toast.error("An error has occurred. Try again later")
       })
   }, [])
-
-  const getWallet = async token => {
-    const response = await fetch(
-      "http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/me",
-      {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      }
-    )
-    return await response.json()
-  }
 
   const createNewWallet = async () => {
     const loggedUser = sessionStorage.getItem("loggedUser")
@@ -44,20 +26,12 @@ export const useWalletList = setShowModal => {
     createWalletAccount(userId, date, token)
       .then(createdWallet => {
         console.log(createdWallet)
-        // Swal.fire({
-        //   icon: "success",
-        //   title: "You have successfully created a wallet",
-        //   showConfirmButton: false
-        // })
+        toast.success("You have successfully created a wallet")
         dispatch({ type: "UPDATE_WALLET", payload: createdWallet })
       })
       .catch(error => {
         console.log(error)
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "An error has occurred. Try again later",
-        //   showConfirmButton: true
-        // })
+        return toast.error("An error has occurred. Try again later")
       })
     setShowModal(false)
   }
