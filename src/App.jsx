@@ -19,6 +19,7 @@ import Balances from "./pages/Balances";
 import Movements from "./pages/Movements";
 import { DarkModeProvider } from "./contexts/DarkModeContext";
 import { Layout } from "./components/layout";
+import Sidebar from "./pages/Sidebar";
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -37,6 +38,7 @@ function App() {
           <Route path="/payments" element={<Layout><Payments /></Layout>} />
           <Route path="/movements" element={<Layout><Movements /> </Layout>} />
           <Route path="/balance" element={<Layout><Balances /></Layout>} />
+          <Route path="/sidebar" element={<Sidebar/>} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </DarkModeProvider>
