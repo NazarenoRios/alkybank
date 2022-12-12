@@ -22,7 +22,6 @@ export const useGoogleLogIn = () => {
 
       signin(email,password)
         .then(async (response) => {
-          console.log(response);
           navigate("/");
         })
         .catch((error) => console.log(error));

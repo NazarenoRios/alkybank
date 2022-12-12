@@ -9,14 +9,13 @@ export function paymentAction( amount, concept ) {
       let type = "payment";
       let token = JSON.parse(sessionStorage.getItem("token"));
       setToken(token); 
-      let id = 1838;
+      let id = JSON.parse(sessionStorage.getItem("walletId"));
       const data = {
         type,
         concept,
         amount,
       };
       const res = await create(data, `/accounts/${id}`);
-      console.log(res.data)
       return dispatch({type: 'PAYMENT_SUCCESS', payload: true});
     }
     catch (err){

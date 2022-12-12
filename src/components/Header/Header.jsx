@@ -114,10 +114,10 @@ function Dropdown() {
           </li>
           <li>
             <Link
-              to="#"
+              to="/payments"
               className="block py-2 px-4 hover:bg-primary dark:hover:bg-primary dark:hover:text-black"
             >
-              Expenses
+              Payments
             </Link>
           </li>
           <li>
@@ -126,14 +126,6 @@ function Dropdown() {
               className="block py-2 px-4 hover:bg-primary dark:hover:bg-primary dark:hover:text-black"
             >
               Last movements
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/payments"
-              className="block py-2 px-4 hover:bg-primary dark:hover:bg-primary dark:hover:text-black"
-            >
-              Send funds
             </Link>
           </li>
         </ul>

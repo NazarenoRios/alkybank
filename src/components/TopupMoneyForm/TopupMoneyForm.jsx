@@ -27,7 +27,6 @@ export default function TopupMoneyForm() {
   }, [response]);
 
   const onSubmit = ({ amount, concept }) => {
-    console.log(amount, concept);
     dispatch(topupAction(amount, concept));
   };
 
@@ -115,7 +114,7 @@ export default function TopupMoneyForm() {
                         )}
                       </div>
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 dark:text-white">
                       <label>Concept</label>
                       <input
                         type="text"
