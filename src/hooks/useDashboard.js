@@ -13,7 +13,12 @@ export const useDashboard = () => {
 
   useEffect(() => {
     if (transactions.length <= 0) return
-    const total = transactions.reduce((acc, curr) => acc + curr.amount, 0)[1]
+    const total = transactions.reduce((acc, curr) => {
+      if(curr.type == "payment"){
+        return acc + parseInt(curr.amount)
+      }
+      return acc
+    }, 0)
     setTotalSpending(total)
   }, [transactions])
 
