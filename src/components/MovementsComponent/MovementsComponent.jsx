@@ -1,9 +1,9 @@
-import * as React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getTransactions } from "../../redux/actions/getTransactions";
-import walletIconGreen from "../../assets/wallet-icon-green.svg";
-import Loading from "../../pages/Loading";
+import * as React from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getTransactions } from "../../redux/actions/getTransactions"
+import walletIconGreen from "../../assets/wallet-icon-green.svg"
+import Loading from "../../pages/Loading"
 
 
 export const typeLabel = (type) => {
@@ -14,53 +14,49 @@ export const typeLabel = (type) => {
 }
 
 export default function MovementsComponent() {
-  const [state, setState] = useState([]);
-  const [name, setName] = useState("");
+  const [state, setState] = useState([])
+  const [name, setName] = useState("")
   const [initialPage, setInitialPage] = useState(1)
   const [finalPage, setFinalPage] = useState(10)
-  const [squip, setSquip] = useState(false);
-  const dispatch = useDispatch();
+  const [squip, setSquip] = useState(false)
+  const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getTransactions());
-  }, []);
+    dispatch(getTransactions())
+  }, [])
 
-  let allTransactions = useSelector(
-    (state) => state.allTransactionsReducer.transactions
-  );
-  let isLoading = useSelector(
-    (state) => state.allTransactionsReducer.isLoading
-  );
+  let allTransactions = useSelector(state => state.allTransactionsReducer.transactions)
+  let isLoading = useSelector(state => state.allTransactionsReducer.isLoading)
   useEffect(() => {
     if (!isLoading) {
+
       setState(allTransactions);
     }
   }, [isLoading]);
   const transactionsTypes = (value) => {
-    if (value === "all") {
-      setState(allTransactions);
-    } else {
-      const filterTransactions = allTransactions.filter(
-        (transactions) => transactions.type === value
-      );
-      setState(filterTransactions);
-    }
-  };
 
-  console.log(state)
+    if (value === "all") {
+      setState(allTransactions)
+    } else {
+      const filterTransactions = allTransactions.filter(transactions => transactions.type === value)
+      setState(filterTransactions)
+    }
+  }
+
 
   const searchTransactions = (e) => {
     e.preventDefault();
     if (name === "") {
-      dispatch(getTransactions());
+      dispatch(getTransactions())
       setState(allTransactions)
     } else {
       const filterTransactions = state.filter((transactions) =>
         transactions.concept.includes(name)
       );
       setState(filterTransactions);
+
       console.log(filterTransactions)
     }
-  };
+  }
 
   function prevFunction() {
     if (initialPage < 11) {
@@ -68,25 +64,29 @@ export default function MovementsComponent() {
     } else {
       setInitialPage(initialPage - 10)
       setFinalPage(finalPage - 10)
-      setSquip(false);
+      setSquip(false)
     }
+
   };
+
 
   function nextFunction() {
     let finalP = finalPage + 10
     if (squip === true) {
+
       return;
+
     } else {
       if (finalP > state.length) {
         setInitialPage(initialPage + 10)
         setFinalPage(finalPage + 10)
-        setSquip(true);
+        setSquip(true)
       } else {
         setInitialPage(initialPage + 10)
         setFinalPage(finalPage + 10)
       }
     }
-  };
+  }
 
 
   
@@ -110,6 +110,7 @@ export default function MovementsComponent() {
             name="types"
             onChange={(e) => transactionsTypes(e.target.value)}
           >
+
             <option value="all">All</option>
             <option value="topup">Topup</option>
             <option value="payment">Payment</option>
@@ -121,7 +122,6 @@ export default function MovementsComponent() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-
           />
           <button type="submit" className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-dark2 dark:border-gray-700 dark:text-primary dark:hover:bg-primary dark:hover:text-dark1">
             Search
@@ -141,17 +141,15 @@ export default function MovementsComponent() {
           <ul className="flex flex-col gap-4">
             {isLoading && <Loading />}
             {state &&
-              state.slice(initialPage - 1, finalPage).map((transaction) => (
-                <li
-                  className="flex justify-between items-center"
-                  key={transaction.id}
-                >
+              state.slice(initialPage - 1, finalPage).map(transaction => (
+                <li className="flex justify-between items-center" key={transaction.id}>
                   <div className="w-full max-w-[200px] flex items-center gap-3">
                     <div className="w-fit h-fit p-2 rounded-[10px] bg-[#4E5257]">
                       <img src={walletIconGreen} alt="Wallet total balance" />
                     </div>
                     <span className="text-white">{transaction.accountId}</span>
                   </div>
+
 
 
                   <div className="w-full max-w-[200px] flex items-center gap-3">
@@ -178,6 +176,7 @@ export default function MovementsComponent() {
                         day: "2-digit",
                       }
                     )}
+
                   </span>
                 </li>
               ))}
@@ -185,6 +184,7 @@ export default function MovementsComponent() {
           <div className="flex flex-col items-center pt-8">
             <span className="text-sm text-gray-700 dark:text-gray-400">
               Showing{" "}
+
               <span className="font-semibold text-gray-900 dark:text-white">{initialPage}</span>{" "}
               to{" "}
               <span className="font-semibold text-gray-900 dark:text-white">
@@ -198,6 +198,7 @@ export default function MovementsComponent() {
             </span>
             <div className="inline-flex mt-2 xs:mt-0">
               <button onClick={prevFunction} className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-dark2 dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-dark1">
+
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 mr-2"
@@ -213,7 +214,9 @@ export default function MovementsComponent() {
                 </svg>
                 Prev
               </button>
+
               <button onClick={nextFunction} className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-dark2 dark:border-gray-700 dark:text-primary dark:hover:bg-primary dark:hover:text-dark1">
+
                 Next
                 <svg
                   aria-hidden="true"
@@ -234,5 +237,5 @@ export default function MovementsComponent() {
         </div>
       </div>
     </div>
-  );
+  )
 }
