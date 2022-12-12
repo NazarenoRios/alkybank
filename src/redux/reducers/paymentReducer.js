@@ -1,4 +1,4 @@
-import { PAYMENT_SUCCESS } from "../actions/paymentAction";
+import { PAYMENT_SUCCESS } from "../actions/paymentAction"
 
 const initialState = {
   isLoading: false,

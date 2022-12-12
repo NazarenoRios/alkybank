@@ -15,11 +15,10 @@ export function paymentAction( amount, concept ) {
         concept,
         amount,
       };
-      
+
       dispatch({type: 'PAYMENT_LOADING', payload: true});
 
       const res = await create(data, `/accounts/${id}`);
-      console.log(res.data)
       return dispatch({type: 'PAYMENT_SUCCESS', payload: {message:"Payment success", data: res.data}});
     }
     catch (err){
