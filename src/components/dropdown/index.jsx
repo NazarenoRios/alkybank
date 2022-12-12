@@ -1,4 +1,6 @@
 import { useAuth } from "../../hooks/useAuth";
+import arrowIcon from "../../assets/arrow-icon.svg";
+import { Link } from "react-router-dom";
 
 export function Dropdown() {
     const { signout } = useAuth();

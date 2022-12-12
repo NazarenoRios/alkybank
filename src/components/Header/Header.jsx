@@ -2,7 +2,6 @@ import { useDarkModeContext } from "../../contexts/DarkModeContext";
 import alkybankLogoWhite from "../../assets/alkemy-logo-white.png";
 import alkybankLogo from "../../assets/alkemy-logo.png";
 import avatarDark from "../../assets/avatar-dark.svg";
-import arrowIcon from "../../assets/arrow-icon.svg";
 import moonIcon from "../../assets/moon-icon.svg";
 import sunIcon from "../../assets/sun-icon.svg";
 import avatar from "../../assets/avatar.svg";
