@@ -1,36 +1,26 @@
+import { useDispatch } from "react-redux"
+import { toast } from "react-toastify"
+import { getWallet } from "../../api/account"
+
 export const useTransfer = () => {
-  const handleSubmit = (values, walletState) => {
-    getWalletByAccountId(values.accountId).then(() => {
-      if (walletState < values.amount) {
-        // return Swal.fire({
-        //   icon: "error",
-        //   title: "You don't have enough money",
-        //   showConfirmButton: true
-        // })
-      } else {
-        transferToAccountId(values).catch(() => {
-          // return Swal.fire({
-          //   icon: "error",
-          //   title: "An error has occurred. Try again later",
-          //   showConfirmButton: true
-          // })
-        })
-      }
-    }).catch = error => {
-      if (error.status === 500) {
-        // return Swal.fire({
-        //   icon: "error",
-        //   title: "The wallet id is not valid",
-        //   showConfirmButton: true
-        // })
-      } else {
-        // return Swal.fire({
-        //   icon: "error",
-        //   title: "An error has occurred. Try again later",
-        //   showConfirmButton: true
-        // })
-      }
-    }
+  const dispatch = useDispatch()
+
+  const handleSubmit = async (values, walletState) => {
+    if (walletState < values.amount) return toast.error("You don't have enough money")
+    getWalletByAccountId(values.accountId).then(error => {
+      if (error.status === 500) return toast.error("The wallet id is not valid")
+      transferToAccountId(values).then(error => {
+        if (error.status === 500) return toast.error("The wallet id is not valid")
+        const token = sessionStorage.getItem("token")
+        getWallet(token)
+          .then(wallets => dispatch({ type: "UPDATE_WALLET", payload: wallets[0] }))
+          .catch(error => {
+            console.log(error)
+            return toast.error("An error has occurred. Try again later")
+          })
+        return toast.success("Transfer successfully")
+      })
+    })
   }
 
   const getWalletByAccountId = async accountId => {

@@ -2,22 +2,22 @@ import { useSelector } from "react-redux"
 import { useDashboard } from "../hooks/useDashboard"
 import { useDarkModeContext } from "../contexts/DarkModeContext"
 import { useWalletList } from "../components/WalletList/useWalletList"
+import Transaction from "../components/Transaction/Transaction"
 import WalletList from "../components/WalletList/WalletList"
+import MoneyCard from "../components/MoneyCard/MoneyCard"
 import Loading from "../pages/Loading"
+import walletIconGreen from "../assets/wallet-icon-green.svg"
 import walletIconDark from "../assets/wallet-icon-dark.svg"
 import walletIcon from "../assets/wallet-icon.svg"
 import graph from "../assets/graph.png"
-import TransactionsList from "../components/TransactionsList/TransactionsList"
-import MoneyCard from "../components/MoneyCard/MoneyCard"
-import walletIconGreen from "../assets/wallet-icon-green.svg"
 
 export default function Dashboard() {
   const transactions = useSelector(state => state.allTransactionsReducer.transactions)
   const isLoading = useSelector(state => state.allTransactionsReducer.isLoading)
-  useWalletList()
+  const walletState = useSelector(state => state.walletReducer)
   const { totalSpending } = useDashboard()
   const { darkMode } = useDarkModeContext()
-  const walletState = useSelector(state => state.walletReducer)
+  useWalletList()
 
   return (
     <section className="px-[10px] md:px-[60px] pt-[30px] box-border w-full h-max">
@@ -47,11 +47,21 @@ export default function Dashboard() {
           <div className="w-full max-w-[1000px] flex flex-col gap-4 border-solid border-[1px] border-[#F2F2F2] dark:border-[#343152] p-5 box-border rounded-[10px]">
             <h2 className="text-[18px] font-semibold dark:text-white">Recent Transaction</h2>
             <div className="flex flex-col gap-2 w-full max-w-[1000px]">
+              <div className="flex justify-between gap-5 uppercase text-[#929EAE]">
+                <span className="w-full max-w-[200px]">Wallet id</span>
+                <span className="w-full max-w-[200px]">Type</span>
+                <span className="w-full max-w-[200px]">Amount</span>
+                <span className="w-full max-w-[200px]">Date</span>
+              </div>
               <ul className="flex flex-col gap-5">
                 {isLoading && <Loading />}
-                {transactions.slice(0, 5).map(transaction => (
-                  <TransactionsList transaction={transaction} />
-                ))}
+                {transactions.slice(0, 5).map(transaction => {
+                  return (
+                    walletState.id === transaction.accountId && (
+                      <Transaction transaction={transaction} key={transaction.id} />
+                    )
+                  )
+                })}
               </ul>
             </div>
           </div>

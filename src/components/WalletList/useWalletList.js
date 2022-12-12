@@ -1,63 +1,38 @@
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-// import Swal from "sweetalert2"
+import { useDispatch, useSelector } from "react-redux"
+import { toast } from "react-toastify"
+import { getWallet } from "../../api/account"
 
 export const useWalletList = setShowModal => {
   const dispatch = useDispatch()
+  const walletState = useSelector(state => state.walletReducer)
 
   useEffect(() => {
     const token = sessionStorage.getItem("token")
     getWallet(token)
       .then(wallets => {
-        console.log(wallets)
         dispatch({ type: "UPDATE_WALLET", payload: wallets[0] })
       })
       .catch(error => {
         console.log(error)
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "An error has occurred while getting your wallet. Try again later",
-        //   showConfirmButton: true
-        // })
+        return toast.error("An error has occurred. Try again later")
       })
   }, [])
 
-  const getWallet = async token => {
-    const response = await fetch(
-      "http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/me",
-      {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${token}`
-        }
-      }
-    )
-    return await response.json()
-  }
-
   const createNewWallet = async () => {
-    const loggedUser = sessionStorage.getItem("loggedUser")
-    const userId = loggedUser.id
+    const userId = sessionStorage.getItem("id")
     const date = getDate()
     const token = sessionStorage.getItem("token")
+    if (walletState) return toast.error("You can't create more than one wallet")
     createWalletAccount(userId, date, token)
       .then(createdWallet => {
         console.log(createdWallet)
-        // Swal.fire({
-        //   icon: "success",
-        //   title: "You have successfully created a wallet",
-        //   showConfirmButton: false
-        // })
+        toast.success("You have successfully created a wallet")
         dispatch({ type: "UPDATE_WALLET", payload: createdWallet })
       })
       .catch(error => {
         console.log(error)
-        // Swal.fire({
-        //   icon: "error",
-        //   title: "An error has occurred. Try again later",
-        //   showConfirmButton: true
-        // })
+        return toast.error("An error has occurred. Try again later")
       })
     setShowModal(false)
   }
