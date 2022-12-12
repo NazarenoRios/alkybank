@@ -38,12 +38,10 @@ const create = async(data, path) => {
   }
   try {
     const res = await axios.post(`${API_BASE_URL}${path}`, data, configHeader)
-    console.log(res.data)
     if (res.statusText === "OK") {
       return toast.success("Payment Successfully");
     }
   } catch (error) {
-    console.log(error);
     if (error.response.status) {
       return toast.error(error.message);
     }
@@ -59,12 +57,10 @@ const update = async(id, data, path) => {
   }
   try {
     const res = await axios.patch(`${API_BASE_URL}${path}${id}`, data, configHeader)
-    console.log(res.data)
     if (res.statusText === "OK") {
       return toast.success("Payment Successfully");
     }
   } catch (error) {
-    console.log(error);
     if (error.response.status) {
       return toast.error(error.message);
     }

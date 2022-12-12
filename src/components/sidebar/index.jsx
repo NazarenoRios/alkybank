@@ -77,7 +77,7 @@ export const Sidebar = ({ children }) => {
               </li> */}
               <li>
                 <Link
-                  to="#"
+                  to="/payments"
 
                   className="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
                 >
@@ -97,7 +97,7 @@ export const Sidebar = ({ children }) => {
                     />
                   </svg>
                   <span className="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
-                    Expenses
+                    Payments
                   </span>
                 </Link>
               </li>
@@ -124,29 +124,6 @@ export const Sidebar = ({ children }) => {
                   </svg>
                   <span className="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
                     Last movements
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/payments"
-                  className="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
-                >
-                  <svg
-                    className="w-6 h-6 hidden sm:block"
-
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
-                    Send funds
                   </span>
                 </Link>
               </li>

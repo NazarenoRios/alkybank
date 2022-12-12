@@ -58,7 +58,7 @@ export default function PaymentsForm() {
                           d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"
                         />
                       </svg>
-                      Send funds
+                      Payments
                     </h1>
                     <h4 className="text-xl mt-1 mb-12 pb-1 dark:text-white">
                       ¿How much do you want to send?
@@ -104,7 +104,7 @@ export default function PaymentsForm() {
                       
                       </div>
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 dark:text-white">
                       <label>Concept</label>
                       <input
                         type="text"

@@ -47,7 +47,6 @@ function useProvideAuth() {
 
       return { status: 200, message: "Bienvenido!" }
     } catch (err) {
-      console.log(err)
       return { status: err.response.status, message: "Error al iniciar sesión." }
     }
   }

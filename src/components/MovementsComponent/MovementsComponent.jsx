@@ -56,11 +56,9 @@ export default function MovementsComponent() {
       setState(allTransactions);
     } else {
       const filterTransactions = state.filter((transactions) =>
-        transactions.concept.includes(name)
+        transactions.concept.toLowerCase().includes(name.toLowerCase())
       );
       setState(filterTransactions);
-
-      console.log(filterTransactions);
     }
   };
 
