@@ -11,11 +11,15 @@ import walletIconDark from "../assets/wallet-icon-dark.svg"
 import walletIcon from "../assets/wallet-icon.svg"
 import graph from "../assets/graph.png"
 
+import { typeLabel } from "../components/MovementsComponent/MovementsComponent"
+
+
 export default function Dashboard() {
   const transactions = useSelector(state => state.allTransactionsReducer.transactions)
   const isLoading = useSelector(state => state.allTransactionsReducer.isLoading)
   const walletState = useSelector(state => state.walletReducer)
   const { totalSpending } = useDashboard()
+
   const { darkMode } = useDarkModeContext()
   useWalletList()
 

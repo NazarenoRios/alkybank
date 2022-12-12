@@ -7,12 +7,18 @@ const DarkModeContext = createContext({
 })
 
 const DarkModeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false)
+
+  const [darkMode, setDarkMode] = useState(true)
+  
+  localStorage.setItem("darkMode",darkMode)
 
   return (
-    <DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
+    <div className="h-screen">
+      <DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
       {children}
     </DarkModeContext.Provider>
+    </div>
+    
   )
 }
 

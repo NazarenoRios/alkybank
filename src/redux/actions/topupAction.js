@@ -7,27 +7,29 @@ export function topupAction( amount, concept ) {
     try {
       amount = Number(amount);
       let type = "topup";
-      let token = JSON.parse(sessionStorage.getItem("token"));
-      let id = 1838;
+      let token = sessionStorage.getItem("token");
+      let id = JSON.parse(sessionStorage.getItem("walletId"));
       const data = {
         type,
         concept,
         amount,
       };
+
+      dispatch({ type: "TOPUP_LOADING", payload: true })
       
       const res = await axios.post(
         `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/accounts/${id}`,
         data,
          { headers: { Authorization: "Bearer " + token } }
       );
-      return dispatch({type: TOPUP_SUCCESS, payload: true})
+      return dispatch({type: TOPUP_SUCCESS, payload: {message:"Topup success", data: res.data}})
 
 
     } catch (error) {
-      console.log(error);
-      if (error.response.status) {
+
+    console.log(error)
         toast.error(error.message);
-      }
+     
     }
   };
 }

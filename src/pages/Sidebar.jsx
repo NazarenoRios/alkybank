@@ -7,7 +7,7 @@ export default function Sidebar() {
     <div>
       <Header />
       <div className="flex">
-        <div className="flex flex-col h-screen p-3 bg-gray-800 shadow w-60">
+        <div className="flex flex-col  p-3 bg-gray-800 shadow w-60">
             aaaaaaaaaaaaa
         </div>
         <div className=" mx-auto">

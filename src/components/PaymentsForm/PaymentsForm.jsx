@@ -17,11 +17,11 @@ export default function PaymentsForm() {
   };
   return (
     <div className="flex justify-center content-center">
-      <section className="h-screen w-screen gradient-formmd:h-screen">
+      <section className=" gradient-formmd:h-screen">
         <div className="flex justify-center items-center">
           <div className="container py-12 px-6 h-full">
             <div className="flex justify-center items-center h-full g-6 text-gray-800">
-              <div className="xl:w-6/12">
+              
                 <div className="block bg-white shadow-lg rounded-lg">
                   <div className="">
                     <div className="">
@@ -99,7 +99,7 @@ export default function PaymentsForm() {
                     </div>
                   </div>
                 </div>
-              </div>
+              
             </div>
           </div>
         </div>
