@@ -1,4 +1,5 @@
 import walletIconGreen from "../../assets/wallet-icon-green.svg"
+import { typeLabel } from "../MovementsComponent/MovementsComponent"
 
 export default function Transaction({ transaction }) {
   return (
@@ -10,7 +11,7 @@ export default function Transaction({ transaction }) {
           </div>
           <span>{transaction.accountId}</span>
         </div>
-        <span className="w-full max-w-[200px]">Payment</span>
+        <span className="w-full max-w-[200px]">{typeLabel(transaction.type)}</span>
         <span className="w-full max-w-[200px]">${transaction.amount}</span>
         <span className="w-full max-w-[200px]">
           {new Date(transaction.createdAt).toLocaleDateString("es-AR", {

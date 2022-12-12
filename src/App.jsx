@@ -15,7 +15,7 @@ import Loading from "./pages/Loading";
 import TopupMoney from "./pages/TopupMoney";
 import Payments from "./pages/Payments";
 import Dashboard from "./pages/Dashboard";
-import Balances from "./pages/Balances";
+// import Balances from "./pages/Balances";
 import Movements from "./pages/Movements";
 import { DarkModeProvider } from "./contexts/DarkModeContext";
 import { Layout } from "./components/layout";
@@ -37,7 +37,7 @@ function App() {
           <Route path="/topup" element={<Layout><TopupMoney /></Layout>} />
           <Route path="/payments" element={<Layout><Payments /></Layout>} />
           <Route path="/movements" element={<Layout><Movements /> </Layout>} />
-          <Route path="/balance" element={<Layout><Balances /></Layout>} />
+          {/* <Route path="/balance" element={<Layout><Balances /></Layout>} /> */}
           <Route path="/sidebar" element={<Sidebar/>} />
           <Route path="/*" element={<NotFound />} />
         </Routes>

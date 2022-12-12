@@ -16,7 +16,7 @@ export const Sidebar = ({ children }) => {
                   to="/"
                   className="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
                 >
-                  <svg  viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
+                  <svg className="h-7 w-7" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
                     <path d="M16.7002 5.68471L11.9002 2.32637C10.5918 1.40971 8.5835 1.45971 7.32519 2.43471L3.15019 5.69304C2.31686 6.34304 1.65852 7.67637 1.65852 8.72633V14.4763C1.65852 16.6013 3.38352 18.3347 5.50852 18.3347H14.4918C16.6168 18.3347 18.3418 16.6097 18.3418 14.4847V8.83466C18.3418 7.70971 17.6168 6.32637 16.7002 5.68471ZM10.6252 15.0013C10.6252 15.343 10.3418 15.6263 10.0002 15.6263C9.6585 15.6263 9.37517 15.343 9.37517 15.0013V12.5013C9.37517 12.1597 9.6585 11.8763 10.0002 11.8763C10.3418 11.8763 10.6252 12.1597 10.6252 12.5013V15.0013Z"  />
                   </svg>
 
@@ -29,8 +29,8 @@ export const Sidebar = ({ children }) => {
  
             
               <li>
-                <a
-                  href="/topup"
+                <Link
+                  to="/topup"
                   className="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
                 >
                   <svg
@@ -50,11 +50,11 @@ export const Sidebar = ({ children }) => {
                   <span className="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
                     Add funds
                   </span>
-                </a>
+                </Link>
               </li>
-              <li>
-                <a
-                  href="/balance"
+              {/* <li>
+                <Link
+                  to="/balance"
                   className="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
                 >
                   <svg
@@ -73,11 +73,11 @@ export const Sidebar = ({ children }) => {
                     />
                   </svg>
                   <span className="ml-3 -xs:text-xs -xs:ml-0">Balance</span>
-                </a>
-              </li>
+                </Link>
+              </li> */}
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="#"
 
                   className="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
                 >
@@ -99,11 +99,11 @@ export const Sidebar = ({ children }) => {
                   <span className="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
                     Expenses
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/movements"
+                <Link
+                  to="/movements"
 
                   className="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
                 >
@@ -125,11 +125,11 @@ export const Sidebar = ({ children }) => {
                   <span className="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
                     Last movements
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/payments"
+                <Link
+                  to="/payments"
                   className="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg dark:text-white hover:bg-primary dark:hover:text-black w-full min-w-[60px] max-w-[200px]"
                 >
                   <svg
@@ -148,14 +148,14 @@ export const Sidebar = ({ children }) => {
                   <span className="flex-1 ml-3 -xs:text-xs whitespace-nowrap -xs:ml-0">
                     Send funds
                   </span>
-                </a>
+                </Link>
               </li>
             </ul>
             <ul className="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
               <li>
-                <a
+                <Link
                   onClick={signout}
-                  href="/"
+                  to="/"
                   className="flex items-center p-2 text-base font-normal text-gray-800 rounded-lg transition duration-75 hover:bg-primary dark:hover:text-black dark:text-white group w-full min-w-[60px] max-w-[200px]"
                 >
                   <svg
@@ -173,7 +173,7 @@ export const Sidebar = ({ children }) => {
                   </svg>
                   <span className="ml-3 -xs:text-xs -xs:ml-0">Log out</span>
 
-                </a>
+                </Link>
 
               </li>
             </ul>
@@ -181,7 +181,7 @@ export const Sidebar = ({ children }) => {
         </aside>
       </div>
 
-      <div class="z-20">{children}</div>
+      <div className="mx-auto">{children}</div>
     </div>
   );
 };
