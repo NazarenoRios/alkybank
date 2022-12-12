@@ -40,7 +40,7 @@ export default function PaymentsForm() {
           <div className="container py-12 px-6 h-full">
             <div className="flex justify-center items-center h-full g-6 text-gray-800">
               <div className="block bg-white dark:bg-dark2 shadow-lg rounded-lg">
-                <div className="md:p-12 md:mx-6">
+                <div className="p-12 mx-6">
                   <div className="text-center">
                     <h1 className="dark:text-primary text-3xl p-5 flex  justify-center">
                       {" "}
@@ -58,7 +58,7 @@ export default function PaymentsForm() {
                           d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"
                         />
                       </svg>
-                      Send funds
+                      Payments
                     </h1>
                     <h4 className="text-xl mt-1 mb-12 pb-1 dark:text-white">
                       ¿How much do you want to send?
@@ -104,7 +104,7 @@ export default function PaymentsForm() {
                       
                       </div>
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 dark:text-white">
                       <label>Concept</label>
                       <input
                         type="text"

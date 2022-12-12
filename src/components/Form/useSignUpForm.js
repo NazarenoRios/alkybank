@@ -15,7 +15,6 @@ export const useSignUpForm = () => {
     }
     createUser(user)
       .then(async response => {
-        console.log(response)
         navigate("/login")
       })
       .catch(error => console.log(error))

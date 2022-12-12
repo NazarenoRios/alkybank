@@ -15,7 +15,6 @@ export const useTransfer = () => {
         getWallet(token)
           .then(wallets => dispatch({ type: "UPDATE_WALLET", payload: wallets[0] }))
           .catch(error => {
-            console.log(error)
             return toast.error("An error has occurred. Try again later")
           })
         return toast.success("Transfer successfully")
