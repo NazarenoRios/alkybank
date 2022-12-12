@@ -9,7 +9,7 @@ export const Layout = ({ children }) => {
 
   return (
     <div className={` relative ${darkMode === true ? "dark" : "light"}`}>
-      <div className="dark:bg-dark1 h-[85.6vh]">
+      <div className="dark:bg-dark1 pb-7">
         <Header />
         <Sidebar children={children} />
       </div>
