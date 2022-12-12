@@ -27,7 +27,6 @@ export default function TopupMoneyForm() {
   }, [response]);
 
   const onSubmit = ({ amount, concept }) => {
-    console.log(amount, concept);
     dispatch(topupAction(amount, concept));
   };
 
@@ -54,7 +53,7 @@ export default function TopupMoneyForm() {
           <div className="container py-12 px-6 h-full">
             <div className="flex justify-center items-center h-full g-6 text-gray-800">
               <div className="block bg-white dark:bg-dark2 shadow-lg rounded-lg">
-                <div className="md:p-12 md:mx-6">
+                <div className="p-12 mx-6">
                   <div className="text-center">
                     <h1 className="dark:text-primary text-3xl p-5 flex  justify-center">
                       {" "}
@@ -115,7 +114,7 @@ export default function TopupMoneyForm() {
                         )}
                       </div>
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-4 dark:text-white">
                       <label>Concept</label>
                       <input
                         type="text"

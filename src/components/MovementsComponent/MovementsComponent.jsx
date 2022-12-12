@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTransactions } from "../../redux/actions/getTransactions";
 import walletIconGreen from "../../assets/wallet-icon-green.svg";
 import Loading from "../../pages/Loading";
+import { EditMovement } from "./EditMovement/EditMovement";
 
 export const typeLabel = (type) => {
   return type === "topup" ? (
@@ -55,11 +56,9 @@ export default function MovementsComponent() {
       setState(allTransactions);
     } else {
       const filterTransactions = state.filter((transactions) =>
-        transactions.concept.includes(name)
+        transactions.concept.toLowerCase().includes(name.toLowerCase())
       );
       setState(filterTransactions);
-
-      console.log(filterTransactions);
     }
   };
 
@@ -131,7 +130,7 @@ export default function MovementsComponent() {
       </div>
       <div className=" flex flex-col gap-4 bg-gray-200 dark:bg-dark1 justify-center items-center border-solid border-[1px] border-[#000] dark:border-[#F2F2F2] p-5 rounded-[10px] text-primary">
         <div className="flex flex-col gap-4 w-[100%] p-5 ">
-          <div className="flex justify-between uppercase text-[#929EAE]">
+          <div className="grid grid-cols-7 uppercase text-[#929EAE]">
             <span className="w-full max-w-[200px] text-black dark:text-primary">
               Wallet id
             </span>
@@ -144,7 +143,7 @@ export default function MovementsComponent() {
             <span className="w-full max-w-[200px] text-black dark:text-primary">
               Amount
             </span>
-            <span className="w-full max-w-[200px] text-black dark:text-primary">
+            <span className="w-full max-w-[200px] col-span-2 text-black dark:text-primary">
               Concept
             </span>
             <span className="w-full max-w-[200px] text-black dark:text-primary">
@@ -152,11 +151,11 @@ export default function MovementsComponent() {
             </span>
           </div>
           <ul className="flex flex-col gap-4">
-            {isLoading && <Loading />}
-            {state &&
+            {isLoading? <Loading /> :
+            state &&
               state.slice(initialPage - 1, finalPage).map((transaction) => (
                 <li
-                  className="flex justify-between items-center"
+                  className="grid grid-cols-7 gap-4"
                   key={transaction.id}
                 >
                   <div className="w-full max-w-[200px] flex items-center gap-3">
@@ -180,8 +179,8 @@ export default function MovementsComponent() {
                   <span className="w-full max-w-[200px text-black ] dark:text-white">
                     ${transaction.amount}
                   </span>
-                  <span className="w-full max-w-[200px text-black ] dark:text-white">
-                    {transaction.concept}
+                  <span className="w-full  dark:text-white col-span-2">
+                    <EditMovement {...transaction} />
                   </span>
                   <span className="w-full max-w-[200px text-black ] dark:text-white">
                     {new Date(transaction.createdAt).toLocaleDateString(

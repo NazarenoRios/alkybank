@@ -8,6 +8,7 @@ import Button from "../Button"
 export default function Transfer() {
   const walletState = useSelector(state => state.walletReducer)
   const { handleSubmit } = useTransfer()
+  const walletId = sessionStorage.getItem("walletId");
 
   return (
     <section className="flex flex-col justify-center items-center md:items-stretch gap-5 box-border w-full md:max-w-[375px] h-full border-solid border-t-[1px] border-[#F2F2F2] dark:border-[#343152] pt-5 mt-5">
@@ -23,6 +24,7 @@ export default function Transfer() {
             accountId: Yup.string()
               .min(4, "Must contain 4 characters")
               .max(4, "Must contain 4 characters")
+              .test("different", "You can't transfer to the same account", value => value !== walletId)
               .matches(/^\d+$/, "Must contain only numbers")
               .required("Required"),
             amount: Yup.string()
