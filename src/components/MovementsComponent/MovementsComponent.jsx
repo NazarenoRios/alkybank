@@ -1,108 +1,107 @@
-import * as React from "react"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getTransactions } from "../../redux/actions/getTransactions"
-import walletIconGreen from "../../assets/wallet-icon-green.svg"
-import Loading from "../../pages/Loading"
-
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTransactions } from "../../redux/actions/getTransactions";
+import walletIconGreen from "../../assets/wallet-icon-green.svg";
+import Loading from "../../pages/Loading";
 
 export const typeLabel = (type) => {
   return type === "topup" ? (
-    <span className="text-success rounded dark:bg-green-900 p-2 text-sm">Topup</span>
-
-  ) : (<span className="text-red-400 rounded dark:bg-red-900 p-2 text-sm ">Payment</span>)
-}
+    <span className="text-success rounded bg-green-900 p-2 text-sm">Topup</span>
+  ) : (
+    <span className="text-red-400 rounded bg-red-900 p-2 text-sm ">
+      Payment
+    </span>
+  );
+};
 
 export default function MovementsComponent() {
-  const [state, setState] = useState([])
-  const [name, setName] = useState("")
-  const [initialPage, setInitialPage] = useState(1)
-  const [finalPage, setFinalPage] = useState(10)
-  const [squip, setSquip] = useState(false)
-  const dispatch = useDispatch()
+  const [state, setState] = useState([]);
+  const [name, setName] = useState("");
+  const [initialPage, setInitialPage] = useState(1);
+  const [finalPage, setFinalPage] = useState(10);
+  const [squip, setSquip] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getTransactions())
-  }, [])
+    dispatch(getTransactions());
+  }, []);
 
-  let allTransactions = useSelector(state => state.allTransactionsReducer.transactions)
-  let isLoading = useSelector(state => state.allTransactionsReducer.isLoading)
+  let allTransactions = useSelector(
+    (state) => state.allTransactionsReducer.transactions
+  );
+  let isLoading = useSelector(
+    (state) => state.allTransactionsReducer.isLoading
+  );
   useEffect(() => {
     if (!isLoading) {
-
       setState(allTransactions);
     }
   }, [isLoading]);
   const transactionsTypes = (value) => {
-
     if (value === "all") {
-      setState(allTransactions)
+      setState(allTransactions);
     } else {
-      const filterTransactions = allTransactions.filter(transactions => transactions.type === value)
-      setState(filterTransactions)
+      const filterTransactions = allTransactions.filter(
+        (transactions) => transactions.type === value
+      );
+      setState(filterTransactions);
     }
-  }
-
+  };
 
   const searchTransactions = (e) => {
     e.preventDefault();
     if (name === "") {
-      dispatch(getTransactions())
-      setState(allTransactions)
+      dispatch(getTransactions());
+      setState(allTransactions);
     } else {
       const filterTransactions = state.filter((transactions) =>
         transactions.concept.includes(name)
       );
       setState(filterTransactions);
 
-      console.log(filterTransactions)
+      console.log(filterTransactions);
     }
-  }
+  };
 
   function prevFunction() {
     if (initialPage < 11) {
-      return
+      return;
     } else {
-      setInitialPage(initialPage - 10)
-      setFinalPage(finalPage - 10)
-      setSquip(false)
+      setInitialPage(initialPage - 10);
+      setFinalPage(finalPage - 10);
+      setSquip(false);
     }
-
-  };
-
+  }
 
   function nextFunction() {
-    let finalP = finalPage + 10
+    let finalP = finalPage + 10;
     if (squip === true) {
-
       return;
-
     } else {
       if (finalP > state.length) {
-        setInitialPage(initialPage + 10)
-        setFinalPage(finalPage + 10)
-        setSquip(true)
+        setInitialPage(initialPage + 10);
+        setFinalPage(finalPage + 10);
+        setSquip(true);
       } else {
-        setInitialPage(initialPage + 10)
-        setFinalPage(finalPage + 10)
+        setInitialPage(initialPage + 10);
+        setFinalPage(finalPage + 10);
       }
     }
   }
 
-
-  
-
-
-
   return (
     <div className="w-[70vw]">
       <div className="flex justify-center">
-        <h1 className="text-3xl font-bold text-white">
+        <h1 className="text-3xl font-bold text-black dark:text-white">
           Transactions
         </h1>
       </div>
       <div className="flex justify-center flex-row gap-5 p-7 m-1">
-        <form className="flex flex-row gap-2 items-center" >
-          <label htmlFor="types" className="text-primary text-center justify-items-center">
+        <form className="flex flex-row gap-2 items-center">
+          <label
+            htmlFor="types"
+            className="text-black dark:text-primary text-center justify-items-center"
+          >
             Type
           </label>
           <select
@@ -110,7 +109,6 @@ export default function MovementsComponent() {
             name="types"
             onChange={(e) => transactionsTypes(e.target.value)}
           >
-
             <option value="all">All</option>
             <option value="topup">Topup</option>
             <option value="payment">Payment</option>
@@ -123,51 +121,69 @@ export default function MovementsComponent() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <button type="submit" className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-dark2 dark:border-gray-700 dark:text-primary dark:hover:bg-primary dark:hover:text-dark1">
+          <button
+            type="submit"
+            className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-dark2 dark:border-gray-700 dark:text-primary dark:hover:bg-primary dark:hover:text-dark1"
+          >
             Search
           </button>
         </form>
       </div>
-      <div className=" flex flex-col gap-4  justify-center items-center border-solid border-[1px] border-[#F2F2F2] p-5 rounded-[10px] text-primary">
+      <div className=" flex flex-col gap-4 bg-gray-200 dark:bg-dark1 justify-center items-center border-solid border-[1px] border-[#000] dark:border-[#F2F2F2] p-5 rounded-[10px] text-primary">
         <div className="flex flex-col gap-4 w-[100%] p-5 ">
           <div className="flex justify-between uppercase text-[#929EAE]">
-            <span className="w-full max-w-[200px] text-primary">Wallet id</span>
-            <span className="w-full max-w-[200px] text-primary">Inbox num</span>
-            <span className="w-full max-w-[200px] text-primary">Type</span>
-            <span className="w-full max-w-[200px] text-primary">Amount</span>
-            <span className="w-full max-w-[200px] text-primary">Concept</span>
-            <span className="w-full max-w-[200px] text-primary">Date</span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">
+              Wallet id
+            </span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">
+              Inbox num
+            </span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">
+              Type
+            </span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">
+              Amount
+            </span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">
+              Concept
+            </span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">
+              Date
+            </span>
           </div>
           <ul className="flex flex-col gap-4">
             {isLoading && <Loading />}
             {state &&
-              state.slice(initialPage - 1, finalPage).map(transaction => (
-                <li className="flex justify-between items-center" key={transaction.id}>
+              state.slice(initialPage - 1, finalPage).map((transaction) => (
+                <li
+                  className="flex justify-between items-center"
+                  key={transaction.id}
+                >
                   <div className="w-full max-w-[200px] flex items-center gap-3">
                     <div className="w-fit h-fit p-2 rounded-[10px] bg-[#4E5257]">
                       <img src={walletIconGreen} alt="Wallet total balance" />
                     </div>
-                    <span className="text-white">{transaction.accountId}</span>
+                    <span className="text-black dark:text-white">
+                      {transaction.accountId}
+                    </span>
                   </div>
-
-
 
                   <div className="w-full max-w-[200px] flex items-center gap-3">
-                    <span className="text-white">{transaction.id}</span>
+                    <span className="text-black dark:text-white">
+                      {transaction.id}
+                    </span>
                   </div>
 
-
-                  <span className="w-full max-w-[200px] text-white">
+                  <span className="w-full max-w-[200px text-black ] dark:text-white">
                     {typeLabel(transaction.type)}
-
                   </span>
-                  <span className="w-full max-w-[200px] text-white">
+                  <span className="w-full max-w-[200px text-black ] dark:text-white">
                     ${transaction.amount}
                   </span>
-                  <span className="w-full max-w-[200px] text-white">
+                  <span className="w-full max-w-[200px text-black ] dark:text-white">
                     {transaction.concept}
                   </span>
-                  <span className="w-full max-w-[200px] text-white">
+                  <span className="w-full max-w-[200px text-black ] dark:text-white">
                     {new Date(transaction.createdAt).toLocaleDateString(
                       "es-AR",
                       {
@@ -176,7 +192,6 @@ export default function MovementsComponent() {
                         day: "2-digit",
                       }
                     )}
-
                   </span>
                 </li>
               ))}
@@ -184,8 +199,9 @@ export default function MovementsComponent() {
           <div className="flex flex-col items-center pt-8">
             <span className="text-sm text-gray-700 dark:text-gray-400">
               Showing{" "}
-
-              <span className="font-semibold text-gray-900 dark:text-white">{initialPage}</span>{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">
+                {initialPage}
+              </span>{" "}
               to{" "}
               <span className="font-semibold text-gray-900 dark:text-white">
                 {finalPage}
@@ -197,8 +213,10 @@ export default function MovementsComponent() {
               Entries
             </span>
             <div className="inline-flex mt-2 xs:mt-0">
-              <button onClick={prevFunction} className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-dark2 dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-dark1">
-
+              <button
+                onClick={prevFunction}
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-dark2 dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-dark1"
+              >
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 mr-2"
@@ -215,8 +233,10 @@ export default function MovementsComponent() {
                 Prev
               </button>
 
-              <button onClick={nextFunction} className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-dark2 dark:border-gray-700 dark:text-primary dark:hover:bg-primary dark:hover:text-dark1">
-
+              <button
+                onClick={nextFunction}
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-dark2 dark:border-gray-700 dark:text-primary dark:hover:bg-primary dark:hover:text-dark1"
+              >
                 Next
                 <svg
                   aria-hidden="true"
@@ -237,5 +257,5 @@ export default function MovementsComponent() {
         </div>
       </div>
     </div>
-  )
+  );
 }
