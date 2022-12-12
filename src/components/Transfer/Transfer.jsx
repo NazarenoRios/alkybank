@@ -61,7 +61,7 @@ export default function Transfer() {
               </div>
             </div>
             <div className="flex flex-col justify-center gap-3">
-              <h2 className="font-semibold text-[16px]">¿How much do you want to transfer?</h2>
+              <h2 className="font-semibold text-[16px]">How much (ARS) do you want to transfer?</h2>
               <div className="w-full  flex justify-center items-center h-[48px] rounded-[15px] focus:outline outline-1 outline-primary border-solid border-[1px] border-[#F5F5F5] bg-[#f8f8f8] relative">
                 <span className="absolute left-[10px] top-[10px] text-black">$</span>
                 <Field
