@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useDashboard } from "../hooks/useDashboard"
 import { useDarkModeContext } from "../contexts/DarkModeContext"
 import { useWalletList } from "../components/WalletList/useWalletList"
@@ -10,41 +10,14 @@ import walletIconGreen from "../assets/wallet-icon-green.svg"
 import walletIconDark from "../assets/wallet-icon-dark.svg"
 import walletIcon from "../assets/wallet-icon.svg"
 import graph from "../assets/graph.png"
-import { typeLabel } from "../components/MovementsComponent/MovementsComponent"
-import { getTransactions } from "../redux/actions/getTransactions"
-import SkeletonLogo from "../utils/skeleton/SkeletonLogo"
-import { useEffect } from "react"
-
 
 export default function Dashboard() {
-  const dispatch = useDispatch();
-  const transactions = useSelector(state => state.allTransactionsReducer.transactions)
-  
-  useEffect(() => {
-    dispatch(getTransactions());
-  }, []);
-
-  const topUpTransactions = transactions
-    .filter(
-      (transaction) =>
-        transaction.type == "topup" && transaction.amount !== null
-    )
-    .reduce((acc, current) => (acc += Number(current.amount)), 0);
-
-  const paymentsTransactions = transactions
-    .filter(
-      (transaction) =>
-        transaction.type == "payment" && transaction.amount !== null
-    )
-    .reduce((acc, current) => (acc += Number(current.amount)), 0);
-  
-  
-  const balance =  topUpTransactions - paymentsTransactions;
   const isLoading = useSelector(state => state.allTransactionsReducer.isLoading)
   const walletState = useSelector(state => state.walletReducer)
-  const { totalSpending } = useDashboard()
+  const { totalSpending, totalBalance, transactions } = useDashboard()
   const { darkMode } = useDarkModeContext()
   useWalletList()
+
   return (
     <section className="px-[10px] md:px-[60px] pt-[30px] box-border w-full h-max">
       <div className="w-full justify-between flex flex-col gap-y-10 gap-x-[50px] lg:flex-row">
@@ -53,7 +26,7 @@ export default function Dashboard() {
             <MoneyCard
               title="Total balance"
               icon={walletIconGreen}
-              data={balance ? balance : 0}
+              data={totalBalance ? totalBalance : 0}
               className="text-white"
             />
             <MoneyCard

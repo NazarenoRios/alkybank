@@ -1,30 +1,31 @@
-import {create, setToken} from "../../utils";
+import { create, setToken } from "../../utils"
 
-export const PAYMENT_SUCCESS = "PAYMENT_SUCCESS";
+export const PAYMENT_SUCCESS = "PAYMENT_SUCCESS"
 
-export function paymentAction( amount, concept ) {
+export function paymentAction(amount, concept) {
   return async function (dispatch) {
     try {
-      amount = Number(amount);
-      let type = "payment";
-      let token = sessionStorage.getItem("token");
-      setToken(token); 
-      let id = JSON.parse(sessionStorage.getItem("walletId"));
+      amount = Number(amount)
+      let type = "payment"
+      let token = sessionStorage.getItem("token")
+      setToken(token)
+      let id = JSON.parse(sessionStorage.getItem("walletId"))
       const data = {
         type,
         concept,
-        amount,
-      };
+        amount
+      }
 
-      dispatch({type: 'PAYMENT_LOADING', payload: true});
+      dispatch({ type: "PAYMENT_LOADING", payload: true })
 
-      const res = await create(data, `/accounts/${id}`);
-
-      return dispatch({type: 'PAYMENT_SUCCESS', payload: {message:"Payment success", data: res.data}});
+      const res = await create(data, `/accounts/${id}`)
+      console.log(res.data)
+      return dispatch({
+        type: "PAYMENT_SUCCESS",
+        payload: { message: "Payment success", data: res.data }
+      })
+    } catch (err) {
+      console.log(err.message)
     }
-    catch (err){
-      console.log(err.message);
-    }
-
-  };
+  }
 }

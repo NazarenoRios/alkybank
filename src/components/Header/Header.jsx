@@ -1,38 +1,38 @@
-import { useDarkModeContext } from "../../contexts/DarkModeContext";
-import alkybankLogoWhite from "../../assets/alkemy-logo-white.png";
-import alkybankLogo from "../../assets/alkemy-logo.png";
-import avatarDark from "../../assets/avatar-dark.svg";
-import arrowIcon from "../../assets/arrow-icon.svg";
-import moonIcon from "../../assets/moon-icon.svg";
-import sunIcon from "../../assets/sun-icon.svg";
-import avatar from "../../assets/avatar.svg";
-import "flowbite";
-import { useAuth } from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Dropdown } from "../dropdown";
+import { useDarkModeContext } from "../../contexts/DarkModeContext"
+import alkybankLogoWhite from "../../assets/alkemy-logo-white.png"
+import alkybankLogo from "../../assets/alkemy-logo.png"
+import avatarDark from "../../assets/avatar-dark.svg"
+import arrowIcon from "../../assets/arrow-icon.svg"
+import moonIcon from "../../assets/moon-icon.svg"
+import sunIcon from "../../assets/sun-icon.svg"
+import avatar from "../../assets/avatar.svg"
+import "flowbite"
+import { useAuth } from "../../hooks/useAuth"
+import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { Dropdown } from "../dropdown"
 
 export default function Header() {
-  const { darkMode, setDarkMode } = useDarkModeContext();
+  const { darkMode, setDarkMode } = useDarkModeContext()
   const token = sessionStorage.getItem("token")
   const [name, setName] = useState("")
   const [lastName, setLastName] = useState("")
-  useEffect(()=>{
-    axios.get("http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me", { headers: { Authorization: "Bearer " + token } }).then(res => {
-      setName(res.data.first_name);
-      setLastName(res.data.last_name);
-    })
-  },[])
+  useEffect(() => {
+    axios
+      .get("http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me", {
+        headers: { Authorization: "Bearer " + token }
+      })
+      .then(res => {
+        setName(res.data.first_name)
+        setLastName(res.data.last_name)
+      })
+  }, [])
   return (
     <header className="w-full h-[100px] flex items-center justify-between px-5 box-border lg:pr-[60px]">
       <Link to="/" className="hidden md:flex items-center pl-2.5 mb-5">
         {!darkMode ? (
-          <img
-            src={alkybankLogo}
-            className="mr-3 w-40 h-auto"
-            alt="Alkemy bank Logo"
-          />
+          <img src={alkybankLogo} className="mr-3 w-40 h-auto" alt="Alkemy bank Logo" />
         ) : (
           <img
             src={alkybankLogoWhite}
@@ -54,7 +54,7 @@ export default function Header() {
           />
         </button>
         <div className="flex gap-5 h-[40px] bg-[#FAFAFA] dark:bg-dark2 dark:text-white">
-          <button className="w-full max-w-[300px] h-[40px] flex items-center gap-5 rounded-[100px]  px-5 box-border">
+          <div className="w-full max-w-[300px] h-[40px] flex items-center gap-5 rounded-[100px] px-5 box-border">
             <img
               className="w-[20px] hidden sm:inline-block"
               src={darkMode ? avatar : avatarDark}
@@ -66,17 +66,13 @@ export default function Header() {
               className="w-full flex justify-between gap-5"
             >
               <span>
-                {name}{" "}
-                {lastName === ""
-                  ? ""
-                  : lastName}
+                {name} {lastName === "" ? "" : lastName}
               </span>
             </div>
-          </button>
+          </div>
           <Dropdown />
         </div>
       </div>
     </header>
-  );
+  )
 }
-

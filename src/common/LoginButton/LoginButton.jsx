@@ -1,5 +1,5 @@
-import React from "react";
-import "./LoginButton.css";
+import React from "react"
+import "./LoginButton.css"
 
 const LoginButton = () => {
   return (
@@ -11,7 +11,7 @@ const LoginButton = () => {
         <span className="button-text">Log in</span>
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default LoginButton;
+export default LoginButton

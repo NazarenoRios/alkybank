@@ -1,34 +1,30 @@
-import axios from "axios";
-import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { LogButton } from "../LoginForm/StyledComponents";
-import AlkemyLogo from "../../assets/alkemy-logo.png";
-import { Layout } from "../layout";
-import { useDispatch, useSelector } from "react-redux";
-import { topupAction } from "../../redux/actions/topupAction";
-import { Tooltip } from "../ToolTip/Tooltip";
+import { useForm } from "react-hook-form"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { topupAction } from "../../redux/actions/topupAction"
+import { Tooltip } from "../ToolTip/Tooltip"
 
 export default function TopupMoneyForm() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    formState: { errors }
+  } = useForm()
 
-  const response = useSelector((state) => state.topupReducer);
-  const isLoading = useSelector((state) => state.topupReducer.isLoading);
-  const [display, setDisplay] = useState(false);
+  const response = useSelector(state => state.topupReducer)
+  const isLoading = useSelector(state => state.topupReducer.isLoading)
+  const [display, setDisplay] = useState(false)
 
   useEffect(() => {
     if (response.message || isLoading) {
-      setDisplay(true);
+      setDisplay(true)
     }
-  }, [response]);
+  }, [response])
 
   const onSubmit = ({ amount, concept }) => {
-    dispatch(topupAction(amount, concept));
-  };
+    dispatch(topupAction(amount, concept))
+  }
 
   return (
     <div className="flex justify-center content-center ">
@@ -79,7 +75,7 @@ export default function TopupMoneyForm() {
                         <select
                           className="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           name="types"
-                          onChange={(e) => transactionsTypes(e.target.value)}
+                          onChange={e => transactionsTypes(e.target.value)}
                         >
                           <option value="all">ARS</option>
                           <option value="topup">U$D</option>
@@ -95,16 +91,13 @@ export default function TopupMoneyForm() {
                           {...register("amount", {
                             required: "Amount is required",
                             pattern: {
-                              value:
-                                /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/gm,
-                              message: "Please enter a valid amount",
-                            },
+                              value: /^(0*[1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/gm,
+                              message: "Please enter a valid amount"
+                            }
                           })}
                         />
                         {errors.amount && (
-                          <span className="text-red-600 text-sm">
-                            {errors.amount.message}
-                          </span>
+                          <span className="text-red-600 text-sm">{errors.amount.message}</span>
                         )}
                       </div>
                     </div>
@@ -113,21 +106,18 @@ export default function TopupMoneyForm() {
                       <input
                         type="text"
                         className={`form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none ${
-                          errors.concept &&
-                          `focus:border-red-600 focus:ring-red-600 border-red-600`
+                          errors.concept && `focus:border-red-600 focus:ring-red-600 border-red-600`
                         }`}
                         placeholder="concept"
                         {...register("concept", {
                           required: "Concept is required",
                           pattern: {
-                            message: "Please enter a concept",
-                          },
+                            message: "Please enter a concept"
+                          }
                         })}
                       />
                       {errors.concept && (
-                        <span className="text-red-600 text-sm">
-                          {errors.concept.message}
-                        </span>
+                        <span className="text-red-600 text-sm">{errors.concept.message}</span>
                       )}
                     </div>
                     <div className="text-center pt-1 mb-12 pb-1">
@@ -147,5 +137,5 @@ export default function TopupMoneyForm() {
         </div>
       </section>
     </div>
-  );
+  )
 }

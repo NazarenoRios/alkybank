@@ -8,7 +8,7 @@ import Button from "../Button"
 export default function Transfer() {
   const walletState = useSelector(state => state.walletReducer)
   const { handleSubmit } = useTransfer()
-  const walletId = sessionStorage.getItem("walletId");
+  const walletId = sessionStorage.getItem("walletId")
 
   return (
     <section className="flex flex-col justify-center items-center md:items-stretch gap-5 box-border w-full md:max-w-[375px] h-full border-solid border-t-[1px] border-[#F2F2F2] dark:border-[#343152] pt-5 mt-5">
@@ -17,21 +17,24 @@ export default function Transfer() {
         <Formik
           initialValues={{
             accountId: "",
-            type: "",
+            type: "payment",
             amount: ""
           }}
           validationSchema={Yup.object({
             accountId: Yup.string()
               .min(4, "Must contain 4 characters")
               .max(4, "Must contain 4 characters")
-              .test("different", "You can't transfer to the same account", value => value !== walletId)
+              .test(
+                "different",
+                "You can't transfer to the same account",
+                value => value !== walletId
+              )
               .matches(/^\d+$/, "Must contain only numbers")
               .required("Required"),
             amount: Yup.string()
               .max(6, "You have exceeded the maximum amount")
               .matches(/^\d+$/, "Must contain only numbers")
-              .required("Required"),
-            type: Yup.string().required("Required")
+              .required("Required")
           })}
           onSubmit={values => handleSubmit(values, walletState)}
         >
@@ -50,12 +53,20 @@ export default function Transfer() {
               <div className=" flex flex-col justify-center gap-3">
                 <h2 className="text-[16px]">Transfer type</h2>
                 <div className="flex items-center gap-2">
-                  <Field type="radio" id="payment" name="type" value="payment"></Field>
-                  <label htmlFor="payment">Payment</label>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Field type="radio" id="topup" name="type" value="topup"></Field>
-                  <label htmlFor="topup">Topup</label>
+                  <Field name="firstName">
+                    {() => (
+                      <div className="flex gap-4 items-center">
+                        <input
+                          type="radio"
+                          id="payment"
+                          name="type"
+                          value="payment"
+                          defaultChecked
+                        />
+                        <label htmlFor="payment">Payment</label>
+                      </div>
+                    )}
+                  </Field>
                 </div>
                 <div className="text-error">
                   <ErrorMessage name="type" />

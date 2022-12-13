@@ -38,7 +38,8 @@ export default function WalletList() {
                   <div>
                     <h4 className="text-[#929EAE]">Card holder</h4>
                     <span className="font-bold max-w-[150px] lg:max-w-[200px] inline-block">
-                      {sessionStorage.first_name} {sessionStorage.last_name}
+                      {sessionStorage.first_name}{" "}
+                      {sessionStorage.last_name !== "null" ? sessionStorage.last_name : ""}
                     </span>
                   </div>
                   <div>
