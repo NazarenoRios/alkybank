@@ -13,13 +13,18 @@ export const useDashboard = () => {
   }, [])
 
   useEffect(() => {
+    getAmounts()
+  }, [transactions])
+
+  const getAmounts = () => {
     getTotalBalanceAmount()
     getTotalSpendingAmount()
-  }, [transactions])
+  }
 
   const getTotalBalanceAmount = () => {
     const topUpTransactions = getTransactionsType("topup")
     const paymentsTransactions = getTransactionsType("payment")
+    console.log(topUpTransactions - paymentsTransactions)
     setTotalBalance(topUpTransactions - paymentsTransactions)
   }
 
@@ -38,5 +43,5 @@ export const useDashboard = () => {
       .reduce((acc, current) => (acc += Number(current.amount)), 0)
   }
 
-  return { totalSpending, totalBalance, transactions }
+  return { totalSpending, totalBalance, transactions, getAmounts }
 }
