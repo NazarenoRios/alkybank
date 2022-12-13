@@ -11,8 +11,7 @@ export default function FormGroupInput({ type, label, placeholder, minLength, ma
         {label}
       </label>
       <Field
-        className="w-full rounded-[10px] border-solid border-[1px] border-[#F2F2F2
-]  p-2 px-3 text-[#8e9297] focus:outline outline-1 outline-primary"
+        className="w-full rounded-[10px] border-solid border-[1px] border-[#F2F2F2] p-2 px-3 text-[#8e9297] focus:outline focus:border-primary shadow-none focus:outline-offset-0	 focus:outline-1 focus:outline-primary"
         name={type}
         type={type === "password" ? (showPassword ? "text" : type) : type}
         id={type}
