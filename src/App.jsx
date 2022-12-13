@@ -20,6 +20,7 @@ import Movements from "./pages/Movements";
 import { DarkModeProvider } from "./contexts/DarkModeContext";
 import { Layout } from "./components/layout";
 import Sidebar from "./pages/Sidebar";
+import Contact from "./pages/Contact";
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -37,8 +38,8 @@ function App() {
           <Route path="/topup" element={<Layout><TopupMoney /></Layout>} />
           <Route path="/payments" element={<Layout><Payments /></Layout>} />
           <Route path="/movements" element={<Layout><Movements /> </Layout>} />
-          {/* <Route path="/balance" element={<Layout><Balances /></Layout>} /> */}
           <Route path="/sidebar" element={<Sidebar/>} />
+          <Route path="/contact" element={<Layout><Contact/></Layout>} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </DarkModeProvider>
