@@ -8,12 +8,12 @@ export const Layout = ({ children }) => {
   const { darkMode } = useDarkModeContext()
 
   return (
-    <div className={` relative ${darkMode === true ? "dark" : "light"}`}>
-      <div className="dark:bg-dark1 pb-32">
+    <div className={`relative h-full ${darkMode === true ? "dark" : "light"}`}>
+      <div className="h-full dark:bg-dark1 pb-32">
         <Header />
         <Sidebar children={children} />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
