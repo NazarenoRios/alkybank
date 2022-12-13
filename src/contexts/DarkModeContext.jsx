@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 const DarkModeContext = createContext({
   darkMode: false,
@@ -8,9 +8,16 @@ const DarkModeContext = createContext({
 
 const DarkModeProvider = ({ children }) => {
 
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode"))
   
   localStorage.setItem("darkMode",darkMode)
+  useEffect(() => {
+    if (localStorage.getItem("darkMode") === "true") {
+      setDarkMode(true)
+    } else {
+      setDarkMode(false)
+    } 
+  }, [])
 
   return (
     <div className="h-screen">
