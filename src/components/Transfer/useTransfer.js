@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 import { getWallet } from "../../api/account"
-import { useDashboard } from "../../hooks/useDashboard"
 import { getTransactions } from "../../redux/actions/getTransactions"
 
 export const useTransfer = () => {

@@ -1,89 +1,83 @@
-import * as React from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getTransactions } from "../../redux/actions/getTransactions";
-import walletIconGreen from "../../assets/wallet-icon-green.svg";
-import Loading from "../../pages/Loading";
-import { EditMovement } from "./EditMovement/EditMovement";
+import * as React from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getTransactions } from "../../redux/actions/getTransactions"
+import walletIconGreen from "../../assets/wallet-icon-green.svg"
+import Loading from "../../pages/Loading"
+import { EditMovement } from "./EditMovement/EditMovement"
 
-export const typeLabel = (type) => {
+export const typeLabel = type => {
   return type === "topup" ? (
-    <span className="text-success rounded bg-green-900 p-2 text-sm">Topup</span>
+    <span className="rounded text-[#27AE60] bg-[#D9FFE9] dark:bg-green-900 p-2 text-sm">Topup</span>
   ) : (
-    <span className="text-red-400 rounded bg-red-900 p-2 text-sm ">
+    <span className="text-[#EB5757] rounded bg-[#FFEFEF] dark:bg-red-900 p-2 text-sm ">
       Payment
     </span>
-  );
-};
+  )
+}
 
 export default function MovementsComponent() {
-  const [state, setState] = useState([]);
-  const [name, setName] = useState("");
-  const [initialPage, setInitialPage] = useState(1);
-  const [finalPage, setFinalPage] = useState(10);
-  const [squip, setSquip] = useState(false);
-  const dispatch = useDispatch();
+  const [state, setState] = useState([])
+  const [name, setName] = useState("")
+  const [initialPage, setInitialPage] = useState(1)
+  const [finalPage, setFinalPage] = useState(10)
+  const [squip, setSquip] = useState(false)
+  const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getTransactions());
-  }, []);
+    dispatch(getTransactions())
+  }, [])
 
-  let allTransactions = useSelector(
-    (state) => state.allTransactionsReducer.transactions
-  );
-  let isLoading = useSelector(
-    (state) => state.allTransactionsReducer.isLoading
-  );
+  let allTransactions = useSelector(state => state.allTransactionsReducer.transactions)
+  let isLoading = useSelector(state => state.allTransactionsReducer.isLoading)
   useEffect(() => {
     if (!isLoading) {
-      setState(allTransactions);
+      setState(allTransactions)
     }
-  }, [isLoading]);
-  const transactionsTypes = (value) => {
+  }, [isLoading])
+  const transactionsTypes = value => {
     if (value === "all") {
-      setState(allTransactions);
+      setState(allTransactions)
     } else {
-      const filterTransactions = allTransactions.filter(
-        (transactions) => transactions.type === value
-      );
-      setState(filterTransactions);
+      const filterTransactions = allTransactions.filter(transactions => transactions.type === value)
+      setState(filterTransactions)
     }
-  };
+  }
 
-  const searchTransactions = (e) => {
-    e.preventDefault();
+  const searchTransactions = e => {
+    e.preventDefault()
     if (name === "") {
-      dispatch(getTransactions());
-      setState(allTransactions);
+      dispatch(getTransactions())
+      setState(allTransactions)
     } else {
-      const filterTransactions = state.filter((transactions) =>
+      const filterTransactions = state.filter(transactions =>
         transactions.concept.toLowerCase().includes(name.toLowerCase())
-      );
-      setState(filterTransactions);
+      )
+      setState(filterTransactions)
     }
-  };
+  }
 
   function prevFunction() {
     if (initialPage < 11) {
-      return;
+      return
     } else {
-      setInitialPage(initialPage - 10);
-      setFinalPage(finalPage - 10);
-      setSquip(false);
+      setInitialPage(initialPage - 10)
+      setFinalPage(finalPage - 10)
+      setSquip(false)
     }
   }
 
   function nextFunction() {
-    let finalP = finalPage + 10;
+    let finalP = finalPage + 10
     if (squip === true) {
-      return;
+      return
     } else {
       if (finalP > state.length) {
-        setInitialPage(initialPage + 10);
-        setFinalPage(finalPage + 10);
-        setSquip(true);
+        setInitialPage(initialPage + 10)
+        setFinalPage(finalPage + 10)
+        setSquip(true)
       } else {
-        setInitialPage(initialPage + 10);
-        setFinalPage(finalPage + 10);
+        setInitialPage(initialPage + 10)
+        setFinalPage(finalPage + 10)
       }
     }
   }
@@ -91,9 +85,7 @@ export default function MovementsComponent() {
   return (
     <div className="w-[70vw]">
       <div className="flex justify-center">
-        <h1 className="text-3xl font-bold text-black dark:text-white">
-          Transactions
-        </h1>
+        <h1 className="text-3xl font-bold text-black dark:text-white">Transactions</h1>
       </div>
       <div className="flex justify-center flex-row gap-5 p-7 m-1">
         <form className="flex flex-row gap-2 items-center">
@@ -106,7 +98,7 @@ export default function MovementsComponent() {
           <select
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             name="types"
-            onChange={(e) => transactionsTypes(e.target.value)}
+            onChange={e => transactionsTypes(e.target.value)}
           >
             <option value="all">All</option>
             <option value="topup">Topup</option>
@@ -118,7 +110,7 @@ export default function MovementsComponent() {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
           />
           <button
             type="submit"
@@ -131,46 +123,31 @@ export default function MovementsComponent() {
       <div className=" flex flex-col gap-4 bg-gray-200 dark:bg-dark1 justify-center items-center border-solid border-[1px] border-[#000] dark:border-[#F2F2F2] p-5 rounded-[10px] text-primary">
         <div className="flex flex-col gap-4 w-[100%] p-5 ">
           <div className="grid grid-cols-7 uppercase text-[#929EAE]">
-            <span className="w-full max-w-[200px] text-black dark:text-primary">
-              Wallet id
-            </span>
-            <span className="w-full max-w-[200px] text-black dark:text-primary">
-              Inbox num
-            </span>
-            <span className="w-full max-w-[200px] text-black dark:text-primary">
-              Type
-            </span>
-            <span className="w-full max-w-[200px] text-black dark:text-primary">
-              Amount
-            </span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">Wallet id</span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">Inbox num</span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">Type</span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">Amount</span>
             <span className="w-full max-w-[200px] col-span-2 text-black dark:text-primary">
               Concept
             </span>
-            <span className="w-full max-w-[200px] text-black dark:text-primary">
-              Date
-            </span>
+            <span className="w-full max-w-[200px] text-black dark:text-primary">Date</span>
           </div>
           <ul className="flex flex-col gap-4">
-            {isLoading? <Loading /> :
-            state &&
-              state.slice(initialPage - 1, finalPage).map((transaction) => (
-                <li
-                  className="grid grid-cols-7 gap-4"
-                  key={transaction.id}
-                >
+            {isLoading ? (
+              <Loading />
+            ) : (
+              state &&
+              state.slice(initialPage - 1, finalPage).map(transaction => (
+                <li className="grid grid-cols-7 gap-4" key={transaction.id}>
                   <div className="w-full max-w-[200px] flex items-center gap-3">
                     <div className="w-fit h-fit p-2 rounded-[10px] bg-[#4E5257]">
                       <img src={walletIconGreen} alt="Wallet total balance" />
                     </div>
-                    <span className="text-black dark:text-white">
-                      {transaction.accountId}
-                    </span>
+                    <span className="text-black dark:text-white">{transaction.accountId}</span>
                   </div>
 
                   <div className="w-full max-w-[200px] flex items-center gap-3">
-                    <span className="text-black dark:text-white">
-                      {transaction.id}
-                    </span>
+                    <span className="text-black dark:text-white">{transaction.id}</span>
                   </div>
 
                   <span className="w-full max-w-[200px text-black ] dark:text-white">
@@ -183,32 +160,22 @@ export default function MovementsComponent() {
                     <EditMovement {...transaction} />
                   </span>
                   <span className="w-full max-w-[200px text-black ] dark:text-white">
-                    {new Date(transaction.createdAt).toLocaleDateString(
-                      "es-AR",
-                      {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                      }
-                    )}
+                    {new Date(transaction.createdAt).toLocaleDateString("es-AR", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit"
+                    })}
                   </span>
                 </li>
-              ))}
+              ))
+            )}
           </ul>
           <div className="flex flex-col items-center pt-8">
             <span className="text-sm text-gray-700 dark:text-gray-400">
               Showing{" "}
-              <span className="font-semibold text-gray-900 dark:text-white">
-                {initialPage}
-              </span>{" "}
-              to{" "}
-              <span className="font-semibold text-gray-900 dark:text-white">
-                {finalPage}
-              </span>{" "}
-              of{" "}
-              <span className="font-semibold text-gray-900 dark:text-white">
-                {state.length}
-              </span>{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">{initialPage}</span> to{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">{finalPage}</span> of{" "}
+              <span className="font-semibold text-gray-900 dark:text-white">{state.length}</span>{" "}
               Entries
             </span>
             <div className="inline-flex mt-2 xs:mt-0">
@@ -256,5 +223,5 @@ export default function MovementsComponent() {
         </div>
       </div>
     </div>
-  );
+  )
 }

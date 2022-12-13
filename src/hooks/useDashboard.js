@@ -24,7 +24,6 @@ export const useDashboard = () => {
   const getTotalBalanceAmount = () => {
     const topUpTransactions = getTransactionsType("topup")
     const paymentsTransactions = getTransactionsType("payment")
-    console.log(topUpTransactions - paymentsTransactions)
     setTotalBalance(topUpTransactions - paymentsTransactions)
   }
 
