@@ -54,6 +54,7 @@ function useProvideAuth() {
   const signout = () => {
     setToken(null)
     sessionStorage.clear()
+    window.location.reload();
   }
 
   useEffect(() => {

@@ -16,7 +16,7 @@ export const useWalletList = setShowModal => {
         dispatch({ type: "UPDATE_WALLET", payload: wallets[0] })
       })
       .catch(error => {
-        return toast.error("An error has occurred. Try again later")
+        console.log(error)
       })
   }, [])
 
@@ -24,7 +24,7 @@ export const useWalletList = setShowModal => {
     const userId = sessionStorage.getItem("id")
     const date = getDate()
     const token = sessionStorage.getItem("token")
-    if (walletState) return toast.error("You can't create more than one wallet")
+    if (walletState.id) return toast.error("You can't create more than one wallet")
     createWalletAccount(userId, date, token)
       .then(createdWallet => {
         toast.success("You have successfully created a wallet")

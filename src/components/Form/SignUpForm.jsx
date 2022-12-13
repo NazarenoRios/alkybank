@@ -6,6 +6,7 @@ import FormGroupInput from "./FormGroupInput";
 import Button from "../Button";
 import googleIcon from "../../assets/google-icon.svg";
 import { useGoogleSignIn } from "./useGoogleSignIn";
+import logo from "../../assets/alkemy-logo.png"
 
 export default function SignUnForm() {
   const { handleSubmit } = useSignUpForm();
@@ -14,13 +15,13 @@ export default function SignUnForm() {
   return (
     <section className="w-full max-w-[404px] bg-red px-[20px] box-border">
       <div>
-        <header className="mb-[50px]">
+      <div className="w-full flex justify-center text-center ">
+      <img src={logo} alt="Logo alkybank" className="w-[70%]"/>
+      </div>
+        <header className="mb-[50px] pt-5">
           <h1 className="text-text1 text-[30px] font-semibold leading-[37px] sm:text-left text-center">
             Create new account
           </h1>
-          <h2 className="text-text2 text-[16px] font-normal leading-[30px] sm:text-left text-center">
-            Welcome back! Please enter your details
-          </h2>
         </header>
         <Formik
           initialValues={{
@@ -45,7 +46,7 @@ export default function SignUnForm() {
           })}
           onSubmit={(values) => handleSubmit(values)}
         >
-          <Form className="flex flex-col justify-start items-center gap-4">
+          <Form className="flex flex-col justify-start items-center gap-4 -mt-6">
             <FormGroupInput
               type="fullName"
               label="Full Name"
@@ -89,7 +90,7 @@ export default function SignUnForm() {
               </span>
             </button>
             <AccountQuestion
-              question="¿Already have an account?"
+              question="Already have an account?"
               href="/login"
               hrefText="Sign in"
             />
