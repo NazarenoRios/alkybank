@@ -60,7 +60,6 @@ export default function Header() {
                   ? ""
                   : sessionStorage.last_name}
               </span>
-              {/* <img className="w-[20px] h-auto transform" src={arrowIcon} alt="" /> */}
             </div>
           </button>
           <Dropdown />

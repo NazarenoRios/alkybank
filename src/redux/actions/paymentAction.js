@@ -5,9 +5,9 @@ export const PAYMENT_SUCCESS = "PAYMENT_SUCCESS";
 export function paymentAction( amount, concept ) {
   return async function (dispatch) {
     try {
-      amount = - Number(amount);
+      amount = Number(amount);
       let type = "payment";
-      let token = JSON.parse(sessionStorage.getItem("token"));
+      let token = sessionStorage.getItem("token");
       setToken(token); 
       let id = JSON.parse(sessionStorage.getItem("walletId"));
       const data = {
