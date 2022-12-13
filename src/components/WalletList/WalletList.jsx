@@ -6,7 +6,7 @@ import { useWalletList } from "./useWalletList"
 import Transfer from "../Transfer/Transfer"
 import plusIcon from "../../assets/plus-icon.svg"
 
-export default function WalletList() {
+export default function WalletList({ totalBalance }) {
   const [showModal, setShowModal] = useState(false)
   const { createNewWallet } = useWalletList(setShowModal)
   const walletState = useSelector(state => state.walletReducer)
@@ -72,7 +72,7 @@ export default function WalletList() {
               </div>
             </div>
             <div>
-              <Transfer />
+              <Transfer totalBalance={totalBalance} />
             </div>
           </>
         ) : (

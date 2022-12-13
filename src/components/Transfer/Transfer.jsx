@@ -5,7 +5,7 @@ import * as Yup from "yup"
 import { useTransfer } from "./useTransfer"
 import Button from "../Button"
 
-export default function Transfer() {
+export default function Transfer({ totalBalance }) {
   const walletState = useSelector(state => state.walletReducer)
   const { handleSubmit } = useTransfer()
   const walletId = sessionStorage.getItem("walletId")
@@ -34,9 +34,10 @@ export default function Transfer() {
             amount: Yup.string()
               .max(6, "You have exceeded the maximum amount")
               .matches(/^\d+$/, "Must contain only numbers")
+              .test("insufficient", "The minimum amount must be higher than 0", value => value > 0)
               .required("Required")
           })}
-          onSubmit={values => handleSubmit(values, walletState)}
+          onSubmit={values => handleSubmit(values, totalBalance)}
         >
           <Form className="flex flex-col justify-center gap-5 w-full md:max-w-[400px]">
             <div className="flex justify-between w-full">
