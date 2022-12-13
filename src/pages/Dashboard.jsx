@@ -65,7 +65,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <WalletList />
+        <WalletList totalBalance={totalBalance} />
       </div>
     </section>
   )

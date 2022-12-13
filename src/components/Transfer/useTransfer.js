@@ -6,8 +6,8 @@ import { getTransactions } from "../../redux/actions/getTransactions"
 export const useTransfer = () => {
   const dispatch = useDispatch()
 
-  const handleSubmit = async (values, walletState) => {
-    if (walletState < values.amount) return toast.error("You don't have enough money")
+  const handleSubmit = async (values, totalBalance) => {
+    if (totalBalance < values.amount) return toast.error("You don't have enough money")
     getWalletByAccountId(values.accountId).then(error => {
       if (error.status === 500) return toast.error("The wallet id is not valid")
       transferToAccountId(values).then(error => {
