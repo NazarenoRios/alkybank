@@ -29,7 +29,7 @@ export default function PaymentsForm() {
   };
 
   return (
-    <div className="flex justify-center content-center ">
+    <div className="flex justify-center content-center h-screen">
       <section className=" gradient-formmd:h-screen">
         <div className="flex justify-center items-center flex-col">
         {display && (
