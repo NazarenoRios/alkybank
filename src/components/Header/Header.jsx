@@ -63,7 +63,7 @@ export default function Header() {
             <div
               id="dropdownDividerButton"
               data-dropdown-toggle="dropdownDivider"
-              className="w-full flex justify-between gap-5"
+              className="w-full flex justify-between gap-5 cursor-pointer"
             >
               <span>
                 {name} {lastName === "" ? "" : lastName}
