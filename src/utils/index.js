@@ -39,7 +39,7 @@ const create = async(data, path) => {
   try {
     const res = await axios.post(`${API_BASE_URL}${path}`, data, configHeader)
     if (res.statusText === "OK") {
-      return toast.success("Payment Successfully");
+      return res;
     }
   } catch (error) {
     if (error.response.status) {

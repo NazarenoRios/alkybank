@@ -2,17 +2,28 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { LogButton } from "../LoginForm/StyledComponents";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { paymentAction } from "../../redux/actions/paymentAction";
 import { Tooltip } from "../ToolTip/Tooltip";
+import { useEffect, useState } from "react";
 
 export default function PaymentsForm() {
   const dispatch = useDispatch();
+  const response = useSelector((state) => state.paymentReducer);
+  const isLoading = useSelector((state) => state.paymentReducer.isLoading);
+  const [display, setDisplay] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    if (response.message || isLoading) {
+      setDisplay(true);
+    }
+  }, [response]);
+
   const onSubmit = async ({ amount, concept }) => {
     dispatch(paymentAction(amount, concept));
   };
@@ -20,23 +31,18 @@ export default function PaymentsForm() {
   return (
     <div className="flex justify-center content-center ">
       <section className=" gradient-formmd:h-screen">
-        {/* <div className="container py-12 px-6 h-full"> */}
         <div className="flex justify-center items-center flex-col">
-          {/*<section className="h-full bg-dark_bg">
-   
-    */}
-          {/* {display && (
+        {display && (
             <div className="container px-6 h-full">
               <Tooltip
                 display={display}
                 isLoading={isLoading}
                 setDisplay={setDisplay}
-                message={"Topup Success"}
+                message={"Payment Success"}
                 status="success"
               />
             </div>
-          )} */}
-
+          )}
           <div className="container py-12 px-6 h-full">
             <div className="flex justify-center items-center h-full g-6 text-gray-800">
               <div className="block bg-white dark:bg-dark2 shadow-lg rounded-lg">
@@ -77,9 +83,6 @@ export default function PaymentsForm() {
                             <option value="topup">U$D</option>
                             <option value="payment">€EUR</option>
                           </select>
-
-                
-                          {/* <label>Amount</label> */}
                           <input
                             type="number"
                             className={`w-auto form-control block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none ${
@@ -116,8 +119,6 @@ export default function PaymentsForm() {
                         {...register("concept", {
                           required: "Concept is required",
                           pattern: {
-                            //   value:
-                            //     /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                             message: "Please enter a concept",
                           },
                         })}

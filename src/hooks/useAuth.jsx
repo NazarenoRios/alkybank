@@ -45,9 +45,9 @@ function useProvideAuth() {
         sessionStorage.setItem("id", api_user_data.data.id)
       }
 
-      return { status: 200, message: "Bienvenido!" }
+      return { status: 200, message: "Welcome!" }
     } catch (err) {
-      return { status: err.response.status, message: "Error al iniciar sesión." }
+      return { status: err.response.status, message: "Invalid Credentials, please try again" }
     }
   }
 

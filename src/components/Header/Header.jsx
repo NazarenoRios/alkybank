@@ -2,16 +2,27 @@ import { useDarkModeContext } from "../../contexts/DarkModeContext";
 import alkybankLogoWhite from "../../assets/alkemy-logo-white.png";
 import alkybankLogo from "../../assets/alkemy-logo.png";
 import avatarDark from "../../assets/avatar-dark.svg";
+import arrowIcon from "../../assets/arrow-icon.svg";
 import moonIcon from "../../assets/moon-icon.svg";
 import sunIcon from "../../assets/sun-icon.svg";
 import avatar from "../../assets/avatar.svg";
 import "flowbite";
+import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import { Dropdown } from "../dropdown";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Header() {
   const { darkMode, setDarkMode } = useDarkModeContext();
-
+  const token = sessionStorage.getItem("token")
+  const [name, setName] = useState("")
+  const [lastName, setLastName] = useState("")
+  useEffect(()=>{
+    axios.get("http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me", { headers: { Authorization: "Bearer " + token } }).then(res => {
+      setName(res.data.first_name);
+      setLastName(res.data.last_name);
+    })
+  },[])
   return (
     <header className="w-full h-[100px] flex items-center justify-between px-5 box-border lg:pr-[60px]">
       <Link to="/" className="hidden md:flex items-center pl-2.5 mb-5">
@@ -54,10 +65,10 @@ export default function Header() {
               className="w-full flex justify-between gap-5"
             >
               <span>
-                {sessionStorage.first_name}{" "}
-                {sessionStorage.last_name === "null"
+                {name}{" "}
+                {lastName === ""
                   ? ""
-                  : sessionStorage.last_name}
+                  : lastName}
               </span>
             </div>
           </button>
@@ -65,5 +76,77 @@ export default function Header() {
         </div>
       </div>
     </header>
+  );
+}
+
+function Dropdown() {
+  const { signout } = useAuth();
+
+  return (
+    <>
+      <button
+        id="dropdownDividerButton"
+        data-dropdown-toggle="dropdownDivider"
+        className="md:hidden text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        <img
+          className="w-[20px] h-auto transform"
+          src={arrowIcon}
+          alt="arrow icon"
+        />
+      </button>
+
+      <div
+        id="dropdownDivider"
+        className="hidden w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-dark2 dark:divide-gray-600"
+      >
+        <ul
+          className="py-1 text-sm text-gray-700 dark:text-gray-200"
+          aria-labelledby="dropdownDividerButton"
+        >
+          <li>
+            <Link
+              to="/topup"
+              className="block py-2 px-4 hover:bg-primary dark:hover:bg-primary dark:hover:text-black"
+            >
+              Add funds
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/balance"
+              className="block py-2 px-4 hover:bg-primary dark:hover:bg-primary dark:hover:text-black"
+            >
+              Balance
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/payments"
+              className="block py-2 px-4 hover:bg-primary dark:hover:bg-primary dark:hover:text-black"
+            >
+              Payments
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/movements"
+              className="block py-2 px-4 hover:bg-primary dark:hover:bg-primary dark:hover:text-black"
+            >
+              Last movements
+            </Link>
+          </li>
+        </ul>
+        <div className="py-1" onClick={signout}>
+          <Link
+            to="#"
+            className="block py-2 px-4 text-sm text-gray-700 hover:bg-primary dark:hover:bg-primary dark:text-gray-200 dark:hover:text-black"
+          >
+            Log out
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }

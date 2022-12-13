@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 export function Dropdown() {
     const { signout } = useAuth();
-  
     return (
       <>
         <button
@@ -30,18 +29,18 @@ export function Dropdown() {
           >
             <li>
               <Link
-                to="/topup"
+                to="/"
                 className="block py-2 px-4 hover:bg-primary dark:hover:bg-primary dark:hover:text-black"
               >
-                Add funds
+                Dashboard
               </Link>
             </li>
             <li>
               <Link
-                to="/balance"
+                to="/topup"
                 className="block py-2 px-4 hover:bg-primary dark:hover:bg-primary dark:hover:text-black"
               >
-                Balance
+                Add funds
               </Link>
             </li>
             <li>

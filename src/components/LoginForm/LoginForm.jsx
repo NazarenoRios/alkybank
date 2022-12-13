@@ -26,15 +26,13 @@ export default function LoginForm() {
   } = useForm();
   
   const onSubmit = async ({ email, password }) => {
-    try {
       signin(email, password).then((res) => {
         if (res.status === 200) {
           toast.success(`Welcome ${sessionStorage.first_name}`);
+        }else{
+          toast.error(res.message)
         }
-      });
-    } catch (e) {
-      SetLoginTry(true);
-    }
+      }); 
   };
 
   return (
