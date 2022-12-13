@@ -33,11 +33,7 @@ export default function TopupMoneyForm() {
   return (
     <div className="flex justify-center content-center ">
       <section className=" gradient-formmd:h-screen">
-        {/* <div className="container py-12 px-6 h-full"> */}
         <div className="flex justify-center items-center flex-col">
-          {/*<section className="h-full bg-dark_bg">
-     
-      */}
           {display && (
             <div className="container px-6 h-full">
               <Tooltip
@@ -89,8 +85,6 @@ export default function TopupMoneyForm() {
                           <option value="topup">U$D</option>
                           <option value="payment">€EUR</option>
                         </select>
-
-                        {/* <label>Amount</label> */}
                         <input
                           type="number"
                           className={`form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none ${
@@ -126,8 +120,6 @@ export default function TopupMoneyForm() {
                         {...register("concept", {
                           required: "Concept is required",
                           pattern: {
-                            //   value:
-                            //     /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                             message: "Please enter a concept",
                           },
                         })}

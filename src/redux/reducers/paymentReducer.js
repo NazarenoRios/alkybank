@@ -4,7 +4,7 @@ const initialState = {
   isLoading: false,
 };
 
-export default function topupReducer(state = initialState, action) {
+export default function paymentReducer(state = initialState, action) {
   switch (action.type) {
     case PAYMENT_SUCCESS:
       return {
