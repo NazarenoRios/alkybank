@@ -4,6 +4,7 @@ import { getTransactions } from "../redux/actions/getTransactions"
 
 export const useDashboard = () => {
   const [totalSpending, setTotalSpending] = useState()
+  const [totalTopup, setTotalTopup] = useState()
   const [totalBalance, setTotalBalance] = useState()
   const dispatch = useDispatch()
   const transactions = useSelector(state => state.allTransactionsReducer.transactions)
@@ -19,6 +20,7 @@ export const useDashboard = () => {
   const getAmounts = () => {
     getTotalBalanceAmount()
     getTotalSpendingAmount()
+    getTotalTopupAmount()
   }
 
   const getTotalBalanceAmount = () => {
@@ -34,6 +36,14 @@ export const useDashboard = () => {
       return acc
     }, 0)
     setTotalSpending(total)
+  }
+  const getTotalTopupAmount = () => {
+    if (transactions.length <= 0) return
+    const total = transactions.reduce((acc, curr) => {
+      if (curr.type === "topup") acc += parseInt(curr.amount)
+      return acc
+    }, 0)
+    setTotalTopup(total)
     console.log(transactions, "total")
   }
 
@@ -43,5 +53,5 @@ export const useDashboard = () => {
       .reduce((acc, current) => (acc += Number(current.amount)), 0)
   }
 
-  return { totalSpending, totalBalance, transactions, getAmounts }
+  return { totalSpending, totalBalance, totalTopup, transactions, getAmounts }
 }
