@@ -1,17 +1,20 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { LogButton } from "../LoginForm/StyledComponents";
 import AlkemyLogo from "../../assets/alkemy-logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { paymentAction } from "../../redux/actions/paymentAction";
 import { Tooltip } from "../ToolTip/Tooltip";
-import { useEffect, useState } from "react";
+import { useDashboard } from "../../hooks/useDashboard"
 
 export default function PaymentsForm() {
   const dispatch = useDispatch();
   const response = useSelector((state) => state.paymentReducer);
   const isLoading = useSelector((state) => state.paymentReducer.isLoading);
   const [display, setDisplay] = useState(false);
+  const [tooltipProps, setTooltipProps] = useState({message: "Payment succeed", status: 'success'});
+  const { totalBalance } = useDashboard()
   const {
     register,
     handleSubmit,
@@ -25,6 +28,11 @@ export default function PaymentsForm() {
   }, [response]);
 
   const onSubmit = async ({ amount, concept }) => {
+    if(totalBalance < Number(amount)){
+      setDisplay(true)
+      setTooltipProps({message: "Insufficient funds to make this payment", status: 'error'})
+      return
+    }
     dispatch(paymentAction(amount, concept));
   };
 
@@ -38,8 +46,7 @@ export default function PaymentsForm() {
                 display={display}
                 isLoading={isLoading}
                 setDisplay={setDisplay}
-                message={"Payment Success"}
-                status="success"
+                {...tooltipProps}
               />
             </div>
           )}
