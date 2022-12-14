@@ -27,7 +27,8 @@ La aplicación necesita utilizar ciertas variables de entorno. Para acceder a el
 > ***Aviso:*** Es necesario colocar estas variables para el correcto funcionamiento de la aplicación.
 
 ## Despliegue 🚀
-Puedes utilizar esta aplicación sin necesidad de instalar ni configurar absolutamente nada. Has click [aquí]() para ir al despliegue.
+Puedes utilizar esta aplicación sin necesidad de instalar ni configurar absolutamente nada. Has click [aquí](https://nazarenorios.github.io/alkybank/) para ir al despliegue.
+> ***Aviso:*** El deploy no funciona actualmente
 
 ## Usuarios de prueba 🚻
 Si no quieres crear una cuenta, simplemente utiliza alguno de estos usuarios de prueba.
