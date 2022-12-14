@@ -40,6 +40,7 @@ export default function Contact() {
     }
   ]
   return (
+    <div className="h-screen">
     <div className="flex flex-wrap max-w-[760px] gap-5 justify-center items-center">
       {developers.map(developer => (
         <div
@@ -75,6 +76,7 @@ export default function Contact() {
           </div>
         </div>
       ))}
+    </div>
     </div>
   )
 }
