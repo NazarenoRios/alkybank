@@ -30,10 +30,11 @@ export const useDashboard = () => {
   const getTotalSpendingAmount = () => {
     if (transactions.length <= 0) return
     const total = transactions.reduce((acc, curr) => {
-      if (curr.type == "payment") acc + parseInt(curr.amount)
+      if (curr.type === "payment") acc += parseInt(curr.amount)
       return acc
     }, 0)
     setTotalSpending(total)
+    console.log(transactions, "total")
   }
 
   const getTransactionsType = type => {
